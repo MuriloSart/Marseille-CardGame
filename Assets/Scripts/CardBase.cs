@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardBase : MonoBehaviour
 {
     public int dmg = 1;
-    public ElementType currentElement;
+    public ElementType currentElement = ElementType.Fire;
     public Player currentOwner;
 
     private bool _acquired = false;
@@ -15,7 +15,8 @@ public class CardBase : MonoBehaviour
         Fire,
         Water,
         Earth,
-        Air
+        Air,
+        Mana
     }
 
     public void Acquire(Player player)
@@ -30,5 +31,6 @@ public class CardBase : MonoBehaviour
             Acquire(currentOwner);
         }
         _acquired = true;
+        GameManager.BattleTime(currentOwner);
     }
 }

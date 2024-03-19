@@ -270,6 +270,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: BattleTime
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4510720441240836505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,4 +296,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmg: 2
   currentElement: 0
-  owner: {fileID: 0}
+  currentOwner: {fileID: 0}

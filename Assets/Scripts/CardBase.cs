@@ -21,16 +21,14 @@ public class CardBase : MonoBehaviour
 
     public void Acquire(Player player)
     {
-        player.OnClick(this);
+        if (!_acquired)
+            currentOwner = player;
+        _acquired = true;
     }
 
     public void OnClick()
     {
-        if (!_acquired)
-        {
-            Acquire(currentOwner);
-        }
-        _acquired = true;
-        GameManager.BattleTime(currentOwner);
+        if(currentOwner != null)
+            GameManager.BattleTime(currentOwner);
     }
 }

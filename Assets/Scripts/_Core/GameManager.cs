@@ -1,13 +1,13 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static CardBase;
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject card;
-    public GameObject pack;
+    [SerializeField]private GameObject card;
+    [SerializeField]private GameObject pack;
+    public Player player;
+    public Player enemy;
     public List<GameObject> cards;
 
     public override void Awake()
@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
             int index = decimalCount / 10;
             if (index >= 5)
                 index -= 5;
-            obj.GetComponent<CardBase>().currentElement = (ElementType) index;
+            obj.GetComponent<CardBase>().currentElement = (CardBase.ElementType) index;
             obj.GetComponent<CardBase>().dmg = 1 + i - decimalCount;
             indexCount++;
             if (indexCount > 9)
@@ -34,12 +34,29 @@ public class GameManager : Singleton<GameManager>
 
             cards.Add(obj);
         }
+        StartGame();
+        player.AcquiringCards();
+        enemy.AcquiringCards();
     }
+
+    public void StartGame()
+    {
+        DealingCards(player);
+        DealingCards(enemy);
+    }
+
+    public void DealingCards(Player player)
+    {
+        int index = UnityEngine.Random.Range(0, cards.Count);
+        player.cards.Add(cards[index]);
+        cards.RemoveAt(index);
+    }
+
     public static void BattleTime(Player player)
     {
-        if (player == null && player.cards.Count > 0)
+        if (player != null && player.cards.Count > 0)
         {
-            player.Damage(player.cards[0].dmg, player.cards[0].currentElement.ToString());
+            player.Damage(player.cards[0].GetComponent<CardBase>().dmg, player.cards[0].GetComponent<CardBase>().currentElement.ToString());
             player.cards.RemoveAt(0);
         }
     }

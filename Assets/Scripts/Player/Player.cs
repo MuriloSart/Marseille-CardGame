@@ -12,8 +12,26 @@ public class Player : MonoBehaviour
     {
         if (enemy.cards.Count > 0)
         {
-            if (enemy.cards != null && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == type)
+            if (enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == type)
                 damage -= enemy.cards[0].GetComponent<CardBase>().dmg;
+            else if (type == "Fire" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Earth")
+            {
+                damage *= 2;
+            }
+            else if (type == "Water" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Fire")
+            {
+                damage *= 2;
+            }
+            else if (type == "Earth" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Air")
+            {
+                damage *= 2;
+            }
+            else if (type == "Air" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Water")
+            {
+                damage *= 2;
+            }
+            else if( type == "Mana" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() != "Mana")
+                damage *= 2;
         }
         enemy.health.Damage(damage);
     }

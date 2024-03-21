@@ -8,6 +8,7 @@ public class CardBase : MonoBehaviour
     public ElementType currentElement = ElementType.Fire;
     public Player currentOwner;
 
+    //privates
     private bool _acquired = false;
 
     public enum ElementType

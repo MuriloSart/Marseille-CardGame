@@ -29,7 +29,7 @@ public class CardBase : MonoBehaviour
 
     public void OnClick()
     {
-        //if(currentOwner != null)
-            //GameManager.BattleTime(currentOwner);
+        if(currentOwner != null)
+            currentOwner.OnClick();
     }
 }

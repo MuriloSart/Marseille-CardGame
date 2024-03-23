@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public HealthBase health;
     public GameObject layoutCards;
     public List<GameObject> cards;
+    public CardPack pack;
+    public Discard discard;
 
     public void Damage(int damage, string type)
     {
@@ -37,8 +39,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnClick(GameObject item)
+    public void OnClick()
     {
-        cards.Add(item);
+        if (cards.Count > 0)
+        {
+            Damage(cards[0].GetComponent<CardBase>().dmg, cards[0].GetComponent<CardBase>().currentElement.ToString());
+            discard.AcquiringCards(cards[0]);
+            cards.RemoveAt(0);
+        }
     }
 }

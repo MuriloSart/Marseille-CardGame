@@ -32,12 +32,12 @@ public class GameManager : Singleton<GameManager>
         pack.cards.RemoveAt(index);
     }
 
-    public static void BattleTime(Player player, CardPack pack)
-    {
-        if (player != null && player.cards.Count > 0)
-        {
-            player.Damage(player.cards[0].GetComponent<CardBase>().dmg, player.cards[0].GetComponent<CardBase>().currentElement.ToString());
-            player.cards.RemoveAt(0);
-        }
-    }
+    //public static void BattleTime(Player player, CardPack pack)
+    //{
+    //    if (player != null && player.cards.Count > 0)
+    //    {
+    //        player.Damage(player.cards[0].GetComponent<CardBase>().dmg, player.cards[0].GetComponent<CardBase>().currentElement.ToString());
+    //        player.cards.RemoveAt(0);
+    //    }
+    //}
 }

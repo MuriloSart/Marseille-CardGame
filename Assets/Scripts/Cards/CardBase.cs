@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardBase : MonoBehaviour
 {
     public int dmg = 1;
-    public ElementType currentElement = ElementType.Fire;
+    public ElementType currentElement = ElementType.Paus;
     public Player currentOwner;
 
     //privates
@@ -13,11 +13,10 @@ public class CardBase : MonoBehaviour
 
     public enum ElementType
     {
-        Fire,
-        Water,
-        Earth,
-        Air,
-        Mana
+        Paus,
+        Copas,
+        Espada,
+        Ouro,
     }
 
     public void Acquire(Player player)

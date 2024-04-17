@@ -10,15 +10,15 @@ public class CardPack : MonoBehaviour
     {
         int decimalCount = 0;
         int indexCount = 0;
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < 40; i++)
         {
             var obj = Instantiate(card);
             obj.transform.SetParent(this.transform);
             obj.transform.position = this.transform.position;
 
             int index = decimalCount / 10;
-            if (index >= 5)
-                index -= 5;
+            if (index >= 4)
+                index -= 4;
             obj.GetComponent<CardBase>().currentElement = (CardBase.ElementType)index;
             obj.GetComponent<CardBase>().dmg = 1 + i - decimalCount;
             indexCount++;
@@ -30,5 +30,10 @@ public class CardPack : MonoBehaviour
 
             cards.Add(obj);
         }
+    }
+
+    private void Start()
+    {
+        
     }
 }

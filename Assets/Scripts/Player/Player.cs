@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -14,18 +15,17 @@ public class Player : MonoBehaviour
     {
         if (enemy.cards.Count > 0)
         {
-            if (enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == type)
-                damage -= enemy.cards[0].GetComponent<CardBase>().dmg;
-            else if (type == "Fire" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Earth")
+            if (type == "Paus" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Copas")
                 damage *= 2;
-            else if (type == "Water" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Fire")
+            else if (type == "Copas" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Espadas")
                 damage *= 2;
-            else if (type == "Earth" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Air")
+            else if (type == "Espadas" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Ouro")
                 damage *= 2;
-            else if (type == "Air" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Water")
+            else if (type == "Ouro" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Paus")
                 damage *= 2;
-            else if( type == "Mana" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() != "Mana")
-                damage *= 2;
+
+            damage -= enemy.cards[0].GetComponent<CardBase>().dmg;
+            DiscardingCards(enemy.cards, 0);
         }
         enemy.health.Damage(damage);
     }
@@ -44,8 +44,13 @@ public class Player : MonoBehaviour
         if (cards.Count > 0)
         {
             Damage(cards[0].GetComponent<CardBase>().dmg, cards[0].GetComponent<CardBase>().currentElement.ToString());
-            discard.AcquiringCards(cards[0]);
-            cards.RemoveAt(0);
+            DiscardingCards(cards, 0);
         }
+    }
+
+    public void DiscardingCards(List<GameObject> cards, int index)
+    {
+        discard.AcquiringCards(cards[index]);
+        cards.RemoveAt(index);
     }
 }

@@ -27,17 +27,11 @@ public class GameManager : Singleton<GameManager>
 
     public void DealingCards(Player player)
     {
-        int index = UnityEngine.Random.Range(0, pack.cards.Count);
-        player.cards.Add(pack.cards[index]);
-        pack.cards.RemoveAt(index);
+        for(int i = 0; i < 5 ; i++)
+        {
+            int index = UnityEngine.Random.Range(0, pack.cards.Count);
+            player.cards.Add(pack.cards[index]);
+            pack.cards.RemoveAt(index);
+        }
     }
-
-    //public static void BattleTime(Player player, CardPack pack)
-    //{
-    //    if (player != null && player.cards.Count > 0)
-    //    {
-    //        player.Damage(player.cards[0].GetComponent<CardBase>().dmg, player.cards[0].GetComponent<CardBase>().currentElement.ToString());
-    //        player.cards.RemoveAt(0);
-    //    }
-    //}
 }

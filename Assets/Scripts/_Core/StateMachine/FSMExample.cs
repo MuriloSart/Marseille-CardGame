@@ -23,4 +23,9 @@ public class FSMExample : MonoBehaviour
 
         stateMachine.SwitchState(ExampleEnum.STATE_ONE);
     }
+
+    private void Update()
+    {
+        stateMachine.Update();
+    }
 }

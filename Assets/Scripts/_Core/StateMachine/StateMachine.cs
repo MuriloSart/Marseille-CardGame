@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEngine;
 
 public class StateMachine<T> where T : System.Enum
 {
@@ -34,6 +36,7 @@ public class StateMachine<T> where T : System.Enum
 
     public void Update()
     {
+        UnityEngine.Debug.Log(_currentState);
         if (_currentState != null) _currentState.OnStateStay();
     }   
 }

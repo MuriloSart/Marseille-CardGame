@@ -20,7 +20,6 @@ public class DealingState : BattleStates
     {
         if(objs == null || objs.Length == 0) return;
         base.OnStateEnter(objs);
-        Debug.Log(objs.Length);
         player = (Player)objs[0];
         enemy = (Player)objs[1];
         pack = (CardPack)objs[2];
@@ -31,32 +30,48 @@ public class DealingState : BattleStates
 
         if(_currentBattle == 1)
         {
-            battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.ATTACKING, player);
+            battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.ATTACKING, player, enemy);
         }
         else
-            battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEFENSE, player);
+            battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEFENSE, player, enemy);
     }
 }
 
 public class AttackingState : BattleStates
 {
     private Player player;
+    private Player enemy;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
-        if (objs == null || objs.Length == 0)
+        if (objs == null || objs.Length < 2)
         {
             Debug.Log("AttackingState: Não há parâmetros suficientes");
             return;
         }
         player = (Player)objs[0];
+        enemy = (Player)objs[1];
+        enemy.state = Player.PlayerStates.DONTATTACK;
         player.state = Player.PlayerStates.ATTACK;
+    }
+
+    public override void OnStateStay()
+    {
+        base.OnStateStay();
+        var card = enemy.cards[UnityEngine.Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
+        if (player.selectedCard)
+        {
+            Debug.Log("entrou");
+            enemy.state = Player.PlayerStates.ATTACK;
+            enemy.OnClick(card);
+        }
     }
 }
 
 public class DefenseState : BattleStates
 {
     private Player player;
+    private Player enemy;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
@@ -66,6 +81,18 @@ public class DefenseState : BattleStates
             return;
         }
         player = (Player)objs[0];
+        enemy = (Player)objs[1];
+        enemy.state = Player.PlayerStates.ATTACK;
         player.state = Player.PlayerStates.DONTATTACK;
+
+        var card = enemy.cards[UnityEngine.Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
+        enemy.OnClick(card);
+    }
+
+    public override void OnStateStay()
+    {
+        base.OnStateStay();
+        if (enemy.selectedCard)
+            player.state = Player.PlayerStates.ATTACK;
     }
 }

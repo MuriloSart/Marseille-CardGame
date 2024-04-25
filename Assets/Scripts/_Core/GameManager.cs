@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -20,6 +20,23 @@ public class GameManager : Singleton<GameManager>
         OnDealing();
     }
 
+    private void Update()
+    {
+        CheckingSelecteds();
+    }
+
+    public void CheckingSelecteds()
+    {
+        if(player.selectedCard && enemy.selectedCard)
+        {
+            if(_currentBattle == 0) enemy.DamageTurn();
+            else if(_currentBattle == 1) player.DamageTurn();
+            OnDealing();
+            player.selectedCard = false;
+            enemy.selectedCard = false;
+        }
+    }
+
     public void OnDealing()
     {
         battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, pack, battleState);
@@ -27,7 +44,8 @@ public class GameManager : Singleton<GameManager>
 
     public static void DealingPlayers(Player player, CardPack pack)
     {
-        for (int i = 0; i < 5; i++)
+        int amountDealing = 5 - player.cards.Count;
+        for (int i = 0; i < amountDealing; i++)
         {
             int index = UnityEngine.Random.Range(0, pack.cards.Count);
             player.cards.Add(pack.cards[index]);

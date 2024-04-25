@@ -2,18 +2,31 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    public GameObject layoutCards;
+    [Header("Deck On Hand")]
     public List<GameObject> cards;
+    public GameObject layoutCards;
+    public GameObject SelectedPos;
+
+    [Header("Health")]
     public HealthBase health;
+
+    [Header("Decks")]
     public Discard discard;
     public CardPack pack;
+
+    [Header("Enemy")]
     public Player enemy;
-    public GameObject SelectedPos;
+
+    [Header("Player Stats")]
     public PlayerStates state = PlayerStates.ATTACK;
-    public bool _selectedCard = false;
+    public bool selectedCard = false;
+
+    [Header("Duration Time Animation")]
+    public int durationAnimation = 1;
 
     //private
     private CardBase _cardSelected;
@@ -24,7 +37,7 @@ public class Player : MonoBehaviour
         DONTATTACK
     }
 
-    public void Damage(int damage, string type)
+    private void Damage(int damage, string type)
     {
         if (enemy.cards.Count > 0)
         {
@@ -45,8 +58,8 @@ public class Player : MonoBehaviour
 
     private void SelectingCard(CardBase card)
     {
-        _selectedCard = true;
-        card.transform.DOMove(SelectedPos.transform.position, 1);
+        card.transform.DOMove(SelectedPos.transform.position, durationAnimation);
+        StartCoroutine(DelayToSelect());
     }
 
     public void AcquiringCards()
@@ -58,30 +71,36 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void DamageTurn()
+    {
+        Damage(_cardSelected.dmg, _cardSelected.currentElement.ToString());
+        DiscardingCards(cards, 0);
+    }
+
     public void OnClick(CardBase cardClicked)
     {
         if (state == PlayerStates.DONTATTACK)
             return;
 
-        foreach(var card in cards)
-        {
-            if(card == typeof(CardBase).IsInstanceOfType(cardClicked))
-            {
-                _cardSelected = card.GetComponent<CardBase>();
-            }
-        }
+        _cardSelected = cardClicked;
 
         if (cards.Count > 0)
         {
-            SelectingCard(_cardSelected);
-            //Damage(_cardSelected.dmg, _cardSelected.currentElement.ToString());
-            //DiscardingCards(cards, 0);
+            SelectingCard(cardClicked);
         }
+
+        state = PlayerStates.DONTATTACK;
     }
 
-    public void DiscardingCards(List<GameObject> cards, int index)
+    private void DiscardingCards(List<GameObject> cards, int index)
     {
         discard.AcquiringCards(cards[index]);
         cards.RemoveAt(index);
+    }
+
+    IEnumerator DelayToSelect()
+    {
+        yield return new WaitForSeconds(durationAnimation);
+        selectedCard = true;
     }
 }

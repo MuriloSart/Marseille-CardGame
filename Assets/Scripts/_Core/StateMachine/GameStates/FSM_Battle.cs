@@ -24,4 +24,9 @@ public class FSM_Battle : MonoBehaviour
 
         stateMachine.SwitchState(BattleStates.DEALING);
     }
+
+    private void Update()
+    {
+        stateMachine.Update();
+    }
 }

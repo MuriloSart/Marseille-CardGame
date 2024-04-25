@@ -31,9 +31,4 @@ public class CardPack : MonoBehaviour
             cards.Add(obj);
         }
     }
-
-    private void Start()
-    {
-        
-    }
 }

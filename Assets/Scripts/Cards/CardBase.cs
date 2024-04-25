@@ -29,6 +29,6 @@ public class CardBase : MonoBehaviour
     public void OnClick()
     {
         if(currentOwner != null)
-            currentOwner.OnClick();
+            currentOwner.OnClick(this);
     }
 }

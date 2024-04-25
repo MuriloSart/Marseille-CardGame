@@ -1,15 +1,28 @@
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
-    public Player enemy;
-    public HealthBase health;
     public GameObject layoutCards;
     public List<GameObject> cards;
-    public CardPack pack;
+    public HealthBase health;
     public Discard discard;
+    public CardPack pack;
+    public Player enemy;
+    public GameObject SelectedPos;
+    public PlayerStates state = PlayerStates.ATTACK;
+    public bool _selectedCard = false;
+
+    //private
+    private CardBase _cardSelected;
+
+    public enum PlayerStates
+    {
+        ATTACK,
+        DONTATTACK
+    }
 
     public void Damage(int damage, string type)
     {
@@ -30,6 +43,12 @@ public class Player : MonoBehaviour
         enemy.health.Damage(damage);
     }
 
+    private void SelectingCard(CardBase card)
+    {
+        _selectedCard = true;
+        card.transform.DOMove(SelectedPos.transform.position, 1);
+    }
+
     public void AcquiringCards()
     {
         foreach (var card in cards) 
@@ -39,12 +58,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnClick()
+    public void OnClick(CardBase cardClicked)
     {
+        if (state == PlayerStates.DONTATTACK)
+            return;
+
+        foreach(var card in cards)
+        {
+            if(card == typeof(CardBase).IsInstanceOfType(cardClicked))
+            {
+                _cardSelected = card.GetComponent<CardBase>();
+            }
+        }
+
         if (cards.Count > 0)
         {
-            Damage(cards[0].GetComponent<CardBase>().dmg, cards[0].GetComponent<CardBase>().currentElement.ToString());
-            DiscardingCards(cards, 0);
+            SelectingCard(_cardSelected);
+            //Damage(_cardSelected.dmg, _cardSelected.currentElement.ToString());
+            //DiscardingCards(cards, 0);
         }
     }
 

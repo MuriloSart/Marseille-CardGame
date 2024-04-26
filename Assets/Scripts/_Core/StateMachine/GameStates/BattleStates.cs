@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class BattleStates : StateBase
 {
@@ -41,6 +41,7 @@ public class AttackingState : BattleStates
 {
     private Player player;
     private Player enemy;
+    private bool EnemyAttacked = false;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
@@ -59,12 +60,18 @@ public class AttackingState : BattleStates
     {
         base.OnStateStay();
         var card = enemy.cards[UnityEngine.Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
-        if (player.selectedCard)
+        if (player.selectedCard && !EnemyAttacked)
         {
-            Debug.Log("entrou");
             enemy.state = Player.PlayerStates.ATTACK;
             enemy.OnClick(card);
+            EnemyAttacked = true;
         }
+    }
+
+    public override void OnStateExit()
+    {
+        base.OnStateExit();
+        EnemyAttacked = false;
     }
 }
 
@@ -72,6 +79,7 @@ public class DefenseState : BattleStates
 {
     private Player player;
     private Player enemy;
+
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);

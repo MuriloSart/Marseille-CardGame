@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class BattleStates : StateBase
 {

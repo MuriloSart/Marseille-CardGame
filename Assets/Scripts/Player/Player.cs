@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
                 damage *= 2;
 
             damage -= enemy.cards[0].GetComponent<CardBase>().dmg;
+            if(damage < 0) damage = 0;
             DiscardingCards(enemy.cards, 0);
         }
         enemy.health.Damage(damage);

@@ -44,7 +44,6 @@ public class AttackingState : BattleStates
         base.OnStateEnter(objs);
         if (objs == null || objs.Length < 2)
         {
-            Debug.Log("AttackingState: Não há parâmetros suficientes");
             return;
         }
         player = (Player)objs[0];
@@ -80,9 +79,8 @@ public class DefenseState : BattleStates
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
-        if (objs == null || objs.Length == 0)
+        if (objs == null || objs.Length < 2)
         {
-            Debug.Log("DefenseState: Não há parâmetros suficientes");
             return;
         }
         player = (Player)objs[0];

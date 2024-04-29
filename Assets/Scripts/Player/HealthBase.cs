@@ -21,6 +21,11 @@ public class HealthBase : MonoBehaviour
         Init();
     }
 
+    public int CurrentLife
+    {
+        get { return _currentLife; }
+    }
+
     private void Init()
     {
         isDead = false;

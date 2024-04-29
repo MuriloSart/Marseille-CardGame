@@ -3,6 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
 
     [Header("Health")]
     public HealthBase health;
+    public TextMeshProUGUI lifeTextValue;
 
     [Header("Decks")]
     public Discard discard;
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
 
     //private
     private CardBase _cardSelected;
+    private bool showDamage = false;
+    private int damageDone;
 
     public enum PlayerStates
     {
@@ -54,7 +58,22 @@ public class Player : MonoBehaviour
             if(damage < 0) damage = 0;
             DiscardingCards(enemy.cards, 0);
         }
+        enemy.damageDone = damage;
         enemy.health.Damage(damage);
+        StartCoroutine(CDDamageShowed(3));  
+    }
+
+    private void Start()
+    {
+        lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
+    }
+
+    private void Update()
+    {
+        if(!showDamage)
+            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
+        else
+            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString() + " - " + damageDone;
     }
 
     private void SelectingCard(CardBase card)
@@ -103,5 +122,12 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(durationAnimation);
         selectedCard = true;
+    }
+
+    IEnumerator CDDamageShowed(int cd)
+    {
+        enemy.showDamage = true;
+        yield return new WaitForSeconds(cd);
+        enemy.showDamage = false;
     }
 }

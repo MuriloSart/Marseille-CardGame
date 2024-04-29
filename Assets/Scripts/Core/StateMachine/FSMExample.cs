@@ -20,8 +20,6 @@ public class FSMExample : MonoBehaviour
 
         stateMachine.RegisterStates(ExampleEnum.STATE_ONE, new StateBase());
         stateMachine.RegisterStates(ExampleEnum.STATE_TWO, new StateBase());
-
-        stateMachine.SwitchState(ExampleEnum.STATE_ONE);
     }
 
     private void Update()

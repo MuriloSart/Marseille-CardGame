@@ -507,8 +507,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1542422553}
   enemy: {fileID: 1858783366}
-  pack: {fileID: 375231208}
-  Discard: {fileID: 1203606811}
+  dealingDelay: 3
+  cardPack: {fileID: 375231208}
+  discard: {fileID: 1203606811}
   battleState: {fileID: 471103991}
 --- !u!1 &869828539
 GameObject:

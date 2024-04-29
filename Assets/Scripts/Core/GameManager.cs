@@ -5,12 +5,19 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     //Players
+    [Header("Entities Reference")]
     public Player player;
     public Player enemy;
 
+    [Header("State Change Delay")]
+    public int dealingDelay = 1;
+
     //Packs
-    public CardPack pack;
-    public Discard Discard;
+    [Header("Packs")]
+    public CardPack cardPack;
+    public Discard discard;
+
+    [Header("Finite State Machine")]
     public FSM_Battle battleState;
 
     private static int _currentBattle = 0;
@@ -36,10 +43,14 @@ public class GameManager : Singleton<GameManager>
             enemy.selectedCard = false;
         }
     }
-
+    IEnumerator DelayDealingState()
+    {
+        yield return new WaitForSeconds(1);
+        battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, cardPack, battleState, dealingDelay);
+    }
     public void OnDealing()
     {
-        battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, pack, battleState);
+        StartCoroutine(DelayDealingState());
     }
 
     public static void DealingPlayers(Player player, CardPack pack)

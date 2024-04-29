@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEditor;
 
-[CustomEditor(typeof(FSMExample))]
+[CustomEditor(typeof(FSM_Battle))]
 public class StateMachineEditor : Editor
 {
     public bool showFoldout = true;
@@ -9,7 +9,7 @@ public class StateMachineEditor : Editor
     {
         base.OnInspectorGUI();
 
-        FSMExample fsm = (FSMExample)target;
+        FSM_Battle fsm = (FSM_Battle)target;
 
         EditorGUILayout.Space(30);
         EditorGUILayout.LabelField("State Machine");

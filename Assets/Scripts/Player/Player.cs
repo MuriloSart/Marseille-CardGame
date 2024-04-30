@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         if (enemy.cards.Count > 0)
         {
-            if (type == "Paus" && enemy.cardSelected.currentElement.ToString() == "Copas")
+            if (type == "Paus" && enemy.cardSelected.currentElement.ToString() == "Copas")//Attack Comparison
                 damage *= 2;
             else if (type == "Copas" && enemy.cardSelected.currentElement.ToString() == "Espadas")
                 damage *= 2;
@@ -52,6 +52,14 @@ public class Player : MonoBehaviour
                 damage *= 2;
             else if (type == "Ouro" && enemy.cardSelected.currentElement.ToString() == "Paus")
                 damage *= 2;
+            else if (type == "Copas" && enemy.cardSelected.currentElement.ToString() == "Paus")//Defense Comparison
+                damage /= 2;
+            else if (type == "Espadas" && enemy.cardSelected.currentElement.ToString() == "Copas")
+                damage /= 2;
+            else if (type == "Ouro" && enemy.cardSelected.currentElement.ToString() == "Espadas")
+                damage /= 2;
+            else if (type == "Paus" && enemy.cardSelected.currentElement.ToString() == "Ouro")
+                damage /= 2;
 
             damage -= enemy.cardSelected.dmg;
             if(damage < 0) damage = 0;

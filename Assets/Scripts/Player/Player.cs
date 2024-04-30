@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public List<GameObject> cards;
     public GameObject layoutCards;
     public GameObject SelectedPos;
+    [HideInInspector]public CardBase cardSelected;
 
     [Header("Health")]
     public HealthBase health;
@@ -24,13 +25,12 @@ public class Player : MonoBehaviour
 
     [Header("Player Stats")]
     public PlayerStates state = PlayerStates.ATTACK;
-    public bool selectedCard = false;
+    [HideInInspector] public bool selectedCard = false;
 
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
 
     //private
-    private CardBase _cardSelected;
     private bool showDamage = false;
     private int damageDone;
 
@@ -44,16 +44,16 @@ public class Player : MonoBehaviour
     {
         if (enemy.cards.Count > 0)
         {
-            if (type == "Paus" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Copas")
+            if (type == "Paus" && enemy.cardSelected.currentElement.ToString() == "Copas")
                 damage *= 2;
-            else if (type == "Copas" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Espadas")
+            else if (type == "Copas" && enemy.cardSelected.currentElement.ToString() == "Espadas")
                 damage *= 2;
-            else if (type == "Espadas" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Ouro")
+            else if (type == "Espadas" && enemy.cardSelected.currentElement.ToString() == "Ouro")
                 damage *= 2;
-            else if (type == "Ouro" && enemy.cards[0].GetComponent<CardBase>().currentElement.ToString() == "Paus")
+            else if (type == "Ouro" && enemy.cardSelected.currentElement.ToString() == "Paus")
                 damage *= 2;
 
-            damage -= enemy.cards[0].GetComponent<CardBase>().dmg;
+            damage -= enemy.cardSelected.dmg;
             if(damage < 0) damage = 0;
             DiscardingCards(enemy.cards, 0);
         }
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
     public void DamageTurn()
     {
-        Damage(_cardSelected.dmg, _cardSelected.currentElement.ToString());
+        Damage(cardSelected.dmg, cardSelected.currentElement.ToString());
         DiscardingCards(cards, 0);
     }
 
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
         if (state == PlayerStates.DONTATTACK)
             return;
 
-        _cardSelected = cardClicked;
+        cardSelected = cardClicked;
 
         if (cards.Count > 0)
         {

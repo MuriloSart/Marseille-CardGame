@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -91,10 +92,12 @@ public class Player : MonoBehaviour
 
     public void AcquiringCards()
     {
+        int index = 1;
         foreach (var card in cards) 
         {
             card.GetComponent<CardBase>().Acquire(this);
-            card.transform.SetParent(layoutCards.transform);
+            StartCoroutine(TimeToAnimation(card, index));
+            index += 2;
         }
     }
 
@@ -131,10 +134,31 @@ public class Player : MonoBehaviour
         selectedCard = true;
     }
 
+    IEnumerator TimeToAnimation(GameObject card, int i)
+    {
+        card.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
+        yield return new WaitForSeconds(durationAnimation);
+        card.transform.SetParent(layoutCards.transform);
+    }
+
     IEnumerator CDDamageShowed(int cd)
     {
         enemy.showDamage = true;
         yield return new WaitForSeconds(cd);
         enemy.showDamage = false;
+    }
+
+    Vector2 CalcularPosicaoFinal(HorizontalLayoutGroup layoutGroup, int i)
+    {
+        Vector2 posicaoFinal = layoutGroup.transform.position;
+
+        float largura = layoutGroup.gameObject.GetComponent<RectTransform>().rect.width;
+
+        float StartPosition = posicaoFinal.x - (largura / 2);
+
+        StartPosition += layoutGroup.padding.right;
+
+        posicaoFinal.x = StartPosition + ((largura / 10) * i);
+        return posicaoFinal;
     }
 }

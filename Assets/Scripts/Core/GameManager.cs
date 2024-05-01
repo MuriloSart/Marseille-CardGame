@@ -14,7 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     //Packs
     [Header("Packs")]
-    public CardPack cardPack;
+    public Deck cardPack;
     public Discard discard;
 
     [Header("Finite State Machine")]
@@ -53,7 +53,7 @@ public class GameManager : Singleton<GameManager>
         StartCoroutine(DelayDealingState());
     }
 
-    public static void DealingPlayers(Player player, CardPack pack)
+    public static void DealingPlayers(Player player, Deck pack)
     {
         int amountDealing = 5 - player.cards.Count;
         for (int i = 0; i < amountDealing; i++)
@@ -65,7 +65,7 @@ public class GameManager : Singleton<GameManager>
         player.AcquiringCards();
     }
 
-    public static int DealingCards(Player player, Player enemy, CardPack pack)
+    public static int DealingCards(Player player, Player enemy, Deck pack)
     {
         DealingPlayers(player, pack);
         DealingPlayers(enemy, pack);

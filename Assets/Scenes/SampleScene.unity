@@ -181,7 +181,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 375231207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a72d845cbecf641b421018029b5d0c, type: 3}
+  m_Script: {fileID: 11500000, guid: 91897362a09235740a3756a6ca6fb383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   card: {fileID: 4510720441240836508, guid: a32f49c315932d44dbd1cddd5fd7e399, type: 3}
@@ -307,8 +307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -721, y: -233}
-  m_SizeDelta: {x: 221.6505, y: 50}
+  m_AnchoredPosition: {x: -713.57184, y: -233}
+  m_SizeDelta: {x: 236.5068, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &472658149
 MonoBehaviour:
@@ -766,7 +766,7 @@ MonoBehaviour:
   health: {fileID: 1542422555}
   lifeTextValue: {fileID: 472658149}
   discard: {fileID: 1203606811}
-  pack: {fileID: 375231208}
+  pack: {fileID: 0}
   enemy: {fileID: 1858783366}
   state: 0
   selectedCard: 0
@@ -868,8 +868,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -826, y: 302}
-  m_SizeDelta: {x: 221.6505, y: 50}
+  m_AnchoredPosition: {x: -812.7622, y: 305.25464}
+  m_SizeDelta: {x: 248.126, y: 43.4907}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662297925
 MonoBehaviour:
@@ -1114,7 +1114,7 @@ MonoBehaviour:
   health: {fileID: 1858783368}
   lifeTextValue: {fileID: 1662297925}
   discard: {fileID: 1203606811}
-  pack: {fileID: 375231208}
+  pack: {fileID: 0}
   enemy: {fileID: 1542422553}
   state: 0
   selectedCard: 0

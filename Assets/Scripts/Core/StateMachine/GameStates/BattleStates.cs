@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using Core.CountingTime;
 
 public class BattleStates : StateBase
@@ -11,14 +10,12 @@ public class DealingState : BattleStates
 {
     private Player player;
     private Player enemy;
-    private CardPack pack;
+    private Deck pack;
     private int _currentBattle;
     private FSM_Battle battleState;
+
     //Temporizadores
     private DateTime startTime;
-
-    private DateTime elapseTime;
-
     private int delay = 3;
     private int time = 0;
 
@@ -28,7 +25,7 @@ public class DealingState : BattleStates
         base.OnStateEnter(objs);
         player = (Player)objs[0];
         enemy = (Player)objs[1];
-        pack = (CardPack)objs[2];
+        pack = (Deck)objs[2];
         battleState = (FSM_Battle)objs[3];
         delay = (int)objs[4];
         

@@ -39,6 +39,7 @@ public class HealthBase : MonoBehaviour
 
         if(_currentLife <= 0)
         {
+            _currentLife = 0;
             Kill();
         }
     }

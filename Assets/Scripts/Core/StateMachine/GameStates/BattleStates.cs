@@ -1,5 +1,3 @@
-using System;
-using Core.CountingTime;
 
 public class BattleStates : StateBase
 {
@@ -15,9 +13,8 @@ public class DealingState : BattleStates
     private FSM_Battle battleState;
 
     //Temporizadores
-    private DateTime startTime;
-    private int delay = 3;
-    private int time = 0;
+    private float startTime;
+    private float delay = 3;
 
     public override void OnStateEnter(params object[] objs)
     {
@@ -32,20 +29,17 @@ public class DealingState : BattleStates
 
         player.state = Player.PlayerStates.DONTATTACK;
         _currentBattle = GameManager.DealingCards(player, enemy, pack);
-        startTime = DateTime.Now;
+        startTime = UnityEngine.Time.time;
     }
 
     public override void OnStateStay()
     {
         base.OnStateStay();
-        time = CountingTime.CoolDown(startTime, delay);
 
-        if (time >= delay) 
+        if (UnityEngine.Time.time > startTime + delay) 
         {
             if (_currentBattle == 1)
-            {
                 battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.ATTACKING, player, enemy);
-            }
             else
                 battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEFENSE, player, enemy);
         }
@@ -54,7 +48,6 @@ public class DealingState : BattleStates
     public override void OnStateExit()
     {
         base.OnStateExit();
-        time = 0;
     }
 }
 

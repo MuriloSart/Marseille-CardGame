@@ -71,12 +71,10 @@ public class GameManager : Singleton<GameManager>
         DealingPlayers(enemy, pack);
 
         if (_currentBattle == 0)
-        {
             _currentBattle = 1;
-        }
         else
             _currentBattle = 0;
         return _currentBattle;
-
     }
+
 }

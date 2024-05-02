@@ -4,9 +4,6 @@ using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine.UI;
-using System;
-using System.Linq.Expressions;
-using System.Reflection;
 
 public class Player : MonoBehaviour
 {

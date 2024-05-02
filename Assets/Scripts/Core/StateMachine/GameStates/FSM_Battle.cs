@@ -6,7 +6,8 @@ public class FSM_Battle : MonoBehaviour
     {
         DEALING,
         ATTACKING,
-        DEFENSE
+        DEFENSE,
+        RESETDECK
     }
 
     public StateMachine<BattleStates> stateMachine;
@@ -19,6 +20,7 @@ public class FSM_Battle : MonoBehaviour
         stateMachine.RegisterStates(BattleStates.DEALING, new DealingState());
         stateMachine.RegisterStates(BattleStates.ATTACKING, new AttackingState());
         stateMachine.RegisterStates(BattleStates.DEFENSE, new DefenseState());
+        stateMachine.RegisterStates(BattleStates.RESETDECK, new ResetDeckState());
     }
 
     private void Update()

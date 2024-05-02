@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
@@ -11,16 +11,18 @@ public class GameManager : Singleton<GameManager>
 
     [Header("State Change Delay")]
     public int dealingDelay = 1;
+    public int resetDeckDelay = 1;
 
     //Packs
     [Header("Packs")]
-    public Deck cardPack;
+    public Deck deck;
     public Discard discard;
 
     [Header("Finite State Machine")]
     public FSM_Battle battleState;
 
     private static int _currentBattle = 0;
+    private static bool resetDeck = false;
 
     private void Start()
     {
@@ -30,6 +32,15 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         CheckingSelecteds();
+        if (deck.cards.Count == 0 || deck.cards == null)
+            if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
+                StartCoroutine(DelayToReset());
+
+        if(resetDeck)
+        {
+            OnDealing();
+            resetDeck = false;
+        }
     }
 
     public void CheckingSelecteds()
@@ -43,26 +54,12 @@ public class GameManager : Singleton<GameManager>
             enemy.selectedCard = false;
         }
     }
-    IEnumerator DelayDealingState()
-    {
-        yield return new WaitForSeconds(1);
-        battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, cardPack, battleState, dealingDelay);
-    }
+
+    #region Dealing Cards
+    
     public void OnDealing()
     {
-        StartCoroutine(DelayDealingState());
-    }
-
-    public static void DealingPlayers(Player player, Deck pack)
-    {
-        int amountDealing = 5 - player.cards.Count;
-        for (int i = 0; i < amountDealing; i++)
-        {
-            int index = UnityEngine.Random.Range(0, pack.cards.Count);
-            player.cards.Add(pack.cards[index]);
-            pack.cards.RemoveAt(index);
-        }
-        player.AcquiringCards();
+        battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, deck, battleState, dealingDelay);
     }
 
     public static int DealingCards(Player player, Player enemy, Deck pack)
@@ -77,4 +74,43 @@ public class GameManager : Singleton<GameManager>
         return _currentBattle;
     }
 
+    public static void DealingPlayers(Player player, Deck pack)
+    {
+        int amountDealing = 5 - player.cards.Count;
+        for (int i = 0; i < amountDealing; i++)
+        {
+            int index = UnityEngine.Random.Range(0, pack.cards.Count);
+            player.cards.Add(pack.cards[index]);
+            pack.cards.RemoveAt(index);
+        }
+        player.AcquiringCards();
+    }
+
+    #endregion
+
+    #region ResetDeck
+
+    public static void ResetDeck(Discard discard, Deck deck,int indexArray, float delay)
+    {
+        if (indexArray < 0)
+        {
+            resetDeck = true;
+            return;
+        }
+        Debug.Log(indexArray);
+        GameObject card = discard.discardPack[indexArray];
+
+        card.transform.DOMove(deck.transform.position, delay);
+        deck.cards.Add(card);
+        discard.discardPack.Remove(card);
+
+    }
+
+    private IEnumerator DelayToReset()
+    {
+        yield return new WaitForSeconds(resetDeckDelay);
+        battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.RESETDECK, discard, deck);
+    }
+
+    #endregion
 }

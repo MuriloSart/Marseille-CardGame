@@ -14,7 +14,7 @@ public class DealingState : BattleStates
 
     //Temporizadores
     private float startTime;
-    private float delay = 3;
+    private float delay = 1;
 
     public override void OnStateEnter(params object[] objs)
     {
@@ -126,5 +126,39 @@ public class DefenseState : BattleStates
         base.OnStateExit();
         player.state = Player.PlayerStates.DONTATTACK;
         _checked = false;
+    }
+}
+
+public class ResetDeckState : BattleStates
+{
+    private Discard discard;
+    private Deck deck;
+    private FSM_Battle battleState;
+
+    //Temporizadores
+    private float startTime;
+    private float delay = .1f;
+    private int cardIndex = 0;
+
+    public override void OnStateEnter(params object[] objs)
+    {
+        base.OnStateEnter(objs);
+
+        discard = (Discard)objs[0];
+        deck = (Deck)objs[1];
+
+        startTime = UnityEngine.Time.time;
+        cardIndex = discard.discardPack.Count - 1;
+    }
+
+    public override void OnStateStay()
+    {
+        base.OnStateStay();
+        if (UnityEngine.Time.time > startTime + delay)
+        {
+            GameManager.ResetDeck(discard, deck, cardIndex, delay*2);
+            cardIndex--;
+            startTime = UnityEngine.Time.time;
+        }
     }
 }

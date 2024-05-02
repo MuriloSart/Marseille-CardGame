@@ -1,15 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Deck : MonoBehaviour
 {
     [SerializeField] private GameObject card;
     public List<GameObject> cards;
-
-    //Privates
-    private Color _paintColor = Color.green; 
 
     private void Awake()
     {

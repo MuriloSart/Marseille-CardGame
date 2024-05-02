@@ -80,7 +80,7 @@ public class Player : MonoBehaviour
 
         enemy._damageDone = damage;
         enemy.health.Damage(damage);
-        StartCoroutine(CDDamageShowed(3));  
+        StartCoroutine(DamageCDShowed(3));  
     }
 
     public void DamageTurn()
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
         card.transform.SetParent(layoutCards.transform);
     }
 
-    IEnumerator CDDamageShowed(int cd)
+    IEnumerator DamageCDShowed(int cd)
     {
         enemy._showDamage = true;
         yield return new WaitForSeconds(cd);

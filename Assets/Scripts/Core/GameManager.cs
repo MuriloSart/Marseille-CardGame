@@ -1,10 +1,10 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
-    //Players
     [Header("Entities Reference")]
     public Player player;
     public Player enemy;
@@ -13,7 +13,6 @@ public class GameManager : Singleton<GameManager>
     public int dealingDelay = 1;
     public int resetDeckDelay = 1;
 
-    //Packs
     [Header("Packs")]
     public Deck deck;
     public Discard discard;
@@ -35,7 +34,6 @@ public class GameManager : Singleton<GameManager>
         if (deck.cards.Count == 0 || deck.cards == null)
             if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
                 StartCoroutine(DelayToReset());
-
         if(resetDeck)
         {
             OnDealing();
@@ -56,7 +54,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     #region Dealing Cards
-    
+
     public void OnDealing()
     {
         battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, deck, battleState, dealingDelay);
@@ -64,8 +62,8 @@ public class GameManager : Singleton<GameManager>
 
     public static int DealingCards(Player player, Player enemy, Deck pack)
     {
-        DealingPlayers(player, pack);
-        DealingPlayers(enemy, pack);
+        DealToPlayer(player, pack);
+        DealToPlayer(enemy, pack);
 
         if (_currentBattle == 0)
             _currentBattle = 1;
@@ -74,7 +72,7 @@ public class GameManager : Singleton<GameManager>
         return _currentBattle;
     }
 
-    public static void DealingPlayers(Player player, Deck pack)
+    public static void DealToPlayer(Player player, Deck pack)
     {
         int amountDealing = 5 - player.cards.Count;
         for (int i = 0; i < amountDealing; i++)

@@ -1,12 +1,16 @@
-using System.Collections.Generic;
-using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+    [Header("LoseScreen")]
+    [SerializeField] private int screen = 3;
+
     [Header("Deck On Hand")]
     public List<GameObject> cards;
     public GameObject layoutCards;
@@ -19,11 +23,10 @@ public class Player : MonoBehaviour
 
     [Header("Decks")]
     public Discard discard;
-    public Deck pack;
 
     [Header("Enemy")]
     public Player enemy;
-
+    
     [Header("Player Stats")]
     public PlayerStates state = PlayerStates.ATTACK;
     [HideInInspector] public bool selectedCard = false;
@@ -43,6 +46,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        health.player = this;
         lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
     }
 
@@ -161,4 +165,9 @@ public class Player : MonoBehaviour
         return posicaoFinal;
     }
     #endregion
+
+    public void Lose()
+    {
+        SceneManager.LoadScene(screen);
+    }
 }

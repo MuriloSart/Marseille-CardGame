@@ -41,7 +41,7 @@ public class CardBase : MonoBehaviour
                 this.currentElement = ElementType.Espada;
                 this.currentStrengthness = ElementType.Ouro;
                 this.currentWeakness = ElementType.Copas;
-                this.gameObject.GetComponent<Image>().color = Color.black;
+                this.gameObject.GetComponent<Image>().color = Color.cyan;
                 break;
             case 3:
                 this.currentElement = ElementType.Ouro;

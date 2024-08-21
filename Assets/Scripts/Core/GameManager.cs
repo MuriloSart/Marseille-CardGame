@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     [Header("Entities Reference")]
     public Player player;
     public Player enemy;
+    public int maxCardNumber = 7;
 
     [Header("State Change Delay")]
     public int dealingDelay = 1;
@@ -20,8 +21,9 @@ public class GameManager : Singleton<GameManager>
     [Header("Finite State Machine")]
     public FSM_Battle battleState;
 
+    //privates
     private static int _currentBattle = 0;
-    private static bool resetDeck = false;
+    private static bool _resetDeck = false;
 
     private void Start()
     {
@@ -34,10 +36,10 @@ public class GameManager : Singleton<GameManager>
         if (deck.cards.Count == 0 || deck.cards == null)
             if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
                 StartCoroutine(DelayToReset());
-        if(resetDeck)
+        if(_resetDeck)
         {
             OnDealing();
-            resetDeck = false;
+            _resetDeck = false;
         }
     }
 
@@ -60,7 +62,7 @@ public class GameManager : Singleton<GameManager>
         battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, deck, battleState, dealingDelay);
     }
 
-    public static int DealingCards(Player player, Player enemy, Deck pack)
+    public int DealingCards(Player player, Player enemy, Deck pack)
     {
         DealToPlayer(player, pack);
         DealToPlayer(enemy, pack);
@@ -72,9 +74,9 @@ public class GameManager : Singleton<GameManager>
         return _currentBattle;
     }
 
-    public static void DealToPlayer(Player player, Deck pack)
+    public void DealToPlayer(Player player, Deck pack)
     {
-        int amountDealing = 5 - player.cards.Count;
+        int amountDealing = maxCardNumber - player.cards.Count;
         for (int i = 0; i < amountDealing; i++)
         {
             int index = UnityEngine.Random.Range(0, pack.cards.Count);
@@ -88,11 +90,11 @@ public class GameManager : Singleton<GameManager>
 
     #region ResetDeck
 
-    public static void ResetDeck(Discard discard, Deck deck,int indexArray, float delay)
+    public void ResetDeck(Discard discard, Deck deck,int indexArray, float delay)
     {
         if (indexArray < 0)
         {
-            resetDeck = true;
+            _resetDeck = true;
             return;
         }
         Debug.Log(indexArray);

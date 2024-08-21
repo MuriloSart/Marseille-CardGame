@@ -28,7 +28,7 @@ public class DealingState : BattleStates
         
 
         player.state = Player.PlayerStates.DONTATTACK;
-        _currentBattle = GameManager.DealingCards(player, enemy, pack);
+        _currentBattle = GameManager.Instance.DealingCards(player, enemy, pack);
         startTime = UnityEngine.Time.time;
     }
 
@@ -156,7 +156,7 @@ public class ResetDeckState : BattleStates
         base.OnStateStay();
         if (UnityEngine.Time.time > startTime + delay)
         {
-            GameManager.ResetDeck(discard, deck, cardIndex, delay*2);
+            GameManager.Instance.ResetDeck(discard, deck, cardIndex, delay*2);
             cardIndex--;
             startTime = UnityEngine.Time.time;
         }

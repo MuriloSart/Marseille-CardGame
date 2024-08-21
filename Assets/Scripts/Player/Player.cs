@@ -161,7 +161,7 @@ public class Player : MonoBehaviour
 
         StartPosition += layoutGroup.padding.right;
 
-        posicaoFinal.x = StartPosition + ((largura / 10) * i);
+        posicaoFinal.x = StartPosition + ((largura / (GameManager.Instance.maxCardNumber *2)) * i);
         return posicaoFinal;
     }
     #endregion

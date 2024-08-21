@@ -1,9 +1,11 @@
+#if UNITY_EDITOR
 using System.Linq;
 using UnityEditor;
 
 [CustomEditor(typeof(FSM_Battle))]
 public class StateMachineEditor : Editor
 {
+
     public bool showFoldout = true;
     public override void OnInspectorGUI()
     {
@@ -36,3 +38,4 @@ public class StateMachineEditor : Editor
         }
     }
 }
+#endif

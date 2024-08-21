@@ -13,7 +13,7 @@ public class CardBase : MonoBehaviour
     public Color color;
 
     //privates
-    private Player currentOwner;
+    private Player _currentOwner;
     private bool _acquired = false;
 
     private void Start()
@@ -65,13 +65,13 @@ public class CardBase : MonoBehaviour
     public void Acquire(Player player)
     {
         if (!_acquired)
-            currentOwner = player;
+            _currentOwner = player;
         _acquired = true;
     }
 
     public void OnClick()
     {
-        if(currentOwner != null)
-            currentOwner.OnClick(this);
+        if(_currentOwner != null)
+            _currentOwner.OnClick(this);
     }
 }

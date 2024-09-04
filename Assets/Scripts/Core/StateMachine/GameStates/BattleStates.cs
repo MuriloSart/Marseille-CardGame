@@ -59,12 +59,12 @@ public class AttackingState : BattleStates
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
-        if (objs == null || objs.Length < 2)
-        {
-            return;
-        }
+
+        if (objs == null || objs.Length < 2) return;
+
         player = (Player)objs[0];
         enemy = (Player)objs[1];
+
         enemy.state = Player.PlayerStates.DONTATTACK;
         player.state = Player.PlayerStates.ATTACK;
     }
@@ -72,8 +72,10 @@ public class AttackingState : BattleStates
     public override void OnStateStay()
     {
         base.OnStateStay();
+
         var card = enemy.cards[UnityEngine.Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
-        if (player.selectedCard && !EnemyAttacked)
+
+        if (player.selected && !EnemyAttacked)
         {
             enemy.state = Player.PlayerStates.ATTACK;
             enemy.OnClick(card);
@@ -114,7 +116,7 @@ public class DefenseState : BattleStates
     public override void OnStateStay()
     {
         base.OnStateStay();
-        if (enemy.selectedCard && !_checked)
+        if (enemy.selected && !_checked)
         {
             player.state = Player.PlayerStates.ATTACK;
             _checked = true;

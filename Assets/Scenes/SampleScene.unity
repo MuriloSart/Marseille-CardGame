@@ -542,6 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1542422553}
   enemy: {fileID: 1858783366}
+  maxCardNumber: 7
   dealingDelay: 2
   resetDeckDelay: 1
   deck: {fileID: 375231208}

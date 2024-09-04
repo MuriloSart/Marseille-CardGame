@@ -6,9 +6,7 @@ public class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
     public int dmg = 1;
-    public ElementType currentElement = ElementType.Paus;
-    public ElementType currentStrengthness = ElementType.Paus;
-    public ElementType currentWeakness = ElementType.Paus;
+    public ElementType currentElement = ElementType.Esperanca;
     public TextMeshProUGUI uiTextValue;
     public Color color;
 
@@ -26,27 +24,19 @@ public class CardBase : MonoBehaviour
         switch (i) 
         {
             case 0:
-                this.currentElement = ElementType.Paus;
-                this.currentStrengthness = ElementType.Copas;
-                this.currentWeakness = ElementType.Ouro;
+                this.currentElement = ElementType.Esperanca;
                 this.gameObject.GetComponent<Image>().color = Color.green;
                 break;
             case 1:
-                this.currentElement = ElementType.Copas;
-                this.currentStrengthness = ElementType.Espada;
-                this.currentWeakness = ElementType.Paus;
+                this.currentElement = ElementType.Amor;
                 this.gameObject.GetComponent<Image>().color = Color.red;
                 break;
             case 2:
-                this.currentElement = ElementType.Espada;
-                this.currentStrengthness = ElementType.Ouro;
-                this.currentWeakness = ElementType.Copas;
+                this.currentElement = ElementType.Culpa;
                 this.gameObject.GetComponent<Image>().color = Color.cyan;
                 break;
             case 3:
-                this.currentElement = ElementType.Ouro;
-                this.currentStrengthness = ElementType.Paus;
-                this.currentWeakness = ElementType.Espada;
+                this.currentElement = ElementType.Luto;
                 this.gameObject.GetComponent<Image>().color = Color.yellow;
                 break;
         }
@@ -56,10 +46,10 @@ public class CardBase : MonoBehaviour
 
     public enum ElementType
     {
-        Paus,
-        Copas,
-        Espada,
-        Ouro,
+        Esperanca,
+        Luto,
+        Culpa,
+        Amor
     }
 
     public void Acquire(Player player)

@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
     //privates
     private static int _currentBattle = 0;
     private static bool _resetDeck = false;
+    private int _currentTurnPhase = 1;
 
     private void Start()
     {
@@ -33,25 +34,35 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         CheckingSelecteds();
-        if (deck.cards.Count == 0 || deck.cards == null)
-            if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
-                StartCoroutine(DelayToReset());
-        if(_resetDeck)
-        {
-            OnDealing();
-            _resetDeck = false;
-        }
+        CheckingResetState();
     }
 
     public void CheckingSelecteds()
     {
-        if(player.selectedCard && enemy.selectedCard)
+        if(player.selected && enemy.selected)
         {
-            if(_currentBattle == 0) enemy.DamageTurn();
-            else if(_currentBattle == 1) player.DamageTurn();
-            OnDealing();
-            player.selectedCard = false;
-            enemy.selectedCard = false;
+            if (_currentTurnPhase == 1)
+            {
+
+                player.selected = false;
+                enemy.selected = false;
+
+                _currentTurnPhase++;
+            }
+            else
+            {
+                if (_currentBattle == 0)
+                    enemy.DamageTurn();
+                else if (_currentBattle == 1)
+                    player.DamageTurn();
+
+                player.selected = false;
+                enemy.selected = false;
+
+                OnDealing();
+                _currentTurnPhase = 1;
+            }
+
         }
     }
 
@@ -89,6 +100,19 @@ public class GameManager : Singleton<GameManager>
     #endregion
 
     #region ResetDeck
+
+    private void CheckingResetState()
+    {
+        if (deck.cards.Count <= 0 || deck.cards == null)
+            if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
+                StartCoroutine(DelayToReset());
+
+        if (_resetDeck)
+        {
+            OnDealing();
+            _resetDeck = false;
+        }
+    }
 
     public void ResetDeck(Discard discard, Deck deck,int indexArray, float delay)
     {

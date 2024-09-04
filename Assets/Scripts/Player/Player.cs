@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public List<GameObject> cards;
     public GameObject layoutCards;
     public GameObject SelectedPos;
-    [HideInInspector]public CardBase cardSelected;
+    [HideInInspector]public List<CardBase> selectedCards;
 
     [Header("Health")]
     public HealthBase health;
@@ -29,7 +29,7 @@ public class Player : MonoBehaviour
     
     [Header("Player Stats")]
     public PlayerStates state = PlayerStates.ATTACK;
-    [HideInInspector] public bool selectedCard = false;
+    [HideInInspector] public bool selected = false;
 
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
@@ -38,59 +38,66 @@ public class Player : MonoBehaviour
     private bool _showDamage = false;
     private int _damageDone;
 
+    
+
+    private void Start()
+    {
+        ShowingDamage();
+    }
+
+    private void Update()
+    {
+        ShowingDamageUpdate();
+    }
+
+
+    #region Dealing Damage
     public enum PlayerStates
     {
         ATTACK,
         DONTATTACK
     }
 
-    private void Start()
-    {
-        health.player = this;
-        lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
-    }
-
-    private void Update()
-    {
-        if (!_showDamage)
-            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
-        else
-            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString() + " - " + _damageDone;
-    }
-
-    #region Damage
-
     public void OnClick(CardBase cardClicked)
     {
         if (state == PlayerStates.DONTATTACK) return;
 
-        cardSelected = cardClicked;
+        selectedCards.Add(cardClicked);
 
         SelectingCard(cardClicked);
 
-        state = PlayerStates.DONTATTACK;
+        if(selectedCards.Count >= 2)
+        {
+            StartCoroutine(DelayToSelect());
+            state = PlayerStates.DONTATTACK;
+        }
     }
 
     private void Damage(int damage)
     {
-        if(enemy.cardSelected.currentElement == cardSelected.currentStrengthness)
-            damage *= 2;
-        else if(enemy.cardSelected.currentElement == cardSelected.currentWeakness)
-            damage /= 2;
-
-        damage -= enemy.cardSelected.dmg;
         if(damage < 0) damage = 0;
-        enemy.DiscardingCards(enemy.cards.IndexOf(enemy.cardSelected.gameObject));
-
+        
         enemy._damageDone = damage;
         enemy.health.Damage(damage);
         StartCoroutine(DamageCDShowed(3));  
     }
 
+    private void DiscardEnemyCards()
+    {
+        foreach (CardBase card in enemy.selectedCards)
+        {
+            enemy.DiscardingCards(enemy.cards.IndexOf(card.gameObject));
+        }
+    }
+
     public void DamageTurn()
     {
-        Damage(cardSelected.dmg);
-        DiscardingCards(cards.IndexOf(cardSelected.gameObject));
+        foreach(var card in selectedCards)
+        {
+            Damage(card.dmg);
+            DiscardingCards(cards.IndexOf(card.gameObject));
+        }
+        DiscardEnemyCards();
     }
 
     #endregion
@@ -124,13 +131,12 @@ public class Player : MonoBehaviour
     private void SelectingCard(CardBase card)
     {
         card.transform.DOMove(SelectedPos.transform.position, durationAnimation);
-        StartCoroutine(DelayToSelect());
     }
 
     IEnumerator DelayToSelect()
     {
         yield return new WaitForSeconds(durationAnimation);
-        selectedCard = true;
+        selected = true;
     }
 
     #endregion
@@ -142,13 +148,6 @@ public class Player : MonoBehaviour
         card.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
         yield return new WaitForSeconds(durationAnimation);
         card.transform.SetParent(layoutCards.transform);
-    }
-
-    IEnumerator DamageCDShowed(int cd)
-    {
-        enemy._showDamage = true;
-        yield return new WaitForSeconds(cd);
-        enemy._showDamage = false;
     }
 
     Vector2 CalcularPosicaoFinal(HorizontalLayoutGroup layoutGroup, int i)
@@ -164,6 +163,31 @@ public class Player : MonoBehaviour
         posicaoFinal.x = StartPosition + ((largura / (GameManager.Instance.maxCardNumber *2)) * i);
         return posicaoFinal;
     }
+
+    #endregion
+
+    #region Health Ui Manage
+    private void ShowingDamage()
+    {
+        health.player = this;
+        lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
+    }
+
+    private void ShowingDamageUpdate()
+    {
+        if (!_showDamage)
+            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString();
+        else
+            lifeTextValue.text = this.name + "Health:" + health.CurrentLife.ToString() + " - " + _damageDone;
+    }
+
+    IEnumerator DamageCDShowed(int cd)
+    {
+        enemy._showDamage = true;
+        yield return new WaitForSeconds(cd);
+        enemy._showDamage = false;
+    }
+
     #endregion
 
     public void Lose()

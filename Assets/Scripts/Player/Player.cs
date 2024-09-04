@@ -131,6 +131,7 @@ public class Player : MonoBehaviour
     private void SelectingCard(CardBase card)
     {
         card.transform.DOMove(SelectedPos.transform.position, durationAnimation);
+        StartCoroutine(DelayToSelect());
     }
 
     IEnumerator DelayToSelect()

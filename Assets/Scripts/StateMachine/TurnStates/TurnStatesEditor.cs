@@ -2,19 +2,18 @@
 using System.Linq;
 using UnityEditor;
 
-[CustomEditor(typeof(FSM_Battle))]
-public class StateMachineEditor : Editor
+[CustomEditor(typeof(FSM_Turn))]
+public class TurnStatesEditor : Editor
 {
-
     public bool showFoldout = true;
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        FSM_Battle fsm = (FSM_Battle)target;
+        FSM_Turn fsm = (FSM_Turn)target;
 
         EditorGUILayout.Space(30);
-        EditorGUILayout.LabelField("State Machine");
+        EditorGUILayout.LabelField("Turn States");
 
         if (fsm.stateMachine == null) return;
 

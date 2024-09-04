@@ -1,7 +1,6 @@
 using DG.Tweening;
 using System.Collections;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -18,13 +17,14 @@ public class GameManager : Singleton<GameManager>
     public Deck deck;
     public Discard discard;
 
-    [Header("Finite State Machine")]
+    [Header("Finite State Machines")]
     public FSM_Battle battleState;
+    public FSM_Turn turnState;
 
     //privates
     private static int _currentBattle = 0;
     private static bool _resetDeck = false;
-    private int _currentTurnPhase = 1;
+
 
     private void Start()
     {
@@ -41,29 +41,32 @@ public class GameManager : Singleton<GameManager>
     {
         if(player.selected && enemy.selected)
         {
-            if (_currentTurnPhase == 1)
-            {
+            if (_currentBattle == 0)//transformar em uma comparação entra o battleState.stateMachine.CurrentState em seu state relacionado
+                enemy.DamageTurn();
+            else if(_currentBattle == 1)
+                player.DamageTurn();
 
-                player.selected = false;
-                enemy.selected = false;
-
-                _currentTurnPhase++;
-            }
-            else
-            {
-                if (_currentBattle == 0)
-                    enemy.DamageTurn();
-                else if (_currentBattle == 1)
-                    player.DamageTurn();
-
-                player.selected = false;
-                enemy.selected = false;
-
-                OnDealing();
-                _currentTurnPhase = 1;
-            }
-
+            OnDealing();
         }
+        else if(!player.selected && enemy.selected)
+            PlayerAttack();
+    }
+
+    public void PlayerAttack()
+    {
+        turnState.stateMachine.SwitchState(FSM_Turn.BattleStates.PLAYER_TURN, player);
+    }
+
+    public void EnemyAttack()
+    {
+        turnState.stateMachine.SwitchState(FSM_Turn.BattleStates.ENEMY_TURN, enemy);
+    }
+
+    public void EnemyAutoSelect()
+    {
+        var card = enemy.cards[Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
+
+        enemy.OnClick(card);
     }
 
     #region Dealing Cards

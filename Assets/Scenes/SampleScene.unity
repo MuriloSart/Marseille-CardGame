@@ -497,6 +497,49 @@ RectTransform:
   m_AnchoredPosition: {x: -778, y: 299}
   m_SizeDelta: {x: 200.4081, y: 216.0272}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &702804629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 702804630}
+  - component: {fileID: 702804631}
+  m_Layer: 0
+  m_Name: TurnStates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &702804630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702804629}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 869828540}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &702804631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 702804629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47162ce3e73688748a98e8bdf159e134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &716772272
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +591,7 @@ MonoBehaviour:
   deck: {fileID: 375231208}
   discard: {fileID: 1203606811}
   battleState: {fileID: 471103991}
+  turnState: {fileID: 702804631}
 --- !u!1 &869828539
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +620,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 471103992}
+  - {fileID: 702804630}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -770,13 +815,13 @@ MonoBehaviour:
   cards: []
   layoutCards: {fileID: 1293981424}
   SelectedPos: {fileID: 1960711606}
-  cardSelected: {fileID: 0}
+  selectedCards: []
   health: {fileID: 1542422555}
   lifeTextValue: {fileID: 472658149}
   discard: {fileID: 1203606811}
   enemy: {fileID: 1858783366}
   state: 0
-  selectedCard: 0
+  selected: 0
   durationAnimation: 1
 --- !u!4 &1542422554
 Transform:
@@ -1116,13 +1161,13 @@ MonoBehaviour:
   cards: []
   layoutCards: {fileID: 1753086997}
   SelectedPos: {fileID: 1612478755}
-  cardSelected: {fileID: 0}
+  selectedCards: []
   health: {fileID: 1858783368}
   lifeTextValue: {fileID: 1662297925}
   discard: {fileID: 1203606811}
   enemy: {fileID: 1542422553}
   state: 0
-  selectedCard: 0
+  selected: 0
   durationAnimation: 1
 --- !u!4 &1858783367
 Transform:

@@ -22,7 +22,6 @@ public class GameManager : Singleton<GameManager>
     public FSM_Turn turnState;
 
     //privates
-    private static int _currentBattle = 0;
     private static bool _resetDeck = false;
 
 
@@ -41,9 +40,9 @@ public class GameManager : Singleton<GameManager>
     {
         if(player.selected && enemy.selected)
         {
-            if (_currentBattle == 0)//transformar em uma comparação entra o battleState.stateMachine.CurrentState em seu state relacionado
+            if (battleState.stateMachine.CurrentState is DefenseState)
                 enemy.DamageTurn();
-            else if(_currentBattle == 1)
+            else if(battleState.stateMachine.CurrentState is AttackingState)
                 player.DamageTurn();
 
             OnDealing();

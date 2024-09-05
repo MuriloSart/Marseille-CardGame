@@ -21,6 +21,7 @@ public class FSM_Battle : MonoBehaviour
         stateMachine.RegisterStates(BattleStates.ATTACKING, new AttackingState());
         stateMachine.RegisterStates(BattleStates.DEFENSE, new DefenseState());
         stateMachine.RegisterStates(BattleStates.RESETDECK, new ResetDeckState());
+
     }
 
     private void Update()

@@ -1,4 +1,6 @@
 
+using System.Diagnostics;
+
 public class TurnStates : StateBase
 {
     
@@ -10,7 +12,7 @@ public class PlayerTurnState : TurnStates
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
-        
+       
         entity = (Player)objs[0];
 
         entity.state = Player.PlayerStates.ATTACK;
@@ -46,7 +48,7 @@ public class EnemyTurnState : TurnStates
     {
         base.OnStateStay();
 
-        if (entity.selected && entity.state == Player.PlayerStates.ATTACK)
+        if (entity.state == Player.PlayerStates.ATTACK)
         {
             GameManager.Instance.EnemyAutoSelect();
             entity.state = Player.PlayerStates.DONTATTACK;

@@ -27,9 +27,7 @@ public class StateMachine<T> where T : System.Enum
 
         _currentState = dictionaryState[state];
 
-        _currentState.OnStateEnter(objs);
-
-        if (_currentState != null) _currentState.OnStateEnter();
+        if (_currentState != null) _currentState.OnStateEnter(objs);
     }
 
     public void Update()

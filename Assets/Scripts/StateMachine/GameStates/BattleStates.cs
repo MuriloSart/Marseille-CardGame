@@ -5,8 +5,8 @@ public class BattleStates : StateBase
 
 public class DealingState : BattleStates
 {
-    private Player player;
-    private Player enemy;
+    private Entity player;
+    private Entity enemy;
     private Deck pack;
     private int _currentBattle;
     private FSM_Battle battleState;
@@ -19,14 +19,14 @@ public class DealingState : BattleStates
     {
         if(objs == null || objs.Length < 5) return;
         base.OnStateEnter(objs);
-        player = (Player)objs[0];
-        enemy = (Player)objs[1];
+        player = (Entity)objs[0];
+        enemy = (Entity)objs[1];
         pack = (Deck)objs[2];
         battleState = (FSM_Battle)objs[3];
         delay = (int)objs[4];
         
 
-        player.state = Player.PlayerStates.DONTATTACK;
+        player.state = Entity.PlayerStates.DONTATTACK;
         _currentBattle = GameManager.Instance.DealingCards(player, enemy, pack);
         startTime = UnityEngine.Time.time;
     }
@@ -52,11 +52,14 @@ public class DealingState : BattleStates
 
 public class AttackingState : BattleStates
 {
-    private Player player;
-    private Player enemy;
+    private Entity player;
+    private Entity enemy;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
+        player = (Entity)objs[0];
+        enemy = (Entity)objs[1];
+        player.entityTurn = true;
 
         GameManager.Instance.PlayerAttack();
     }
@@ -66,18 +69,21 @@ public class AttackingState : BattleStates
         base.OnStateExit();
         player.selected = false;
         enemy.selected = false;
+        player.entityTurn = false;
     }
 }
 
 public class DefenseState : BattleStates
 {
-    private Player player;
-    private Player enemy;
+    private Entity player;
+    private Entity enemy;
 
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
-
+        player = (Entity)objs[0];
+        enemy = (Entity)objs[1];
+        
         GameManager.Instance.EnemyAttack();
     }
 

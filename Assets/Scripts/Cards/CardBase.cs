@@ -11,7 +11,7 @@ public class CardBase : MonoBehaviour
     public Color color;
 
     //privates
-    private Player _currentOwner;
+    private Entity _currentOwner;
     private bool _acquired = false;
 
     private void Start()
@@ -52,7 +52,7 @@ public class CardBase : MonoBehaviour
         Amor
     }
 
-    public void Acquire(Player player)
+    public void Acquire(Entity player)
     {
         if (!_acquired)
             _currentOwner = player;

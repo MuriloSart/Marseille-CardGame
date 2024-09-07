@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Entity : MonoBehaviour
 {
     [Header("LoseScreen")]
     [SerializeField] private int screen = 3;
@@ -25,10 +25,11 @@ public class Player : MonoBehaviour
     public Discard discard;
 
     [Header("Enemy")]
-    public Player enemy;
+    public Entity enemy;
     
     [Header("Player Stats")]
     public PlayerStates state = PlayerStates.ATTACK;
+    public bool entityTurn = false;
     [HideInInspector] public bool selected = false;
 
     [Header("Duration Time Animation")]
@@ -38,7 +39,6 @@ public class Player : MonoBehaviour
     private bool _showDamage = false;
     private int _damageDone;
 
-    
 
     private void Start()
     {
@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
+        Debug.Log(this.name + selectedCards.Count);
     }
 
 
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour
         DONTATTACK
     }
 
-    public void OnClick(CardBase cardClicked)
+    public virtual void OnClick(CardBase cardClicked)
     {
         if (state == PlayerStates.DONTATTACK) return;
 
@@ -66,11 +67,9 @@ public class Player : MonoBehaviour
 
         SelectingCard(cardClicked);
 
-        if(selectedCards.Count >= 2)
-        {
-            StartCoroutine(DelayToSelect());
-            state = PlayerStates.DONTATTACK;
-        }
+        state = PlayerStates.DONTATTACK;
+        //if(selectedCards.Count >= 2)
+        StartCoroutine(DelayToSelect());
     }
 
     private void Damage(int damage)
@@ -88,16 +87,22 @@ public class Player : MonoBehaviour
         {
             enemy.DiscardingCards(enemy.cards.IndexOf(card.gameObject));
         }
+        enemy.selectedCards.Clear();
     }
 
     public void DamageTurn()
     {
+        if(selectedCards.Count == 0 || selectedCards == null) return;
+
+        Damage(selectedCards[0].dmg);
+
         foreach(var card in selectedCards)
         {
-            Damage(card.dmg);
             DiscardingCards(cards.IndexOf(card.gameObject));
         }
+
         DiscardEnemyCards();
+        selectedCards.Clear();
     }
 
     #endregion

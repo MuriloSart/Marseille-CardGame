@@ -5,8 +5,8 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [Header("Entities Reference")]
-    public Player player;
-    public Player enemy;
+    public Entity player;
+    public Entity enemy;
     public int maxCardNumber = 7;
 
     [Header("State Change Delay")]
@@ -23,7 +23,7 @@ public class GameManager : Singleton<GameManager>
 
     //privates
     private static bool _resetDeck = false;
-
+    private int _currentBattle = 0;
 
     private void Start()
     {
@@ -42,8 +42,9 @@ public class GameManager : Singleton<GameManager>
         {
             if (battleState.stateMachine.CurrentState is DefenseState)
                 enemy.DamageTurn();
-            else if(battleState.stateMachine.CurrentState is AttackingState)
+            else if (battleState.stateMachine.CurrentState is AttackingState)
                 player.DamageTurn();
+            
 
             OnDealing();
         }
@@ -75,7 +76,7 @@ public class GameManager : Singleton<GameManager>
         battleState.stateMachine.SwitchState(FSM_Battle.BattleStates.DEALING, player, enemy, deck, battleState, dealingDelay);
     }
 
-    public int DealingCards(Player player, Player enemy, Deck pack)
+    public int DealingCards(Entity player, Entity enemy, Deck pack)
     {
         DealToPlayer(player, pack);
         DealToPlayer(enemy, pack);
@@ -87,7 +88,7 @@ public class GameManager : Singleton<GameManager>
         return _currentBattle;
     }
 
-    public void DealToPlayer(Player player, Deck pack)
+    public void DealToPlayer(Entity player, Deck pack)
     {
         int amountDealing = maxCardNumber - player.cards.Count;
         for (int i = 0; i < amountDealing; i++)
@@ -106,7 +107,7 @@ public class GameManager : Singleton<GameManager>
     private void CheckingResetState()
     {
         if (deck.cards.Count <= 0 || deck.cards == null)
-            if (battleState.stateMachine.CurrentState.ToString() != "ResetDeckState")
+            if (battleState.stateMachine.CurrentState is ResetDeckState)
                 StartCoroutine(DelayToReset());
 
         if (_resetDeck)

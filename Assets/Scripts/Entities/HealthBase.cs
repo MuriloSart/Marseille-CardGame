@@ -5,7 +5,7 @@ public class HealthBase : MonoBehaviour
 {
     public int startLife = 10;
     [SerializeField]private int _currentLife;
-    public Player player;
+    public Entity player;
 
     private void Awake()
     {

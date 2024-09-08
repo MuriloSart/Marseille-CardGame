@@ -44,6 +44,7 @@ public class DealingState : BattleStates
         }
     }
 
+
     public override void OnStateExit()
     {
         base.OnStateExit();
@@ -62,6 +63,12 @@ public class AttackingState : BattleStates
         player.entityTurn = true;
 
         GameManager.Instance.PlayerAttack();
+        GameManager.Instance.ValueStage();
+    }
+
+    public override void OnStateStay()
+    {
+        base.OnStateStay();
     }
 
     public override void OnStateExit()
@@ -85,6 +92,7 @@ public class DefenseState : BattleStates
         enemy = (Entity)objs[1];
         
         GameManager.Instance.EnemyAttack();
+        GameManager.Instance.ValueStage();
     }
 
     public override void OnStateExit()
@@ -99,11 +107,10 @@ public class ResetDeckState : BattleStates
 {
     private Discard discard;
     private Deck deck;
-    private FSM_Battle battleState;
 
     //Temporizadores
     private float startTime;
-    private float delay = .1f;
+    private readonly float delay = .1f;
     private int cardIndex = 0;
 
     public override void OnStateEnter(params object[] objs)

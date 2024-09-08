@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Finite State Machines")]
     public FSM_Battle battleState;
+    public FSM_Stage stageStage;
     public FSM_Turn turnState;
 
     //privates
@@ -40,16 +41,46 @@ public class GameManager : Singleton<GameManager>
     {
         if(player.selected && enemy.selected)
         {
-            if (battleState.stateMachine.CurrentState is DefenseState)
-                enemy.DamageTurn();
-            else if (battleState.stateMachine.CurrentState is AttackingState)
-                player.DamageTurn();
-            
 
-            OnDealing();
+            if (battleState.stateMachine.CurrentState is DefenseState)
+            {
+                if (stageStage.stateMachine.CurrentState is ValueStage)
+                {
+                    EnemyAttack();
+                    EffectStage();
+                }
+                else if (stageStage.stateMachine.CurrentState is EffectStage)
+                {
+                    enemy.DamageTurn();
+                    OnDealing();
+                }
+            }
+            else if (battleState.stateMachine.CurrentState is AttackingState)
+            {
+                if (stageStage.stateMachine.CurrentState is ValueStage)
+                {
+                    PlayerAttack();
+                    EffectStage();
+                }
+                else if (stageStage.stateMachine.CurrentState is EffectStage)
+                {
+                    player.DamageTurn();
+                    OnDealing();
+                }
+            }
         }
         else if(!player.selected && enemy.selected)
             PlayerAttack();
+    }
+
+    public void ValueStage()
+    {
+        stageStage.stateMachine.SwitchState(FSM_Stage.BattleStates.CARD_VALUE, player, enemy);
+    }
+
+    public void EffectStage()
+    {
+        stageStage.stateMachine.SwitchState(FSM_Stage.BattleStates.CARD_EFFECT, player, enemy);
     }
 
     public void PlayerAttack()
@@ -81,10 +112,11 @@ public class GameManager : Singleton<GameManager>
         DealToPlayer(player, pack);
         DealToPlayer(enemy, pack);
 
-        if (_currentBattle == 0)
+        if(_currentBattle == 0)
             _currentBattle = 1;
-        else
+        else if(_currentBattle == 1)
             _currentBattle = 0;
+
         return _currentBattle;
     }
 
@@ -93,7 +125,7 @@ public class GameManager : Singleton<GameManager>
         int amountDealing = maxCardNumber - player.cards.Count;
         for (int i = 0; i < amountDealing; i++)
         {
-            int index = UnityEngine.Random.Range(0, pack.cards.Count);
+            int index = Random.Range(0, pack.cards.Count);
             player.cards.Add(pack.cards[index]);
             pack.cards.RemoveAt(index);
         }

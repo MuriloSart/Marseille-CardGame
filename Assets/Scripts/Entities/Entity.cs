@@ -48,7 +48,6 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
-        Debug.Log(this.name + selectedCards.Count);
     }
 
 
@@ -62,14 +61,11 @@ public class Entity : MonoBehaviour
     public virtual void OnClick(CardBase cardClicked)
     {
         if (state == PlayerStates.DONTATTACK) return;
-
         selectedCards.Add(cardClicked);
 
         SelectingCard(cardClicked);
 
         state = PlayerStates.DONTATTACK;
-        //if(selectedCards.Count >= 2)
-        StartCoroutine(DelayToSelect());
     }
 
     private void Damage(int damage)

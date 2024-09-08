@@ -23,15 +23,15 @@ public class StateMachine<T> where T : System.Enum
 
     public void SwitchState(T state, params object[] objs)
     {
-        if (_currentState != null) _currentState.OnStateExit();
+        _currentState?.OnStateExit();
 
         _currentState = dictionaryState[state];
 
-        if (_currentState != null) _currentState.OnStateEnter(objs);
+        _currentState?.OnStateEnter(objs);
     }
 
     public void Update()
     {
-        if (_currentState != null) _currentState.OnStateStay();
+        _currentState?.OnStateStay();
     }   
 }

@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class FSM_Turn : MonoBehaviour
+public class FSM_Stage : MonoBehaviour
 {
     public enum BattleStates
     {
-        PLAYER_TURN,
-        ENEMY_TURN
+        CARD_VALUE,
+        CARD_EFFECT
     }
 
     public StateMachine<BattleStates> stateMachine;
@@ -15,8 +15,8 @@ public class FSM_Turn : MonoBehaviour
         stateMachine = new StateMachine<BattleStates>();
         stateMachine.Init();
 
-        stateMachine.RegisterStates(BattleStates.PLAYER_TURN, new PlayerTurnState());
-        stateMachine.RegisterStates(BattleStates.ENEMY_TURN, new EnemyTurnState());
+        stateMachine.RegisterStates(BattleStates.CARD_VALUE, new ValueStage());
+        stateMachine.RegisterStates(BattleStates.CARD_EFFECT, new EffectStage());
 
     }
 

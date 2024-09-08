@@ -455,6 +455,7 @@ MonoBehaviour:
   deck: {fileID: 375231208}
   discard: {fileID: 1203606811}
   battleState: {fileID: 471103991}
+  stageStage: {fileID: 1921066587}
   turnState: {fileID: 702804631}
 --- !u!1 &869828539
 GameObject:
@@ -485,6 +486,7 @@ Transform:
   m_Children:
   - {fileID: 471103992}
   - {fileID: 702804630}
+  - {fileID: 1921066586}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -667,6 +669,49 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5400641835660055636, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
   m_PrefabInstance: {fileID: 5400641836025601235}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1921066585
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1921066586}
+  - component: {fileID: 1921066587}
+  m_Layer: 0
+  m_Name: StageStates
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1921066586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921066585}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 869828540}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1921066587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1921066585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4f97970e07a304181cecc1dc64ca58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1969513249
 GameObject:
   m_ObjectHideFlags: 0

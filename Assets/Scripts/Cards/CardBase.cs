@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static Entity;
 
 public class CardBase : MonoBehaviour
 {
@@ -11,8 +12,14 @@ public class CardBase : MonoBehaviour
     public Color color;
 
     //privates
-    private Entity _currentOwner;
+    [SerializeField] private Entity _currentOwner;
     private bool _acquired = false;
+    private bool _acquiredOwner = false;
+
+    public bool Acquired 
+    { 
+        get { return _acquired; } 
+    }
 
     private void Start()
     {
@@ -54,14 +61,20 @@ public class CardBase : MonoBehaviour
 
     public void Acquire(Entity player)
     {
+        if (_acquiredOwner) return;
+
         if (!_acquired)
             _currentOwner = player;
         _acquired = true;
+        _acquiredOwner = true;
     }
 
     public void OnClick()
     {
-        if(_currentOwner != null)
+        if(_currentOwner != null && _currentOwner.state == PlayerStates.ATTACK)
+        {
             _currentOwner.OnClick(this);
+            _acquired = false;
+        }
     }
 }

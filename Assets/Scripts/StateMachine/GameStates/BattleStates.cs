@@ -27,6 +27,7 @@ public class DealingState : BattleStates
         
 
         player.state = Entity.PlayerStates.DONTATTACK;
+        enemy.state = Entity.PlayerStates.DONTATTACK;
         _currentBattle = GameManager.Instance.DealingCards(player, enemy, pack);
         startTime = UnityEngine.Time.time;
     }

@@ -15,6 +15,7 @@ public class Entity : MonoBehaviour
     public List<GameObject> cards;
     public GameObject layoutCards;
     public GameObject SelectedPos;
+    public GameObject SelectedPos2;
     [HideInInspector]public List<CardBase> selectedCards;
 
     [Header("Health")]
@@ -28,7 +29,7 @@ public class Entity : MonoBehaviour
     public Entity enemy;
     
     [Header("Player Stats")]
-    public PlayerStates state = PlayerStates.ATTACK;
+    public PlayerStates state = PlayerStates.DONTATTACK;
     public bool entityTurn = false;
     [HideInInspector] public bool selected = false;
 
@@ -38,6 +39,18 @@ public class Entity : MonoBehaviour
     //privates
     private bool _showDamage = false;
     private int _damageDone;
+    private Vector2 _currentSelectPos;
+
+    public int CurrentSelectedPos
+    {
+        set 
+        {
+            if (value == 1)
+                _currentSelectPos = SelectedPos.transform.position;
+            else if(value == 2)
+                _currentSelectPos = SelectedPos2.transform.position;
+        }
+    }
 
 
     private void Start()
@@ -48,6 +61,7 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
+        Debug.Log(this.name + state);
     }
 
 
@@ -60,7 +74,8 @@ public class Entity : MonoBehaviour
 
     public virtual void OnClick(CardBase cardClicked)
     {
-        if (state == PlayerStates.DONTATTACK) return;
+        if (state == PlayerStates.DONTATTACK || !cardClicked.Acquired) return;
+
         selectedCards.Add(cardClicked);
 
         SelectingCard(cardClicked);
@@ -131,7 +146,7 @@ public class Entity : MonoBehaviour
 
     private void SelectingCard(CardBase card)
     {
-        card.transform.DOMove(SelectedPos.transform.position, durationAnimation);
+        card.transform.DOMove(_currentSelectPos, durationAnimation);
         StartCoroutine(DelayToSelect());
     }
 

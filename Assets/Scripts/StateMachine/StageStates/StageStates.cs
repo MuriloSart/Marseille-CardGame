@@ -19,6 +19,8 @@ public class ValueStage : StageStates
 
         player.selected = false;
         enemy.selected = false;
+        player.CurrentSelectedPos = 1;
+        enemy.CurrentSelectedPos = 1;
     }
 }
 
@@ -34,5 +36,7 @@ public class EffectStage : StageStates
 
         player.selected = false;
         enemy.selected = false;
+        player.CurrentSelectedPos = 2;
+        enemy.CurrentSelectedPos = 2;
     }
 }

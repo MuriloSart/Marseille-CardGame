@@ -96,6 +96,16 @@ public class GameManager : Singleton<GameManager>
     public void EnemyAutoSelect()
     {
         var card = enemy.cards[Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
+        bool checkSelected = card.Acquired;
+
+        if (!checkSelected)
+        {
+            while (!checkSelected)
+            {
+                card = enemy.cards[Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
+                checkSelected = card.Acquired;
+            }
+        }
 
         enemy.OnClick(card);
     }

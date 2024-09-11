@@ -201,12 +201,14 @@ MonoBehaviour:
   cards: []
   layoutCards: {fileID: 4807663751611523878}
   SelectedPos: {fileID: 4807663752573689952}
+  SelectedPos2: {fileID: 8680887147218922910}
   selectedCards: []
   health: {fileID: 4807663751918302669}
   lifeTextValue: {fileID: 4807663750823740723}
   discard: {fileID: 0}
   enemy: {fileID: 0}
   state: 0
+  entityTurn: 0
   selected: 0
   durationAnimation: 1
 --- !u!1 &4807663752573689952
@@ -233,11 +235,41 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4807663752573689952}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 204, z: 50.042553}
+  m_LocalPosition: {x: -299, y: 204, z: 50.042553}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4807663751611523879}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8680887147218922910
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956258888593646551}
+  m_Layer: 0
+  m_Name: CardSelected2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1956258888593646551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8680887147218922910}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 290, y: 204, z: 50.042553}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4807663751611523879}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8093306538479627555
 PrefabInstance:

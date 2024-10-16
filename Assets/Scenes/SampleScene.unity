@@ -189,7 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91897362a09235740a3756a6ca6fb383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  card: {fileID: 4510720441240836508, guid: a32f49c315932d44dbd1cddd5fd7e399, type: 3}
+  cardTypes:
+  - {fileID: 4510720441240836508, guid: a32f49c315932d44dbd1cddd5fd7e399, type: 3}
+  - {fileID: 4510720441240836508, guid: 98217fe7a1d03db46a16f4d2cc5929f9, type: 3}
+  - {fileID: 4510720441240836508, guid: 5a7a07c6e84560d47938da283feaf6dc, type: 3}
+  - {fileID: 4510720441240836508, guid: a32f49c315932d44dbd1cddd5fd7e399, type: 3}
   cards: []
 --- !u!4 &375231209
 Transform:

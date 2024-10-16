@@ -12,7 +12,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private int screen = 3;
 
     [Header("Deck On Hand")]
-    public List<GameObject> cards;
+    public List<CardBase> cards;
     public GameObject layoutCards;
     public GameObject SelectedPos;
     public GameObject SelectedPos2;
@@ -77,7 +77,7 @@ public class Entity : MonoBehaviour
         if (state == PlayerStates.DONTATTACK || !cardClicked.Acquired) return;
 
         selectedCards.Add(cardClicked);
-
+        Debug.Log("entrou");
         SelectingCard(cardClicked);
 
         state = PlayerStates.DONTATTACK;
@@ -96,7 +96,7 @@ public class Entity : MonoBehaviour
     {
         foreach (CardBase card in enemy.selectedCards)
         {
-            enemy.DiscardingCards(enemy.cards.IndexOf(card.gameObject));
+            enemy.DiscardingCards(enemy.cards.IndexOf(card));
         }
         enemy.selectedCards.Clear();
     }
@@ -109,7 +109,7 @@ public class Entity : MonoBehaviour
 
         foreach(var card in selectedCards)
         {
-            DiscardingCards(cards.IndexOf(card.gameObject));
+            DiscardingCards(cards.IndexOf(card));
         }
 
         DiscardEnemyCards();
@@ -125,7 +125,7 @@ public class Entity : MonoBehaviour
         int index = 1;
         foreach (var card in cards)
         {
-            card.GetComponent<CardBase>().Acquire(this);
+            card.Acquire(this);
             StartCoroutine(TimeToAnimation(card, index));
             index += 2;
         }
@@ -137,16 +137,16 @@ public class Entity : MonoBehaviour
         cards.RemoveAt(index);
     }
 
-    IEnumerator DelayToDiscard(GameObject card)
+    IEnumerator DelayToDiscard(CardBase card)
     {
-        card.transform.DOMove(discard.transform.position, durationAnimation);
+        card.gameObject.transform.DOMove(discard.transform.position, durationAnimation);
         yield return new WaitForSeconds(durationAnimation);
         discard.AcquiringCards(card);
     }
 
     private void SelectingCard(CardBase card)
     {
-        card.transform.DOMove(_currentSelectPos, durationAnimation);
+        card.gameObject.transform.DOMove(_currentSelectPos, durationAnimation);
         StartCoroutine(DelayToSelect());
     }
 
@@ -160,11 +160,11 @@ public class Entity : MonoBehaviour
 
     #region Animations
 
-    IEnumerator TimeToAnimation(GameObject card, int i)
+    IEnumerator TimeToAnimation(CardBase card, int i)
     {
-        card.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
+        card.gameObject.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
         yield return new WaitForSeconds(durationAnimation);
-        card.transform.SetParent(layoutCards.transform);
+        card.gameObject.transform.SetParent(layoutCards.transform);
     }
 
     Vector2 CalcularPosicaoFinal(HorizontalLayoutGroup layoutGroup, int i)

@@ -3,27 +3,28 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField] private GameObject card;
-    public List<GameObject> cards;
+    [SerializeField]private List<GameObject> cardTypes;
+    public List<CardBase> cards;
 
     private void Awake()
     {
-        int damage = 0;
+
+        int damage = 1;
         for (int i = 0; i < 40; i++)
-        {
-            var obj = Instantiate(card);
+        { 
+            var obj = Instantiate(cardTypes[i/10]);
             obj.transform.SetParent(this.transform);
             obj.transform.position = this.transform.position;
 
-            obj.GetComponent<CardBase>().CreateCard(i/10, 1 + damage);
+            obj.GetComponent<CardBase>().dmg = damage;
 
             damage++;
-            if (damage > 9)
+            if (damage > 10)
             {
-                damage = 0;
+                damage = 1;
             }
 
-            cards.Add(obj);
+            cards.Add(obj.GetComponent<CardBase>());
         }
     }
 }

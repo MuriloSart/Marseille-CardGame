@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Discard : MonoBehaviour
 {
-    public List<GameObject> discardPack;
-    public void AcquiringCards(GameObject card)
+    public List<CardBase> discardPack;
+    public void AcquiringCards(CardBase card)
     {
         discardPack.Add(card);
         card.transform.SetParent(this.transform);

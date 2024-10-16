@@ -167,7 +167,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         Debug.Log(indexArray);
-        GameObject card = discard.discardPack[indexArray];
+        CardBase card = discard.discardPack[indexArray];
 
         card.transform.DOMove(deck.transform.position, delay);
         deck.cards.Add(card);

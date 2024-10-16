@@ -1,18 +1,16 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static Entity;
 
-public class CardBase : MonoBehaviour
+public abstract class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
     public int dmg = 1;
-    public ElementType currentElement = ElementType.Esperanca;
     public TextMeshProUGUI uiTextValue;
     public Color color;
 
     //privates
-    [SerializeField] private Entity _currentOwner;
+    private Entity _currentOwner;
     private bool _acquired = false;
     private bool _acquiredOwner = false;
 
@@ -20,43 +18,14 @@ public class CardBase : MonoBehaviour
     { 
         get { return _acquired; } 
     }
+    public abstract void UseAbility();
+
+    public abstract Sprite Render();
 
     private void Start()
     {
         uiTextValue.text = dmg.ToString();
-    }
-
-    public void CreateCard(int i, int dmg)
-    {
-        switch (i) 
-        {
-            case 0:
-                this.currentElement = ElementType.Esperanca;
-                this.gameObject.GetComponent<Image>().color = Color.green;
-                break;
-            case 1:
-                this.currentElement = ElementType.Amor;
-                this.gameObject.GetComponent<Image>().color = Color.red;
-                break;
-            case 2:
-                this.currentElement = ElementType.Culpa;
-                this.gameObject.GetComponent<Image>().color = Color.cyan;
-                break;
-            case 3:
-                this.currentElement = ElementType.Luto;
-                this.gameObject.GetComponent<Image>().color = Color.yellow;
-                break;
-        }
-
-        this.dmg = dmg;
-    }
-
-    public enum ElementType
-    {
-        Esperanca,
-        Luto,
-        Culpa,
-        Amor
+        this.GetComponent<Image>().sprite = Render();
     }
 
     public void Acquire(Entity player)
@@ -71,7 +40,7 @@ public class CardBase : MonoBehaviour
 
     public void OnClick()
     {
-        if(_currentOwner != null && _currentOwner.state == PlayerStates.ATTACK)
+        if(_currentOwner != null && _currentOwner.state == Entity.PlayerStates.ATTACK)
         {
             _currentOwner.OnClick(this);
             _acquired = false;

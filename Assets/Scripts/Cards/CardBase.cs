@@ -11,7 +11,7 @@ public abstract class CardBase : MonoBehaviour
 
     //privates
     private Entity _currentOwner;
-    private bool _acquired = false;
+    [SerializeField] private bool _acquired = false;
     private bool _acquiredOwner = false;
 
     public bool Acquired 
@@ -40,7 +40,8 @@ public abstract class CardBase : MonoBehaviour
 
     public void OnClick()
     {
-        if(_currentOwner != null && _currentOwner.state == Entity.PlayerStates.ATTACK)
+
+        if (_currentOwner != null && _currentOwner.state == Entity.PlayerStates.ATTACK)
         {
             _currentOwner.OnClick(this);
             _acquired = false;

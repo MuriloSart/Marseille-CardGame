@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class LoveCard : CardBase
 {
-
-    private IAbilityCard _ability;
+    private readonly IAbilityCard _ability;
 
     public LoveCard()
     {

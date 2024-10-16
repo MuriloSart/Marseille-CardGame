@@ -77,7 +77,6 @@ public class Entity : MonoBehaviour
         if (state == PlayerStates.DONTATTACK || !cardClicked.Acquired) return;
 
         selectedCards.Add(cardClicked);
-        Debug.Log("entrou");
         SelectingCard(cardClicked);
 
         state = PlayerStates.DONTATTACK;

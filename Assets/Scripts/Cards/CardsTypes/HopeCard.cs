@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HopeCard : CardBase
 {
-    private IAbilityCard _ability;
+    private readonly IAbilityCard _ability;
 
     public HopeCard()
     {

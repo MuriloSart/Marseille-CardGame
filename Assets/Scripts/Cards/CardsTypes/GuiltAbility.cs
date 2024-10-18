@@ -6,9 +6,14 @@ public class GuiltAbility : IAbilityCard
 {
     private readonly string spritePath = "Cards/GuiltImg";
 
-    public void ExecuteAbility()
+    public void ExecuteAttackAbility(Entity player, Entity enemy, int amount)
     {
-        Debug.Log("Habilidade Culpa usada");
+        Debug.Log("Habilidade Ataque da Culpa usada");
+    }
+
+    public void ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
+    {
+        Debug.Log("Habilidade Defesa da Culpa usada");
     }
 
     public Sprite Render()

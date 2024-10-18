@@ -4,9 +4,14 @@ public class DeathAbility : IAbilityCard
 {
     private readonly string spritePath = "Cards/DeathImg";
 
-    public void ExecuteAbility()
+    public void ExecuteAttackAbility(Entity player, Entity enemy, int amount)
     {
-        Debug.Log("Habilidade Morte usada");
+        Debug.Log("Habilidade Ataque da Morte usada");
+    }
+
+    public void ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
+    {
+        Debug.Log("Habilidade Defesa da Morte usada");
     }
 
     public Sprite Render()

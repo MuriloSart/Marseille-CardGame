@@ -4,9 +4,14 @@ public class HopeAbility : IAbilityCard
 {
     private readonly string spritePath = "Cards/HopeImg";
 
-    public void ExecuteAbility()
+    public void ExecuteAttackAbility(Entity player, Entity enemy, int amount)
     {
-        Debug.Log("Habilidade Esperança usada");
+        Debug.Log("Habilidade Ataque da Esperança usada");
+    }
+
+    public void ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
+    {
+        Debug.Log("Habilidade Defesa da Esperança usada");
     }
 
     public Sprite Render()

@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class BattleStates : StateBase
 {
 
@@ -24,7 +26,6 @@ public class DealingState : BattleStates
         pack = (Deck)objs[2];
         battleState = (FSM_Battle)objs[3];
         delay = (int)objs[4];
-        
 
         player.state = Entity.PlayerStates.DONTATTACK;
         enemy.state = Entity.PlayerStates.DONTATTACK;
@@ -63,6 +64,11 @@ public class AttackingState : BattleStates
         enemy = (Entity)objs[1];
         player.entityTurn = true;
 
+        foreach (var card in player.cards)
+        {
+            card.Ability = card.AttackAbility;
+        }
+        
         GameManager.Instance.PlayerAttack();
         GameManager.Instance.ValueStage();
     }
@@ -78,6 +84,11 @@ public class AttackingState : BattleStates
         player.selected = false;
         enemy.selected = false;
         player.entityTurn = false;
+
+        foreach (var card in player.cards)
+        {
+            card.Ability = card.DefenseAbility;
+        }
     }
 }
 
@@ -91,7 +102,12 @@ public class DefenseState : BattleStates
         base.OnStateEnter(objs);
         player = (Entity)objs[0];
         enemy = (Entity)objs[1];
-        
+
+        foreach (var card in enemy.cards)
+        {
+            card.Ability = card.AttackAbility;
+        }
+
         GameManager.Instance.EnemyAttack();
         GameManager.Instance.ValueStage();
     }
@@ -101,6 +117,11 @@ public class DefenseState : BattleStates
         base.OnStateExit();
         player.selected = false;
         enemy.selected = false;
+
+        foreach (var card in enemy.cards)
+        {
+            card.Ability = card.DefenseAbility;
+        }
     }
 }
 

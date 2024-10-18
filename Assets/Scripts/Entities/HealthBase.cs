@@ -4,8 +4,8 @@ using UnityEngine;
 public class HealthBase : MonoBehaviour
 {
     public int startLife = 10;
-    [SerializeField]private int _currentLife;
     public Entity player;
+    private int _currentLife;
 
     private void Awake()
     {
@@ -31,6 +31,13 @@ public class HealthBase : MonoBehaviour
             _currentLife = 0;
             Lose();
         }
+    }
+
+    public void Heal(int heal)
+    {
+        _currentLife += heal;
+        if (_currentLife > startLife)
+            _currentLife = startLife;
     }
 
     private void Lose()

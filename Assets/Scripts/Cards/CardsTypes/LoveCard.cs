@@ -14,8 +14,14 @@ public class LoveCard : CardBase
         return _ability.Render();
     }
 
-    public override void UseAbility()
+    public override void AttackAbility()
     {
-        _ability.ExecuteAbility();
+        _ability.ExecuteAttackAbility(Owner, Owner.enemy, dmg);
     }
+
+    public override void DefenseAbility()
+    {
+        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, dmg);
+    }
+
 }

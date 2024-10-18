@@ -16,7 +16,7 @@ public class Entity : MonoBehaviour
     public GameObject layoutCards;
     public GameObject SelectedPos;
     public GameObject SelectedPos2;
-    [HideInInspector]public List<CardBase> selectedCards;
+    public List<CardBase> selectedCards;
 
     [Header("Health")]
     public HealthBase health;
@@ -61,7 +61,6 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
-        Debug.Log(this.name + state);
     }
 
 
@@ -76,10 +75,10 @@ public class Entity : MonoBehaviour
     {
         if (state == PlayerStates.DONTATTACK || !cardClicked.Acquired) return;
 
+        state = PlayerStates.DONTATTACK;
         selectedCards.Add(cardClicked);
         SelectingCard(cardClicked);
 
-        state = PlayerStates.DONTATTACK;
     }
 
     private void Damage(int damage)
@@ -146,13 +145,15 @@ public class Entity : MonoBehaviour
     private void SelectingCard(CardBase card)
     {
         card.gameObject.transform.DOMove(_currentSelectPos, durationAnimation);
-        StartCoroutine(DelayToSelect());
+        StartCoroutine(DelayToSelect(card));
     }
 
-    IEnumerator DelayToSelect()
+    IEnumerator DelayToSelect(CardBase card)
     {
         yield return new WaitForSeconds(durationAnimation);
         selected = true;
+        if (GameManager.Instance.stageStage.stateMachine.CurrentState is EffectStage)
+            card.Ability();
     }
 
     #endregion

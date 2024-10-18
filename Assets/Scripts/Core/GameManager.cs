@@ -64,12 +64,13 @@ public class GameManager : Singleton<GameManager>
                 }
                 else if (stageStage.stateMachine.CurrentState is EffectStage)
                 {
+
                     player.DamageTurn();
                     OnDealing();
                 }
             }
         }
-        else if(!player.selected && enemy.selected)
+        else if (!player.selected && enemy.selected)
             PlayerAttack();
     }
 

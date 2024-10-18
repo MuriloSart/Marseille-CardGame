@@ -103,7 +103,7 @@ public class Entity : MonoBehaviour
     {
         if(selectedCards.Count == 0 || selectedCards == null) return;
 
-        Damage(selectedCards[0].dmg);
+        Damage(selectedCards[0].dmg - enemy.selectedCards[0].dmg);
 
         foreach(var card in selectedCards)
         {

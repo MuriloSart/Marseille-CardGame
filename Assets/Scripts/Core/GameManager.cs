@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     //privates
     private static bool _resetDeck = false;
     private int _currentBattle = 0;
+    private bool _clicked = false;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(player.selected && enemy.selected)
         {
-
+            _clicked = false;
             if (battleState.stateMachine.CurrentState is DefenseState)
             {
                 if (stageStage.stateMachine.CurrentState is ValueStage)
@@ -71,7 +72,13 @@ public class GameManager : Singleton<GameManager>
             }
         }
         else if (!player.selected && enemy.selected)
-            PlayerAttack();
+        {
+            if(!_clicked)
+            {
+                _clicked = true;
+                PlayerAttack();
+            }
+        }
     }
 
     public void ValueStage()

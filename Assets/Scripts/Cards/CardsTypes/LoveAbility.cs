@@ -47,31 +47,31 @@ internal class LoveAbility : IAbilityCard
         switch (amount)
         {
             case 1:
-                enemy.selectedCards[0].dmg -= 3;
+                enemy.selectedCards[0].Damage -= 3;
                 break;
             case 2:
-                enemy.selectedCards[0].dmg -= 3;
+                enemy.selectedCards[0].Damage -= 3;
                 break;
             case 3:
-                enemy.selectedCards[0].dmg -= 3;
+                enemy.selectedCards[0].Damage -= 3;
                 break;
             case 4:
-                enemy.selectedCards[0].dmg -= 5;
+                enemy.selectedCards[0].Damage -= 5;
                 break;
             case 5:
-                enemy.selectedCards[0].dmg -= 5;
+                enemy.selectedCards[0].Damage -= 5;
                 break;
             case 6:
-                enemy.selectedCards[0].dmg -= 5;
+                enemy.selectedCards[0].Damage -= 5;
                 break;
             case 7:
-                enemy.selectedCards[0].dmg = 0;
+                enemy.selectedCards[0].Damage = 0;
                 break;
             case 8:
-                enemy.selectedCards[0].dmg = 0;
+                enemy.selectedCards[0].Damage = 0;
                 break;
             case 9:
-                enemy.selectedCards[0].dmg = 0;
+                enemy.selectedCards[0].Damage = 0;
                 break;
             case 10:
                 player.health.startLife += 10;

@@ -16,11 +16,11 @@ public class GuiltCard : CardBase
 
     public override void AttackAbility()
     {
-        _ability.ExecuteAttackAbility(Owner, Owner.enemy, dmg);
+        _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
     }
 
     public override void DefenseAbility()
     {
-        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, dmg);
+        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 }

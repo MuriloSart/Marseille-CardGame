@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public abstract class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
-    public int dmg = 1;
+    private int dmg = 1;
     public TextMeshProUGUI uiTextValue;
     public Color color;
 
@@ -14,6 +14,18 @@ public abstract class CardBase : MonoBehaviour
     private Entity _currentOwner;
     private bool _acquired = false;
     private bool _acquiredOwner = false;
+
+    public int Damage
+    {
+        set
+        {
+            if (value < 0)
+                dmg = 0;
+            else 
+                dmg = value;
+        }
+        get { return dmg; }
+    }
 
     public bool Acquired 
     { 
@@ -39,7 +51,7 @@ public abstract class CardBase : MonoBehaviour
 
     private void Start()
     {
-        uiTextValue.text = dmg.ToString();
+        uiTextValue.text = Damage.ToString();
         this.GetComponent<Image>().sprite = Render();
         Ability = DefenseAbility;
     }

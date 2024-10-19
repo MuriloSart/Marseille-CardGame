@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -35,6 +36,9 @@ public class Entity : MonoBehaviour
 
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
+
+    [HideInInspector] public bool postEffectActived = false;
+    [HideInInspector] public Action<object[]> postEffect;
 
     //privates
     private bool _showDamage = false;
@@ -103,7 +107,7 @@ public class Entity : MonoBehaviour
     {
         if(selectedCards.Count == 0 || selectedCards == null) return;
 
-        Damage(selectedCards[0].dmg - enemy.selectedCards[0].dmg);
+        Damage(selectedCards[0].Damage - enemy.selectedCards[0].Damage);
 
         foreach(var card in selectedCards)
         {

@@ -16,7 +16,7 @@ public class Deck : MonoBehaviour
             obj.transform.SetParent(this.transform);
             obj.transform.position = this.transform.position;
 
-            obj.GetComponent<CardBase>().dmg = damage;
+            obj.GetComponent<CardBase>().Damage = damage;
 
             damage++;
             if (damage > 10)

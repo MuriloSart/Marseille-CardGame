@@ -6,49 +6,49 @@ public class TurnStates : StateBase
 
 public class PlayerTurnState : TurnStates
 {
-    private Entity entity;
+    private Entity player;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
        
-        entity = (Entity)objs[0];
-
-        entity.state = Entity.PlayerStates.ATTACK;
+        player = (Entity)objs[0];
+        UnityEngine.Debug.Log(this);
+        player.state = Entity.PlayerStates.ATTACK;
     }
 
     public override void OnStateStay()
     {
         base.OnStateStay();
-        if (entity.entityTurn && entity.selected)
+        if (player.entityTurn && player.selected)
             GameManager.Instance.EnemyAttack();
     }
     public override void OnStateExit()
     {
         base.OnStateExit();
-        entity.state = Entity.PlayerStates.DONTATTACK;
+        player.state = Entity.PlayerStates.DONTATTACK;
     }
 }
 
 public class EnemyTurnState : TurnStates
 {
-    private Entity entity;
+    private Entity enemy;
     public override void OnStateEnter(params object[] objs)
     {
         base.OnStateEnter(objs);
 
-        entity = (Entity)objs[0];
+        enemy = (Entity)objs[0];
 
-        entity.state = Entity.PlayerStates.ATTACK;
+        enemy.state = Entity.PlayerStates.ATTACK;
     }
 
     public override void OnStateStay()
     {
         base.OnStateStay();
 
-        if (entity.state == Entity.PlayerStates.ATTACK)
+        if (enemy.state == Entity.PlayerStates.ATTACK)
         {
             GameManager.Instance.EnemyAutoSelect();
-            entity.state = Entity.PlayerStates.DONTATTACK;
+            enemy.state = Entity.PlayerStates.DONTATTACK;
         }
     }
 }

@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     //privates
     private static bool _resetDeck = false;
     private int _currentBattle = 0;
+    private bool _clicked = false;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class GameManager : Singleton<GameManager>
     {
         if(player.selected && enemy.selected)
         {
-
+            _clicked = false;
             if (battleState.stateMachine.CurrentState is DefenseState)
             {
                 if (stageStage.stateMachine.CurrentState is ValueStage)
@@ -64,13 +65,20 @@ public class GameManager : Singleton<GameManager>
                 }
                 else if (stageStage.stateMachine.CurrentState is EffectStage)
                 {
+
                     player.DamageTurn();
                     OnDealing();
                 }
             }
         }
-        else if(!player.selected && enemy.selected)
-            PlayerAttack();
+        else if (!player.selected && enemy.selected)
+        {
+            if(!_clicked)
+            {
+                _clicked = true;
+                PlayerAttack();
+            }
+        }
     }
 
     public void ValueStage()
@@ -96,18 +104,7 @@ public class GameManager : Singleton<GameManager>
     public void EnemyAutoSelect()
     {
         var card = enemy.cards[Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
-        bool checkSelected = card.Acquired;
-
-        if (!checkSelected)
-        {
-            while (!checkSelected)
-            {
-                card = enemy.cards[Random.Range(0, enemy.cards.Count)].GetComponent<CardBase>();
-                checkSelected = card.Acquired;
-            }
-        }
-
-        enemy.OnClick(card);
+        card.OnClick();
     }
 
     #region Dealing Cards
@@ -167,7 +164,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
         Debug.Log(indexArray);
-        GameObject card = discard.discardPack[indexArray];
+        CardBase card = discard.discardPack[indexArray];
 
         card.transform.DOMove(deck.transform.position, delay);
         deck.cards.Add(card);

@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,11 +13,11 @@ public class Entity : MonoBehaviour
     [SerializeField] private int screen = 3;
 
     [Header("Deck On Hand")]
-    public List<GameObject> cards;
+    public List<CardBase> cards;
     public GameObject layoutCards;
     public GameObject SelectedPos;
     public GameObject SelectedPos2;
-    [HideInInspector]public List<CardBase> selectedCards;
+    public List<CardBase> selectedCards;
 
     [Header("Health")]
     public HealthBase health;
@@ -35,6 +36,9 @@ public class Entity : MonoBehaviour
 
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
+
+    [HideInInspector] public bool postEffectActived = false;
+    [HideInInspector] public Action<object[]> postEffect;
 
     //privates
     private bool _showDamage = false;
@@ -61,7 +65,6 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
-        Debug.Log(this.name + state);
     }
 
 
@@ -76,11 +79,10 @@ public class Entity : MonoBehaviour
     {
         if (state == PlayerStates.DONTATTACK || !cardClicked.Acquired) return;
 
+        state = PlayerStates.DONTATTACK;
         selectedCards.Add(cardClicked);
-
         SelectingCard(cardClicked);
 
-        state = PlayerStates.DONTATTACK;
     }
 
     private void Damage(int damage)
@@ -96,7 +98,7 @@ public class Entity : MonoBehaviour
     {
         foreach (CardBase card in enemy.selectedCards)
         {
-            enemy.DiscardingCards(enemy.cards.IndexOf(card.gameObject));
+            enemy.DiscardingCards(enemy.cards.IndexOf(card));
         }
         enemy.selectedCards.Clear();
     }
@@ -105,11 +107,11 @@ public class Entity : MonoBehaviour
     {
         if(selectedCards.Count == 0 || selectedCards == null) return;
 
-        Damage(selectedCards[0].dmg);
+        Damage(selectedCards[0].Damage - enemy.selectedCards[0].Damage);
 
         foreach(var card in selectedCards)
         {
-            DiscardingCards(cards.IndexOf(card.gameObject));
+            DiscardingCards(cards.IndexOf(card));
         }
 
         DiscardEnemyCards();
@@ -125,7 +127,7 @@ public class Entity : MonoBehaviour
         int index = 1;
         foreach (var card in cards)
         {
-            card.GetComponent<CardBase>().Acquire(this);
+            card.Acquire(this);
             StartCoroutine(TimeToAnimation(card, index));
             index += 2;
         }
@@ -137,34 +139,36 @@ public class Entity : MonoBehaviour
         cards.RemoveAt(index);
     }
 
-    IEnumerator DelayToDiscard(GameObject card)
+    IEnumerator DelayToDiscard(CardBase card)
     {
-        card.transform.DOMove(discard.transform.position, durationAnimation);
+        card.gameObject.transform.DOMove(discard.transform.position, durationAnimation);
         yield return new WaitForSeconds(durationAnimation);
         discard.AcquiringCards(card);
     }
 
     private void SelectingCard(CardBase card)
     {
-        card.transform.DOMove(_currentSelectPos, durationAnimation);
-        StartCoroutine(DelayToSelect());
+        card.gameObject.transform.DOMove(_currentSelectPos, durationAnimation);
+        StartCoroutine(DelayToSelect(card));
     }
 
-    IEnumerator DelayToSelect()
+    IEnumerator DelayToSelect(CardBase card)
     {
         yield return new WaitForSeconds(durationAnimation);
         selected = true;
+        if (GameManager.Instance.stageStage.stateMachine.CurrentState is EffectStage)
+            card.Ability();
     }
 
     #endregion
 
     #region Animations
 
-    IEnumerator TimeToAnimation(GameObject card, int i)
+    IEnumerator TimeToAnimation(CardBase card, int i)
     {
-        card.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
+        card.gameObject.transform.DOMove(CalcularPosicaoFinal(layoutCards.GetComponent<HorizontalLayoutGroup>(), i), durationAnimation);
         yield return new WaitForSeconds(durationAnimation);
-        card.transform.SetParent(layoutCards.transform);
+        card.gameObject.transform.SetParent(layoutCards.transform);
     }
 
     Vector2 CalcularPosicaoFinal(HorizontalLayoutGroup layoutGroup, int i)

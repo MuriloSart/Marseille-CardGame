@@ -7,41 +7,50 @@ public class HopeAbility : IAbilityCard
     public void ExecuteAttackAbility(Entity player, Entity enemy, int amount)
     {
         player.postEffectActived = true;
-        player.postEffect = Buff;
+        player.postEffects.Add(Buff);
+        object[] parameters = new object[] { player.selectedCards[0], 3 };
 
         switch (amount)
         {
             case 1:
-                player.postEffect(new object[] { player.selectedCards[0], 3 });
+                parameters = new object[] { player.selectedCards[0], 3 };
                 break;
             case 2:
-                player.postEffect(new object[] { player.selectedCards[0], 3 });
+                parameters = new object[] { player.selectedCards[0], 3 };
                 break;
             case 3:
-                player.postEffect(new object[] { player.selectedCards[0], 3 });
+                parameters = new object[] { player.selectedCards[0], 3 };
                 break;
             case 4:
-                player.postEffect(new object[] { player.selectedCards[0], 5 });
+                Buff(new object[] { player.selectedCards[0], 5 });
+                parameters = new object[] { player.selectedCards[0], 5 };
                 break;
             case 5:
-                player.postEffect(new object[] { player.selectedCards[0], 5 });
+                Buff(new object[] { player.selectedCards[0], 5 });
+                parameters = new object[] { player.selectedCards[0], 5 };
                 break;
             case 6:
-                player.postEffect(new object[] { player.selectedCards[0], 5 });
+                Buff(new object[] { player.selectedCards[0], 5 });
+                parameters = new object[] { player.selectedCards[0], 5 };
                 break;
             case 7:
-                player.postEffect(new object[] { player.selectedCards[0], 10 });
+                parameters = new object[] { player.selectedCards[0], 8 };
+                player.effectResist += 2;
                 break;
             case 8:
-                player.postEffect(new object[] { player.selectedCards[0], 10 });
+                parameters = new object[] { player.selectedCards[0], 8 };
+                player.effectResist += 3;
                 break;
             case 9:
-                player.postEffect(new object[] { player.selectedCards[0], 10 });
+                parameters = new object[] { player.selectedCards[0], 8 };
+                player.effectResist += 4;
                 break;
             case 10:
-                player.health.Heal(player.health.startLife);
+                player.permanentlyEffects.Add(MaxEffect);
                 break;
+
         }
+         player.parametersOfEffect.Add(parameters);
     }
 
     public void ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
@@ -63,5 +72,11 @@ public class HopeAbility : IAbilityCard
     {
         CardBase card = (CardBase)objs[0];
         card.Damage += (int)objs[1];
+    }
+
+    private void MaxEffect(Entity player)
+    {
+        Buff(new object[] { player.selectedCards[0], 3 });
+        player.health.Heal(4);
     }
 }

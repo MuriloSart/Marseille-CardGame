@@ -37,8 +37,12 @@ public class Entity : MonoBehaviour
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
 
+    //Effect Handlers
     [HideInInspector] public bool postEffectActived = false;
-    [HideInInspector] public Action<object[]> postEffect;
+    [HideInInspector] public List<Action<Entity>> permanentlyEffects;
+    [HideInInspector] public List<Action<object[]>> postEffects;
+    [HideInInspector] public List<object[]> parametersOfEffect;
+    [HideInInspector] public int effectResist = 0;
 
     //privates
     private bool _showDamage = false;
@@ -56,7 +60,6 @@ public class Entity : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
         ShowingDamage();
@@ -65,6 +68,24 @@ public class Entity : MonoBehaviour
     private void Update()
     {
         ShowingDamageUpdate();
+    }
+
+    public void BuffEntity()
+    {
+        if (postEffectActived)
+        {
+            for (int i = 0; i < parametersOfEffect.Count; i++)
+            {
+                postEffects[i](parametersOfEffect[i]);
+            }
+            parametersOfEffect.Clear();
+            postEffects.Clear();
+            postEffectActived = false;
+        }
+        foreach(var effect in permanentlyEffects)
+        {
+            effect(this);
+        }
     }
 
 

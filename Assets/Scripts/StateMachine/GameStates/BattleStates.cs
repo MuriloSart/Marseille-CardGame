@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 public class BattleStates : StateBase
 {
@@ -64,6 +65,9 @@ public class AttackingState : BattleStates
         enemy = (Entity)objs[1];
         player.entityTurn = true;
 
+        player.BuffEntity();
+        enemy.BuffEntity();
+
         foreach (var card in player.cards)
         {
             card.Ability = card.AttackAbility;
@@ -84,6 +88,8 @@ public class AttackingState : BattleStates
         player.selected = false;
         enemy.selected = false;
         player.entityTurn = false;
+        player.effectResist = 0;
+        enemy.effectResist = 0;
 
         foreach (var card in player.cards)
         {
@@ -103,6 +109,9 @@ public class DefenseState : BattleStates
         player = (Entity)objs[0];
         enemy = (Entity)objs[1];
 
+        player.BuffEntity();
+        enemy.BuffEntity();
+
         foreach (var card in enemy.cards)
         {
             card.Ability = card.AttackAbility;
@@ -117,6 +126,8 @@ public class DefenseState : BattleStates
         base.OnStateExit();
         player.selected = false;
         enemy.selected = false;
+        player.effectResist = 0;
+        enemy.effectResist = 0;
 
         foreach (var card in enemy.cards)
         {

@@ -4,7 +4,7 @@ public class LoveCard : CardBase
 {
     private readonly IAbilityCard _ability;
 
-    public LoveCard(int dmg) : base(dmg)
+    public LoveCard()
     {
         _ability = new LoveAbility();
     }

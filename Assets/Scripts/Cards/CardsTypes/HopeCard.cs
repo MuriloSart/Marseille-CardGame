@@ -4,7 +4,7 @@ public class HopeCard : CardBase
 {
     private readonly IAbilityCard _ability;
 
-    public HopeCard(int dmg) : base(dmg)
+    public HopeCard()
     {
         _ability = new HopeAbility();
     }

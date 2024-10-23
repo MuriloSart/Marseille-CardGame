@@ -11,10 +11,10 @@ public class Deck : MonoBehaviour
         int damage = 1;
         for (int i = 0; i < 40; i++)
         {
-            cardTypes[i / 10].GetComponent<CardBase>().Damage = damage;
             var obj = Instantiate(cardTypes[i/10]);
             obj.transform.SetParent(this.transform);
             obj.transform.position = this.transform.position;
+            obj.GetComponent<CardBase>().Damage = damage;
 
             damage++;
             if (damage > 10)

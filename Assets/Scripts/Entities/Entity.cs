@@ -59,6 +59,7 @@ public class Entity : MonoBehaviour
 
     private void Start()
     {
+        effects = new List<EffectBase>();
         ShowingDamage();
     }
 

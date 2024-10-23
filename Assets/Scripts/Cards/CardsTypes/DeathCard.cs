@@ -4,7 +4,7 @@ public class DeathCard : CardBase
 {
     private IAbilityCard _ability;
 
-    public DeathCard()
+    public DeathCard(int dmg) : base(dmg)
     {
         _ability = new DeathAbility();
     }

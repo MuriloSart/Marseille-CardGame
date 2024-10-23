@@ -4,7 +4,7 @@ public class GuiltCard : CardBase
 {
     private IAbilityCard _ability;
 
-    public GuiltCard()
+    public GuiltCard(int dmg) : base(dmg)
     {
         _ability = new GuiltAbility();
     }

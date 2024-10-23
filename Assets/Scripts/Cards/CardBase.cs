@@ -37,6 +37,11 @@ public abstract class CardBase : MonoBehaviour
         get { return _currentOwner; }
     }
 
+    public CardBase(int dmg)
+    {
+        this.dmg = dmg;
+    }
+
     #region Ability
 
     public Action Ability;

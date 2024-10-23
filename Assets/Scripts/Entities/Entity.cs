@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,12 +36,10 @@ public class Entity : MonoBehaviour
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
 
-    //Effect Handlers
-    [HideInInspector] public bool postEffectActived = false;
-    [HideInInspector] public List<Action<Entity>> permanentlyEffects;
-    [HideInInspector] public List<Action<object[]>> postEffects;
-    [HideInInspector] public List<object[]> parametersOfEffect;
-    [HideInInspector] public int effectResist = 0;
+    [Header("Effects")]
+    private List<EffectBase> effects;
+    public int effectResist = 0;
+    public int damageResist = 0;
 
     //privates
     private bool _showDamage = false;
@@ -70,24 +67,20 @@ public class Entity : MonoBehaviour
         ShowingDamageUpdate();
     }
 
-    public void BuffEntity()
+    #region Effects (Buffs/Debuffs)
+    public void TakeEffect(EffectBase effect)
     {
-        if (postEffectActived)
-        {
-            for (int i = 0; i < parametersOfEffect.Count; i++)
-            {
-                postEffects[i](parametersOfEffect[i]);
-            }
-            parametersOfEffect.Clear();
-            postEffects.Clear();
-            postEffectActived = false;
-        }
-        foreach(var effect in permanentlyEffects)
-        {
-            effect(this);
-        }
+        effect.ApplyEffect();
+        effects.Add(effect);
     }
 
+    public void RemoveEffect(EffectBase effect)
+    {
+        effect.RemoveEffect();
+        effects.Remove(effect);
+    }
+
+    #endregion
 
     #region Dealing Damage
     public enum PlayerStates
@@ -103,11 +96,12 @@ public class Entity : MonoBehaviour
         state = PlayerStates.DONTATTACK;
         selectedCards.Add(cardClicked);
         SelectingCard(cardClicked);
-
     }
 
     private void Damage(int damage)
     {
+        damage -= enemy.damageResist;
+
         if(damage < 0) damage = 0;
         
         enemy._damageDone = damage;

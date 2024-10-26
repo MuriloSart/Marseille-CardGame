@@ -12,7 +12,6 @@ public class PlayerTurnState : TurnStates
         base.OnStateEnter(objs);
        
         player = (Entity)objs[0];
-        UnityEngine.Debug.Log(this);
         player.state = Entity.PlayerStates.ATTACK;
     }
 
@@ -37,7 +36,6 @@ public class EnemyTurnState : TurnStates
         base.OnStateEnter(objs);
 
         enemy = (Entity)objs[0];
-
         enemy.state = Entity.PlayerStates.ATTACK;
     }
 

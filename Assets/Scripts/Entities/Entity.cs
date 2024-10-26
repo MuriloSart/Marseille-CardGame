@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -37,8 +36,10 @@ public class Entity : MonoBehaviour
     [Header("Duration Time Animation")]
     public int durationAnimation = 1;
 
-    [HideInInspector] public bool postEffectActived = false;
-    [HideInInspector] public Action<object[]> postEffect;
+    [Header("Effects")]
+    public int effectResist = 0;
+    public int damageResist = 0;
+    public List<EffectBase> effects;
 
     //privates
     private bool _showDamage = false;
@@ -56,9 +57,9 @@ public class Entity : MonoBehaviour
         }
     }
 
-
     private void Start()
     {
+        effects = new List<EffectBase>();
         ShowingDamage();
     }
 
@@ -67,6 +68,33 @@ public class Entity : MonoBehaviour
         ShowingDamageUpdate();
     }
 
+    #region Effects (Buffs/Debuffs)
+    public void TakeEffect(EffectBase effect)
+    {
+        effect.ApplyEffect();
+        effects.Add(effect);
+    }
+
+    public void TakeEffectOverTurn(EffectBase effect)
+    {
+        if(effect.Turns > 1)
+        {
+            effect.DiscountingTurn();
+            effect.EffectOverTime();
+        }
+        else if (effect.Turns == 1)
+        {
+            effect.EffectOverTime();
+        }
+    }
+
+    public void RemoveEffect(EffectBase effect)
+    {
+        effect.RemoveEffect();
+        effects.Remove(effect);
+    }
+
+    #endregion
 
     #region Dealing Damage
     public enum PlayerStates
@@ -82,11 +110,12 @@ public class Entity : MonoBehaviour
         state = PlayerStates.DONTATTACK;
         selectedCards.Add(cardClicked);
         SelectingCard(cardClicked);
-
     }
 
     private void Damage(int damage)
     {
+        damage -= enemy.damageResist;
+
         if(damage < 0) damage = 0;
         
         enemy._damageDone = damage;
@@ -109,7 +138,13 @@ public class Entity : MonoBehaviour
 
         Damage(selectedCards[0].Damage - enemy.selectedCards[0].Damage);
 
-        foreach(var card in selectedCards)
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (effects[i].Turns == 1)
+                RemoveEffect(effects[i]);
+        }
+
+        foreach (var card in selectedCards)
         {
             DiscardingCards(cards.IndexOf(card));
         }
@@ -158,6 +193,13 @@ public class Entity : MonoBehaviour
         selected = true;
         if (GameManager.Instance.stageStage.stateMachine.CurrentState is EffectStage)
             card.Ability();
+        else if (GameManager.Instance.stageStage.stateMachine.CurrentState is ValueStage)
+        {
+            foreach (var effect in effects)
+            {
+                TakeEffectOverTurn(effect);
+            }
+        }
     }
 
     #endregion

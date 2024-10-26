@@ -1,82 +1,88 @@
 ﻿using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 internal class LoveAbility : IAbilityCard
 {
     private readonly string spritePath = "Cards/LoveImg";
 
-    public void ExecuteAttackAbility(Entity player, Entity enemy, int amount)
+    private EffectBase effect;
+    private int minorHeal = 3;
+    private int mediumHeal = 5;
+    private int ultimateHeal = 10;
+
+    public void ExecuteAttackAbility(Entity entity, Entity enemy, int amount)
     {
-        Debug.Log("Habilidade Ataque do Amor usada");
         switch (amount)
         {
             case 1:
-                player.health.Heal(3);
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 2:
-                player.health.Heal(3);
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 3:
-                player.health.Heal(3);
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 4:
-                player.health.Heal(5);
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 5:
-                player.health.Heal(5);
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 6:
-                player.health.Heal(5);
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 7:
-                player.health.Heal(player.health.startLife/2);
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Attack);
                 break;
             case 8:
-                player.health.Heal(player.health.startLife / 2);
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Attack);
                 break;
             case 9:
-                player.health.Heal(player.health.startLife / 2);
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Attack);
                 break;
             case 10:
-                player.health.Heal(player.health.startLife);
+                effect = new UltimateLoveBuff(entity, ultimateHeal, EffectBase.TypeOfEffect.Attack);
                 break;
         }
+        entity.TakeEffect(effect);
     }
 
-    public void ExecuteDefenseAbility(Entity player, Entity enemy, int amount)
+    public void ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
     {
-        Debug.Log("Habilidade Defesa do Amor usada");
         switch (amount)
         {
             case 1:
-                enemy.selectedCards[0].Damage -= 3;
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 2:
-                enemy.selectedCards[0].Damage -= 3;
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 3:
-                enemy.selectedCards[0].Damage -= 3;
+                effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 4:
-                enemy.selectedCards[0].Damage -= 5;
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 5:
-                enemy.selectedCards[0].Damage -= 5;
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 6:
-                enemy.selectedCards[0].Damage -= 5;
+                effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 7:
-                enemy.selectedCards[0].Damage = 0;
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Defense);
                 break;
             case 8:
-                enemy.selectedCards[0].Damage = 0;
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Defense);
                 break;
             case 9:
-                enemy.selectedCards[0].Damage = 0;
+                effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Defense);
                 break;
             case 10:
-                player.health.startLife += 10;
+                effect = new UltimateLoveBuff(entity, ultimateHeal, EffectBase.TypeOfEffect.Defense);
                 break;
         }
+        entity.TakeEffect(effect);
     }
 
     public Sprite Render()

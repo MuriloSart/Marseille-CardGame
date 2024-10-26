@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 public class BattleStates : StateBase
 {
@@ -64,6 +65,7 @@ public class AttackingState : BattleStates
         enemy = (Entity)objs[1];
         player.entityTurn = true;
 
+
         foreach (var card in player.cards)
         {
             card.Ability = card.AttackAbility;
@@ -102,6 +104,7 @@ public class DefenseState : BattleStates
         base.OnStateEnter(objs);
         player = (Entity)objs[0];
         enemy = (Entity)objs[1];
+
 
         foreach (var card in enemy.cards)
         {

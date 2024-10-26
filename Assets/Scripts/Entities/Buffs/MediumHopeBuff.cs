@@ -9,6 +9,7 @@ public class MediumHopeBuff : EffectBase
         this.player = player;
         this.amountDamage = amountDamage;
         this.amountResist = amountResist;
+        _turns = 1;
     }
 
     public override void ApplyAttackEffect()
@@ -49,5 +50,7 @@ public class MediumHopeBuff : EffectBase
     public void DebuffAttack()
     {
         player.selectedCards[0].Damage -= amountDamage;
+        if (EffectOverTime == BuffProtect)
+            player.damageResist -= amountResist;
     }
 }

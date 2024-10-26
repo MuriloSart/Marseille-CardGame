@@ -36,7 +36,6 @@ public class EnemyTurnState : TurnStates
         base.OnStateEnter(objs);
 
         enemy = (Entity)objs[0];
-
         enemy.state = Entity.PlayerStates.ATTACK;
     }
 

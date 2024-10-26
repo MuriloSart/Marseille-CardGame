@@ -65,7 +65,6 @@ public class GameManager : Singleton<GameManager>
                 }
                 else if (stageStage.stateMachine.CurrentState is EffectStage)
                 {
-
                     player.DamageTurn();
                     OnDealing();
                 }

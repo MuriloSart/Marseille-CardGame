@@ -9,6 +9,7 @@ public class MinorHopeBuff : EffectBase
     {
         this.entity = entity;
         this.amountDamage = amountDamage;
+        _turns = 1;
     }
 
     public override void ApplyAttackEffect()

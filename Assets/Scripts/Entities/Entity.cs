@@ -37,9 +37,9 @@ public class Entity : MonoBehaviour
     public int durationAnimation = 1;
 
     [Header("Effects")]
-    private List<EffectBase> effects;
     public int effectResist = 0;
     public int damageResist = 0;
+    public List<EffectBase> effects;
 
     //privates
     private bool _showDamage = false;
@@ -73,6 +73,19 @@ public class Entity : MonoBehaviour
     {
         effect.ApplyEffect();
         effects.Add(effect);
+    }
+
+    public void TakeEffectOverTurn(EffectBase effect)
+    {
+        if(effect.Turns > 1)
+        {
+            effect.DiscountingTurn();
+            effect.EffectOverTime();
+        }
+        else if (effect.Turns == 1)
+        {
+            effect.EffectOverTime();
+        }
     }
 
     public void RemoveEffect(EffectBase effect)
@@ -125,7 +138,13 @@ public class Entity : MonoBehaviour
 
         Damage(selectedCards[0].Damage - enemy.selectedCards[0].Damage);
 
-        foreach(var card in selectedCards)
+        for (int i = effects.Count - 1; i >= 0; i--)
+        {
+            if (effects[i].Turns == 1)
+                RemoveEffect(effects[i]);
+        }
+
+        foreach (var card in selectedCards)
         {
             DiscardingCards(cards.IndexOf(card));
         }
@@ -174,6 +193,13 @@ public class Entity : MonoBehaviour
         selected = true;
         if (GameManager.Instance.stageStage.stateMachine.CurrentState is EffectStage)
             card.Ability();
+        else if (GameManager.Instance.stageStage.stateMachine.CurrentState is ValueStage)
+        {
+            foreach (var effect in effects)
+            {
+                TakeEffectOverTurn(effect);
+            }
+        }
     }
 
     #endregion

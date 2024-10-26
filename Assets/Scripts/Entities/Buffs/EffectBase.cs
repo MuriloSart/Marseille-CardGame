@@ -2,10 +2,20 @@ using System;
 
 public abstract class EffectBase
 {
-    private int turns = 0;
+    protected int _turns = 0;
     public Action EffectOverTime;
     public Action ApplyEffect;
     public Action RemoveEffect;
+
+    public int Turns
+    {
+        get { return _turns; }
+    }
+
+    public void DiscountingTurn()
+    {
+        _turns--;
+    }
 
     public enum TypeOfEffect
     {

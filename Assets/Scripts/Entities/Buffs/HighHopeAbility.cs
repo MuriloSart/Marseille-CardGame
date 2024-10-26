@@ -9,6 +9,7 @@ public class HighHopeAbility : EffectBase
         this.entity = entity;
         this.amountDamage = amountDamage;
         this.amountEffectResist = amountEffectResist;
+        _turns = 1;
     }
 
     public override void ApplyAttackEffect()

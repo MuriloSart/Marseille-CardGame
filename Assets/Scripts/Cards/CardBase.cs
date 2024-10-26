@@ -23,6 +23,8 @@ public abstract class CardBase : MonoBehaviour
                 dmg = 0;
             else 
                 dmg = value;
+
+            uiTextValue.text = dmg.ToString();
         }
         get { return dmg; }
     }

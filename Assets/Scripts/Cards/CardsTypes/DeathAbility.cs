@@ -62,25 +62,25 @@ public class DeathAbility : IAbilityCard
                     _effect = new MinorDeathBuff(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 4:
-                    _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                    _effect = new MediumDeathBuff(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 5:
-                    _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                    _effect = new MediumDeathBuff(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 6:
-                    _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                    _effect = new MediumDeathBuff(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 7:
-                    _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist1, EffectBase.TypeOfEffect.Defense);
+                    _effect = new HighDeathAbility(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 8:
-                    _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist2, EffectBase.TypeOfEffect.Defense);
+                    _effect = new HighDeathAbility(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 9:
-                    _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Defense);
+                    _effect = new HighDeathAbility(entity, EffectBase.TypeOfEffect.Defense);
                     break;
                 case 10:
-                    _effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Defense);
+                    _effect = new UltimateDeathEffect(entity, EffectBase.TypeOfEffect.Defense);
                     break;
             }
             entity.TakeEffect(_effect);

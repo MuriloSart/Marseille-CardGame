@@ -1,19 +1,19 @@
-﻿internal class HighLoveBuff : EffectBase
+class UltimateGuiltBuff : EffectBase
 {
-
-    public HighLoveBuff(Entity entity, TypeOfEffect type) : base(entity, type)
+    private int damageResist;
+    public UltimateGuiltBuff(Entity entity, int damageResist, TypeOfEffect type) : base(entity, type)
     {
-        this.entity = entity;
+        this.damageResist = damageResist;
     }
 
     public override void ApplyAttackEffect()
     {
-        entity.health.Heal(entity.health.startLife / 2);
+        entity.RemoveEffect(entity.selectedCards[1].Effect);
     }
 
     public override void ApplyDefenseEffect()
     {
-        entity.health.Heal(entity.health.startLife / 2);
+        entity.damageResist += damageResist;
     }
 
     public override void RemoveAttackEffect()
@@ -23,7 +23,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        return;
+        entity.damageResist -= damageResist;
     }
 
     public override void Render()

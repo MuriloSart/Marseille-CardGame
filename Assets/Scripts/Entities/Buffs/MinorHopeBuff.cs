@@ -2,12 +2,10 @@ using System;
 
 public class MinorHopeBuff : EffectBase
 {
-    private readonly Entity entity;
     private readonly int amountDamage;
 
-    public MinorHopeBuff(Entity entity, int amountDamage, TypeOfEffect type) : base(type)
+    public MinorHopeBuff(Entity entity, int amountDamage, TypeOfEffect type) : base(entity, type)
     {
-        this.entity = entity;
         this.amountDamage = amountDamage;
         _turns = 1;
     }

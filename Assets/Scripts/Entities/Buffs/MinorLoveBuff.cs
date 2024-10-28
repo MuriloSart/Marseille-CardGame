@@ -1,9 +1,8 @@
-﻿internal class UltimateLoveBuff : EffectBase
+﻿internal class MinorLoveBuff : EffectBase
 {
-    private Entity entity;
-    private int buffValue;
+    private readonly int buffValue;
 
-    public UltimateLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(type)
+    public MinorLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity, type)
     {
         this.entity = entity;
         this.buffValue = buffValue;
@@ -11,12 +10,12 @@
 
     public override void ApplyAttackEffect()
     {
-        entity.health.Heal(entity.health.startLife);
+        entity.health.Heal(buffValue);
     }
 
     public override void ApplyDefenseEffect()
     {
-        entity.health.startLife += buffValue;
+        entity.selectedCards[0].Damage -= buffValue;
     }
 
     public override void RemoveAttackEffect()
@@ -26,7 +25,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.health.startLife -= buffValue;
+        entity.selectedCards[0].Damage += buffValue;
     }
 
     public override void Render()

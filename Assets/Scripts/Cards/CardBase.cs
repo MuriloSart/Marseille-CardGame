@@ -6,21 +6,20 @@ using UnityEngine.UI;
 public abstract class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
-    private int dmg = 1;
     public TextMeshProUGUI uiTextValue;
     public Color color;
 
     //privates
-    private Entity _currentOwner;
-    private bool _acquired = false;
     private bool _acquiredOwner = false;
+    
 
+    private int dmg = 1;
     public int Damage
     {
         set
         {
-            if (value < 0)
-                dmg = 0;
+            if (value < 1)
+                dmg = 1;
             else 
                 dmg = value;
 
@@ -29,14 +28,32 @@ public abstract class CardBase : MonoBehaviour
         get { return dmg; }
     }
 
+
+    private bool _acquired = false;
     public bool Acquired 
     { 
         get { return _acquired; }
     }
 
+
+    private Entity _currentOwner;
     public Entity Owner
     {
         get { return _currentOwner; }
+    }
+
+
+    protected IAbilityCard _ability;
+    public IAbilityCard CurrentAbility
+    {
+        get { return _ability; }
+    }
+
+    protected EffectBase _effect;
+
+    public EffectBase Effect
+    {
+        get { return _effect; }
     }
 
     #region Ability

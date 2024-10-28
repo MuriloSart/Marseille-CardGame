@@ -2,6 +2,8 @@ using System;
 
 public abstract class EffectBase
 {
+    protected Entity entity;
+
     protected int _turns = 0;
     public Action EffectOverTime;
     public Action ApplyEffect;
@@ -23,8 +25,9 @@ public abstract class EffectBase
         Attack
     }
 
-    public EffectBase(TypeOfEffect type)
+    public EffectBase(Entity entity, TypeOfEffect type)
     {
+        this.entity = entity;
         if (type == TypeOfEffect.Attack)
         {
             ApplyEffect = ApplyAttackEffect;

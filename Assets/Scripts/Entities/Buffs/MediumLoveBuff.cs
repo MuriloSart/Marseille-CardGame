@@ -1,10 +1,9 @@
 ﻿internal class MediumLoveBuff : EffectBase
 {
-    private Entity entity;
     private int buffValue;
     private int damageValue;
 
-    public MediumLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(type)
+    public MediumLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity, type)
     {
         this.entity = entity;
         this.buffValue = buffValue;

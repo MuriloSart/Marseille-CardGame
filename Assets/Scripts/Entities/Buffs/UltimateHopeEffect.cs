@@ -1,14 +1,12 @@
 public class UltimateHopeEffect : EffectBase
 {
-    private readonly Entity player;
-    private readonly int amountDamage;
-    private readonly int amountHeal;
+    private readonly int currentDamage;
+    private readonly int currentHeal;
 
-    public UltimateHopeEffect(Entity player, int amountDamage, int amountHeal, TypeOfEffect type) : base(type)
+    public UltimateHopeEffect(Entity entity, int amountDamage, int amountHeal, TypeOfEffect type) : base(entity, type)
     {
-        this.player = player;
-        this.amountDamage = amountDamage;
-        this.amountHeal = amountHeal;
+        this.currentDamage = amountDamage;
+        this.currentHeal = amountHeal;
     }
 
     public override void ApplyAttackEffect()
@@ -23,11 +21,11 @@ public class UltimateHopeEffect : EffectBase
 
     public override void RemoveAttackEffect()
     {
-        player.selectedCards[0].Damage -= amountDamage;
+        entity.selectedCards[0].Damage -= currentDamage;
     }
     public override void RemoveDefenseEffect()
     {
-        player.selectedCards[0].Damage -= amountDamage;
+        entity.selectedCards[0].Damage -= currentDamage;
     }
 
     public override void Render()
@@ -37,7 +35,7 @@ public class UltimateHopeEffect : EffectBase
 
     public void MasterEffect()
     {
-        player.selectedCards[0].Damage += amountDamage;
-        player.health.Heal(amountHeal);
+        entity.selectedCards[0].Damage += currentDamage;
+        entity.health.Heal(currentHeal);
     }
 }

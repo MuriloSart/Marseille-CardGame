@@ -1,12 +1,10 @@
 public class MediumHopeBuff : EffectBase
 {
-    private readonly Entity player;
     private readonly int amountDamage;
     private readonly int amountResist;
 
-    public MediumHopeBuff(Entity player, int amountDamage, int amountResist, TypeOfEffect type) : base(type)
+    public MediumHopeBuff(Entity entity, int amountDamage, int amountResist, TypeOfEffect type) : base(entity, type)
     {
-        this.player = player;
         this.amountDamage = amountDamage;
         this.amountResist = amountResist;
         _turns = 1;
@@ -39,18 +37,18 @@ public class MediumHopeBuff : EffectBase
 
     public void BuffAttack()
     {
-        player.selectedCards[0].Damage += amountDamage;
+        entity.selectedCards[0].Damage += amountDamage;
     }
 
     public void BuffProtect()
     {
-        player.damageResist += amountResist;
+        entity.damageResist += amountResist;
     }
 
     public void DebuffAttack()
     {
-        player.selectedCards[0].Damage -= amountDamage;
+        entity.selectedCards[0].Damage -= amountDamage;
         if (EffectOverTime == BuffProtect)
-            player.damageResist -= amountResist;
+            entity.damageResist -= amountResist;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class HopeAbility : IAbilityCard
 {
     private readonly string spritePath = "Cards/HopeImg";
-    private EffectBase effect;
+    private EffectBase _effect;
     public int powerUpMinor = 3;
     public int powerUpMedium = 5;
     public int powerUpHigher = 8;
@@ -14,80 +14,84 @@ public class HopeAbility : IAbilityCard
     public int heal = 4;
 
 
-    public void ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
+    public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
         switch (cardValue)
         {
             case 1:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 2:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 3:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 4:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 5:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 6:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Attack);
                 break;
             case 7:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist1, EffectBase.TypeOfEffect.Attack);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist1, EffectBase.TypeOfEffect.Attack);
                 break;
             case 8:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist2, EffectBase.TypeOfEffect.Attack);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist2, EffectBase.TypeOfEffect.Attack);
                 break;
             case 9:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Attack);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Attack);
                 break;
             case 10:
-                effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Attack);
+                _effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Attack);
                 break;
 
         }
-        entity.TakeEffect(effect);
+        entity.TakeEffect(_effect);
+
+        return _effect;
     }
-    public void ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
+    public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
         switch (cardValue)
         {
             case 1:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 2:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 3:
-                effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorHopeBuff(entity, powerUpMinor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 4:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 5:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 6:
-                effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumHopeBuff(entity, powerUpMedium, powerUpArmor, EffectBase.TypeOfEffect.Defense);
                 break;
             case 7:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist1, EffectBase.TypeOfEffect.Defense);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist1, EffectBase.TypeOfEffect.Defense);
                 break;
             case 8:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist2, EffectBase.TypeOfEffect.Defense);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist2, EffectBase.TypeOfEffect.Defense);
                 break;
             case 9:
-                effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Defense);
+                _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Defense);
                 break;
             case 10:
-                effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Defense);
+                _effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Defense);
                 break;
         }
-        entity.TakeEffect(effect);
+        entity.TakeEffect(_effect);
+
+        return _effect;
     }
 
     public Sprite Render()

@@ -1,29 +1,27 @@
-﻿internal class HighLoveBuff : EffectBase
+public class MediumDeathBuff : EffectBase
 {
-
-    public HighLoveBuff(Entity entity, TypeOfEffect type) : base(entity, type)
+    public MediumDeathBuff(Entity entity, TypeOfEffect type) : base(entity, type)
     {
-        this.entity = entity;
     }
 
     public override void ApplyAttackEffect()
     {
-        entity.health.Heal(entity.health.startLife / 2);
+        throw new System.NotImplementedException();
     }
 
     public override void ApplyDefenseEffect()
     {
-        entity.health.Heal(entity.health.startLife / 2);
+        throw new System.NotImplementedException();
     }
 
     public override void RemoveAttackEffect()
     {
-        return;
+        throw new System.NotImplementedException();
     }
 
     public override void RemoveDefenseEffect()
     {
-        return;
+        throw new System.NotImplementedException();
     }
 
     public override void Render()

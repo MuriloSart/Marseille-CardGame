@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DeathCard : CardBase
 {
-    private IAbilityCard _ability;
-
     public DeathCard()
     {
         _ability = new DeathAbility();
@@ -16,11 +14,11 @@ public class DeathCard : CardBase
 
     public override void AttackAbility()
     {
-        _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
     }
 
     public override void DefenseAbility()
     {
-        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 }

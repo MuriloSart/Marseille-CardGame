@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class GuiltCard : CardBase
 {
-    private IAbilityCard _ability;
-
     public GuiltCard()
     {
         _ability = new GuiltAbility();
@@ -16,11 +14,11 @@ public class GuiltCard : CardBase
 
     public override void AttackAbility()
     {
-        _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
     }
 
     public override void DefenseAbility()
     {
-        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 }

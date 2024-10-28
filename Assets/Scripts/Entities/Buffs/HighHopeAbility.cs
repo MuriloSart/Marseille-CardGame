@@ -1,12 +1,10 @@
 public class HighHopeAbility : EffectBase
 {
-    private readonly Entity entity;
     private readonly int amountDamage;
     private readonly int amountEffectResist;
 
-    public HighHopeAbility(Entity entity, int amountDamage, int amountEffectResist, TypeOfEffect type) : base(type)
+    public HighHopeAbility(Entity entity, int amountDamage, int amountEffectResist, TypeOfEffect type) : base(entity, type)
     {
-        this.entity = entity;
         this.amountDamage = amountDamage;
         this.amountEffectResist = amountEffectResist;
         _turns = 1;

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class LoveCard : CardBase
 {
-    private readonly IAbilityCard _ability;
-
     public LoveCard()
     {
         _ability = new LoveAbility();
@@ -16,12 +14,12 @@ public class LoveCard : CardBase
 
     public override void AttackAbility()
     {
-        _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
     }
 
     public override void DefenseAbility()
     {
-        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 
 }

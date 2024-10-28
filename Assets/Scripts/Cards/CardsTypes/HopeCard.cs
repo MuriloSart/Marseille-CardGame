@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class HopeCard : CardBase
 {
-    private readonly IAbilityCard _ability;
-
     public HopeCard()
     {
         _ability = new HopeAbility();
@@ -16,11 +14,11 @@ public class HopeCard : CardBase
 
     public override void AttackAbility()
     {
-        _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteAttackAbility(Owner, Owner.enemy, Damage);
     }
 
     public override void DefenseAbility()
     {
-        _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+        _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 }

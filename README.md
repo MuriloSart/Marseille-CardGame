@@ -30,6 +30,33 @@ Em **Marseille**, você assume o papel do Mago (Carta I do Tarot) e viaja por Ma
 - **C#**
 - **DoTween** (para animações e movimentações interpoladas)
 
+## Mecânica do Jogo
+
+**Marseille** é um jogo estratégico de cartas que combina habilidade, planejamento e interpretação do Tarot. Abaixo está a mecânica principal:
+
+- **Mão Inicial**:  
+  Cada jogador inicia com uma mão de **7 cartas**, compradas de um baralho de **40 cartas**.
+
+- **Estrutura de Round e Turnos**:  
+  Cada round é composto de **4 turnos**, alternando entre o jogador e o inimigo. A dinâmica é a seguinte:  
+  1. **Turnos de Ataque (1º e 2º turnos)**:  
+     Ambos os jogadores escolhem, alternadamente, uma carta para ser usada como **valor de ataque**. O objetivo é causar dano ao adversário com base no valor da carta escolhida.
+  2. **Turnos de Habilidade (3º e 4º turnos)**:  
+     Nos turnos finais, ambos os jogadores escolhem cartas cujas **habilidades especiais** serão ativadas. Essas habilidades podem incluir buffs, debuffs, cura ou outros efeitos estratégicos.
+
+- **Conceito de Ataque e Defesa**:  
+  - **Cartas de Ataque**: A carta escolhida determina o dano que será infligido ao adversário.  
+  - **Cartas de Defesa**: Algumas cartas possuem efeitos que aumentam a resistência a danos ou diminuem o impacto de ataques inimigos.
+
+- **Interação com o Baralho**:  
+  - Após cada turno, o jogador compra uma nova carta se possível.
+  - O baralho é embaralhado automaticamente quando esgotado, movendo cartas do descarte de volta ao jogo.
+
+- **Vencer a Partida**:  
+  O objetivo é reduzir os pontos de vida do adversário a zero antes que o próprio jogador seja derrotado.
+
+---
+
 ## Instalação
 
 ### Pré-requisitos

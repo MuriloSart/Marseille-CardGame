@@ -1,21 +1,22 @@
 ﻿internal class UltimateLoveBuff : EffectBase
 {
-    private int buffValue;
+    private int _buffValue;
+    private Heal heal = new Heal();
 
     public UltimateLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity,type)
     {
         this.entity = entity;
-        this.buffValue = buffValue;
+        this._buffValue = buffValue;
     }
 
     public override void ApplyAttackEffect()
     {
-        entity.health.Heal(entity.health.startLife);
+        heal.Restore(entity, _buffValue);
     }
 
     public override void ApplyDefenseEffect()
     {
-        entity.health.startLife += buffValue;
+        entity.Health.maxLife += _buffValue;
     }
 
     public override void RemoveAttackEffect()
@@ -25,7 +26,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.health.startLife -= buffValue;
+        entity.Health.maxLife -= _buffValue;
     }
 
     public override void Render()

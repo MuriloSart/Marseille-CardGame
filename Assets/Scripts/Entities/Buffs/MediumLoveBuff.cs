@@ -1,23 +1,24 @@
 ﻿internal class MediumLoveBuff : EffectBase
 {
-    private int buffValue;
-    private int damageValue;
+    private int _buffValue;
+    private int _damageValue;
+    private Heal heal = new Heal();
 
     public MediumLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity, type)
     {
         this.entity = entity;
-        this.buffValue = buffValue;
+        this._buffValue = buffValue;
     }
 
     public override void ApplyAttackEffect()
     {
-        entity.health.Heal(buffValue);
+        heal.Restore(entity, _buffValue);
     }
 
     public override void ApplyDefenseEffect()
     {
-        damageValue = entity.selectedCards[0].Damage / 2;
-        entity.selectedCards[0].Damage -= damageValue;
+        _damageValue = entity.selectedCards[0].Damage / 2;
+        entity.selectedCards[0].Damage -= _damageValue;
     }
 
     public override void RemoveAttackEffect()
@@ -27,7 +28,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.selectedCards[0].Damage += damageValue;
+        entity.selectedCards[0].Damage += _damageValue;
     }
 
     public override void Render()

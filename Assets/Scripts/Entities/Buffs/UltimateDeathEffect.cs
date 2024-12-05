@@ -1,7 +1,8 @@
 public class UltimateDeathEffect : EffectBase
-{
+{ 
     public UltimateDeathEffect(Entity entity, TypeOfEffect type) : base(entity, type)
     {
+        _turns = -1;
     }
 
     public override void ApplyAttackEffect()

@@ -1,30 +1,34 @@
-using UnityEngine;
-
 public class MinorDeathBuff : EffectBase
 {
-    public MinorDeathBuff(Entity entity, TypeOfEffect type) : base(entity, type)
-    {
+    private readonly int _damage;
+    private readonly int _damageResist;
+    private readonly Damage damageDealer = new Damage();
 
+    public MinorDeathBuff(Entity entity, TypeOfEffect type, int damage, int damageResist) : base(entity, type)
+    {
+        this._damage = damage;
+        this._damageResist = damageResist;
     }
 
     public override void ApplyAttackEffect()
     {
-        throw new System.NotImplementedException();
+        DealCard.Instance.ToEntity(entity, entity.Deck);
+        damageDealer.Deal(entity, _damage);
     }
 
     public override void ApplyDefenseEffect()
     {
-        throw new System.NotImplementedException();
+        entity.damageResist += _damageResist;
     }
 
     public override void RemoveAttackEffect()
     {
-        throw new System.NotImplementedException();
+        return;
     }
 
     public override void RemoveDefenseEffect()
     {
-        throw new System.NotImplementedException();
+        entity.damageResist -= _damageResist;
     }
 
     public override void Render()

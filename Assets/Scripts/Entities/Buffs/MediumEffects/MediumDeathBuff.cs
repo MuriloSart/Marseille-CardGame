@@ -2,7 +2,6 @@ public class MediumDeathBuff : EffectBase
 {
     private readonly int _damage;
     private readonly int _damageResist;
-    private readonly Damage _damageDealer = new Damage();
 
     public MediumDeathBuff(Entity entity, TypeOfEffect type, int damage, int damageResist) : base(entity, type)
     {
@@ -13,7 +12,7 @@ public class MediumDeathBuff : EffectBase
     public override void ApplyAttackEffect()
     {
         Dealer.Instance.Deal.ToEntity(entity, entity.drawPile);
-        _damageDealer.Deal(entity, _damage);
+        entity.selectedCards.cards[0].damageType.Deal(entity, _damage);
     }
 
     public override void ApplyDefenseEffect()

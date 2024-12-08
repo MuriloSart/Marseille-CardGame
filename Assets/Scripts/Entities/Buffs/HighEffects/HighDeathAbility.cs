@@ -1,6 +1,5 @@
 public class HighDeathAbility : EffectBase
 {
-    private Damage damageDealer = new Damage();
     private readonly int _damage;
     private readonly int _damageResist;
 
@@ -13,7 +12,7 @@ public class HighDeathAbility : EffectBase
     public override void ApplyAttackEffect() 
     {
         Dealer.Instance.Deal.ToEntity(entity, entity.drawPile);
-        damageDealer.Deal(entity, _damage);
+        entity.selectedCards.cards[0].damageType.Deal(entity, _damage);
     }
 
     public override void ApplyDefenseEffect()

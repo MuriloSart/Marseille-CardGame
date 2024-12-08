@@ -25,6 +25,7 @@ public class Entity : MonoBehaviour
     public DrawPile drawPile;
     
     [Header("Player Stats")]
+    public HealthUi healthUi;
     public Health health;
     public Death death;
 

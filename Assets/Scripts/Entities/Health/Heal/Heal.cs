@@ -4,5 +4,6 @@ public class Heal : IHeal
     {
         if (heal <= 0) return;
         entity.health.CurrentLife += heal;
+        entity.healthUi.HealUi(heal);
     }
 }

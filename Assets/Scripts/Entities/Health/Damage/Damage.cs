@@ -7,5 +7,6 @@ public class Damage : MonoBehaviour, IDamage
         if (damage < 0) return;
 
         entity.health.CurrentLife -= damage;
+        entity.healthUi.DamageUi(damage);
     }
 }

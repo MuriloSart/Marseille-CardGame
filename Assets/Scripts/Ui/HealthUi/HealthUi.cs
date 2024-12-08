@@ -7,8 +7,23 @@ public class HealthUi : MonoBehaviour
     public TextMeshProUGUI healthText;
     public int delayAnimation = 1;
 
+    private DamageHealthUi damageUi;
+    private HealHealthUi healUi;
+
     private void Start()
     {
-        //healthText.text = $"{entityTarget.name} Health : {entityTarget.Health.CurrentLife}";
+        healUi = new HealHealthUi();
+        damageUi = new DamageHealthUi();
+        healthText.text = $"{entityTarget.name} Health : {entityTarget.health.CurrentLife}";
+    }
+
+    public void HealUi(int heal)
+    {
+        healUi.TextAtualize(this, heal);
+    }
+
+    public void DamageUi(int heal)
+    {
+        damageUi.TextAtualize(this, heal);
     }
 }

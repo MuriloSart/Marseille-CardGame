@@ -430,6 +430,7 @@ MonoBehaviour:
   SelectedPos2: {fileID: 8680887147218922910}
   discardDeck: {fileID: 9199511372756271974}
   drawPile: {fileID: 5102088699956206921}
+  healthUi: {fileID: 2937628418815490874}
   health: {fileID: 4807663751918302669}
   death: {fileID: 2922999413867098884}
   effectResist: 0

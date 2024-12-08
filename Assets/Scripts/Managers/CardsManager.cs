@@ -19,8 +19,9 @@ public class CardsManager : Singleton<CardsManager>
 
     private void DiscardSelected(Entity entity)
     {
-        foreach (var card in entity.selectedCards.cards)
+        for (int i = entity.selectedCards.cards.Count - 1; i >= 0; i--)
         {
+            var card = entity.selectedCards.cards[i];
             entity.selectedCards.DiscardTo(entity.discardDeck, card);
         }
 

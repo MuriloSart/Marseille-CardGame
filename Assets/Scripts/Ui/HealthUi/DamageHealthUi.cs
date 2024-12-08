@@ -1,18 +1,15 @@
-using System.Collections;
-using UnityEngine;
+using System.Threading.Tasks;
 
-public class DamageHealthUi : MonoBehaviour
+public class DamageHealthUi
 {
-    private static int delay = 2;
-    public static void textAtualize(HealthUi healthText, int damage)
-    {
-        CoroutineHelper.Instance.RunCoroutine(DelayToDiscard(healthText, damage));
-    }
+    private readonly int delay = 2000;
 
-    private static IEnumerator DelayToDiscard(HealthUi healthText, int damage)
+    public async void TextAtualize(HealthUi healthText, int damage)
     {
         healthText.healthText.text = $"{healthText.entityTarget.name} Health : {healthText.entityTarget.health.CurrentLife} - {damage}";
-        yield return new WaitForSeconds(delay);
+
+        await Task.Delay(delay);
+
         healthText.healthText.text = $"{healthText.entityTarget.name} Health : {healthText.entityTarget.health.CurrentLife}";
     }
 }

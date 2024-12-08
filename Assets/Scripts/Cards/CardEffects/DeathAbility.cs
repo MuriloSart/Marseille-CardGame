@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public class DeathAbility : IAbilityCard
 {
@@ -51,7 +50,7 @@ public class DeathAbility : IAbilityCard
                 break;
 
         }
-        entity.TakeEffect(_effect);
+        EffectManager.Instance.TakeEffect(entity, _effect);
 
         return _effect;
     }
@@ -91,7 +90,7 @@ public class DeathAbility : IAbilityCard
                     _effect = new UltimateDeathEffect(entity, EffectBase.TypeOfEffect.Defense);
                     break;
             }
-            entity.TakeEffect(_effect);
+            EffectManager.Instance.TakeEffect(entity, _effect);
 
             return _effect;
         }

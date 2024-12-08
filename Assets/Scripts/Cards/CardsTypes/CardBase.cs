@@ -2,16 +2,17 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Cards.Animations;
 
 public abstract class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
     public TextMeshProUGUI uiTextValue;
-    public Color color;
+    public Damage damageType;
+    public CardAnimator cardAnimator;
 
-    //privates
+ 
     private bool _acquiredOwner = false;
-    
 
     private int dmg = 1;
     public int Damage
@@ -34,7 +35,6 @@ public abstract class CardBase : MonoBehaviour
     { 
         get { return _acquired; }
     }
-
 
     private Entity _currentOwner;
     public Entity Owner
@@ -75,22 +75,27 @@ public abstract class CardBase : MonoBehaviour
         Ability = DefenseAbility;
     }
 
-    public void Acquire(Entity player)
+    public void Acquire(Entity entity)
     {
         if (_acquiredOwner) return;
 
         if (!_acquired)
-            _currentOwner = player;
+            _currentOwner = entity;
         _acquired = true;
         _acquiredOwner = true;
     }
 
     public void OnClick()
     {
-        if (_currentOwner != null && _currentOwner.state == Entity.PlayerStates.ATTACK)
+        if (_currentOwner != null && _currentOwner.state == Entity.EntityStates.ATTACK)
         {
             _currentOwner.OnClick(this);
             _acquired = false;
         }
+    }
+
+    public void SlideTo(Deck destiny)
+    {
+        cardAnimator.SlideTo(this, destiny);
     }
 }

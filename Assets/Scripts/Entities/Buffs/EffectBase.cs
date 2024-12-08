@@ -1,5 +1,4 @@
 using System;
-
 public abstract class EffectBase
 {
     protected Entity entity;

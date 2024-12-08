@@ -1,8 +1,11 @@
-public class Damage : IDamage
+using UnityEngine;
+
+public class Damage : MonoBehaviour, IDamage
 {
     public void Deal(Entity entity, int damage)
     {
         if (damage < 0) return;
-        entity.Health.CurrentLife -= damage;
+
+        entity.health.CurrentLife -= damage;
     }
 }

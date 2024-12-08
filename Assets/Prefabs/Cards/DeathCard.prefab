@@ -147,6 +147,8 @@ GameObject:
   - component: {fileID: 4510720441240836511}
   - component: {fileID: 4510720441240836510}
   - component: {fileID: 2804130075117660848}
+  - component: {fileID: 4773824309248597941}
+  - component: {fileID: 5349892613671521317}
   m_Layer: 5
   m_Name: DeathCard
   m_TagString: Untagged
@@ -280,6 +282,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ec17e973d2ecd4d86e4814d1ecb259, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
   uiTextValue: {fileID: 4510720441099597756}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  damageType: {fileID: 5349892613671521317}
+  cardAnimator: {fileID: 4773824309248597941}
+--- !u!114 &4773824309248597941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510720441240836508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f4593c3719f6a40b9b6652fb998240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+--- !u!114 &5349892613671521317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510720441240836508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de89c34518860524ba44e4686a29a153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

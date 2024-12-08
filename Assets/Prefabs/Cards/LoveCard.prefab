@@ -147,6 +147,8 @@ GameObject:
   - component: {fileID: 4510720441240836511}
   - component: {fileID: 4510720441240836510}
   - component: {fileID: 6165734351873874732}
+  - component: {fileID: 8144921863915775641}
+  - component: {fileID: 8765349748496480556}
   m_Layer: 5
   m_Name: LoveCard
   m_TagString: Untagged
@@ -280,6 +282,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcb4fea0bcc10e48b4e2eb2534a62d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dmg: 1
   uiTextValue: {fileID: 4510720441099597756}
-  color: {r: 0, g: 0, b: 0, a: 0}
+  damageType: {fileID: 8765349748496480556}
+  cardAnimator: {fileID: 8144921863915775641}
+--- !u!114 &8144921863915775641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510720441240836508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f4593c3719f6a40b9b6652fb998240, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 1
+--- !u!114 &8765349748496480556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4510720441240836508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de89c34518860524ba44e4686a29a153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

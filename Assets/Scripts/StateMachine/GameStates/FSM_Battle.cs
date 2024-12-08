@@ -7,6 +7,7 @@ public class FSM_Battle : MonoBehaviour
         DEALING,
         ATTACKING,
         DEFENSE,
+        RESULT,
         RESETDECK
     }
 
@@ -20,6 +21,7 @@ public class FSM_Battle : MonoBehaviour
         stateMachine.RegisterStates(BattleStates.DEALING, new DealingState());
         stateMachine.RegisterStates(BattleStates.ATTACKING, new AttackingState());
         stateMachine.RegisterStates(BattleStates.DEFENSE, new DefenseState());
+        stateMachine.RegisterStates(BattleStates.RESULT, new ResultState());
         stateMachine.RegisterStates(BattleStates.RESETDECK, new ResetDeckState());
 
     }

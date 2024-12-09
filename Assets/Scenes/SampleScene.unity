@@ -1255,5 +1255,9 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 296.5434
       objectReference: {fileID: 0}
+    - target: {fileID: 8654683723073695429, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: m_Name
+      value: EnemySelectedCards
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}

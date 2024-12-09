@@ -15,8 +15,6 @@ public class GuiltAbility : IAbilityCard
 
     public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
-        Debug.Log("Habilidade Ataque da Culpa usada");
-
         switch (cardValue)
         {
             case 1:
@@ -57,8 +55,6 @@ public class GuiltAbility : IAbilityCard
 
     public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
-        Debug.Log("Habilidade Ataque da Culpa usada");
-
         switch (cardValue)
         {
             case 1:

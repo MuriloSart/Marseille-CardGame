@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5083659487723438933}
   - component: {fileID: 1374393207762106080}
-  - component: {fileID: 4378312287267184909}
+  - component: {fileID: 6740251122474443700}
   m_Layer: 0
   m_Name: CardsOnHand
   m_TagString: Untagged
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
-  discard: {fileID: 4378312287267184909}
---- !u!114 &4378312287267184909
+  discard: {fileID: 6740251122474443700}
+--- !u!114 &6740251122474443700
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 110019293826773727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23423c594f6f4a84789b0a2292a7e212, type: 3}
+  m_Script: {fileID: 11500000, guid: d7a2ee4bad6bb9849b7a13443dc5bfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1612125743634556702
@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4433878637059472224}
   - component: {fileID: 3261234126194214966}
-  - component: {fileID: 600374166704649765}
+  - component: {fileID: 1834870119045242274}
   m_Layer: 0
   m_Name: SelectedCards
   m_TagString: Untagged
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards: []
-  discard: {fileID: 600374166704649765}
---- !u!114 &600374166704649765
+  discard: {fileID: 1834870119045242274}
+--- !u!114 &1834870119045242274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,7 +205,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4462062237712485482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23423c594f6f4a84789b0a2292a7e212, type: 3}
+  m_Script: {fileID: 11500000, guid: d7a2ee4bad6bb9849b7a13443dc5bfa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4807663750823740725

@@ -52,9 +52,10 @@ public class CardsManager : Singleton<CardsManager>
 
     public void SelectingCard(Entity entity, CardBase card)
     {
-
         entity.selectedCards.cards.Add(card);
         card.gameObject.transform.DOMove(entity.CurrentSelectedPos, animationDuration);
+        entity.cardsOnHand.cards.Remove(card);
+
         StartCoroutine(DelayToSelect(entity, card));
     }
     private IEnumerator DelayToSelect(Entity entity, CardBase card)

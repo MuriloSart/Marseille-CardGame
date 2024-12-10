@@ -6,6 +6,6 @@ public class TurnResult : MonoBehaviour
     {
         if (entity.selectedCards.cards.Count == 0 || entity.selectedCards == null) return;
 
-        entity.selectedCards.cards[0].damageType.Deal(entity, damage);
+        entity.selectedCards.cards[0].damageType.Deal(entity.enemy, damage);
     }
 }

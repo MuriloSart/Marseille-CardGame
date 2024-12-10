@@ -2,7 +2,7 @@
 {
     private Entity player;
     private Entity enemy;
-    private int _currentBattle;
+    private int _currentBattle = 0;
     private FSM_Battle battleState;
 
     //Temporizadores
@@ -21,7 +21,7 @@
         player.state = Entity.EntityStates.DONTATTACK;
         enemy.state = Entity.EntityStates.DONTATTACK;
 
-        _currentBattle = Dealer.Instance.FillHands(player, enemy);
+        _currentBattle = Dealer.Instance.FillHands(player, enemy, _currentBattle);
 
         startTime = UnityEngine.Time.time;
     }

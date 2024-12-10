@@ -13,6 +13,5 @@
         turnResult.DamageTurn(entity, damage);
         EffectManager.Instance.RemoveAllEffects(entity);
         CardsManager.Instance.DiscardSelected();
-        GameStateManager.Instance.OnDealing();
     }
 }

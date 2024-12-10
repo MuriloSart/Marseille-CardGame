@@ -6,6 +6,8 @@ public class Health : MonoBehaviour
     public Entity player;
     private int _currentLife;
 
+    public int Life { get => _currentLife;  }
+
     private void Awake()
     {
         Init();

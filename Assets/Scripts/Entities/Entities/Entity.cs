@@ -53,7 +53,7 @@ public class Entity : MonoBehaviour
 
     public enum EntityStates { ATTACK, DONTATTACK }
 
-    public void Start()
+    private void Start()
     {
         Init();
     }
@@ -61,6 +61,16 @@ public class Entity : MonoBehaviour
     protected virtual void Init()
     {
         effects = new List<EffectBase>();
+    }
+
+    private void Update()
+    {
+        Death();
+    }
+
+    private void Death()
+    {
+        if(health.Life <= 0) death.OnDeath();
     }
 
     public virtual void OnClick(CardBase cardClicked)

@@ -1,16 +1,16 @@
 public class MediumGuiltBuff : EffectBase
 {
-    private int damageResist;
-    private int debuffDamage;
+    private readonly int damageResist;
+    private readonly int debuffDamage;
     public MediumGuiltBuff(Entity entity, int debuffDamage, int damageResist, TypeOfEffect type) : base(entity, type)
     {
+        this.damageResist = damageResist;
+        this.debuffDamage = debuffDamage;
     }
 
     public override void ApplyAttackEffect()
     {
-        EffectManager.Instance.RemoveEffect(entity, entity.selectedCards.cards[1].Effect);
-        entity.selectedCards.cards[1].Damage -= debuffDamage;
-        entity.selectedCards.cards[1].Ability();
+        EffectManager.Instance.ActiveGuiltAbility(entity, debuffDamage);
     }
 
     public override void ApplyDefenseEffect()
@@ -20,7 +20,8 @@ public class MediumGuiltBuff : EffectBase
 
     public override void RemoveAttackEffect()
     {
-        entity.selectedCards.cards[1].Damage += debuffDamage;
+        entity.enemy.selectedCards.cards[1].Damage = EffectManager.Instance.RestoringEnemy();
+        entity.enemy.selectedCards.cards[1].Renew();
     }
 
     public override void RemoveDefenseEffect()

@@ -4,7 +4,7 @@ public class HopeCard : CardBase
 {
     public HopeCard()
     {
-        _ability = new HopeAbility();
+        Renew();
     }
 
     public override Sprite Render()
@@ -20,5 +20,10 @@ public class HopeCard : CardBase
     public override void DefenseAbility()
     {
         _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+    }
+
+    public override void Renew()
+    {
+        _ability = new HopeAbility();
     }
 }

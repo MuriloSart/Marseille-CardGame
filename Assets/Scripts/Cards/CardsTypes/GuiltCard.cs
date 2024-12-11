@@ -4,7 +4,7 @@ public class GuiltCard : CardBase
 {
     public GuiltCard()
     {
-        _ability = new GuiltAbility();
+        Renew();
     }
 
     public override Sprite Render()
@@ -20,5 +20,10 @@ public class GuiltCard : CardBase
     public override void DefenseAbility()
     {
         _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+    }
+
+    public override void Renew()
+    {
+        _ability = new GuiltAbility();
     }
 }

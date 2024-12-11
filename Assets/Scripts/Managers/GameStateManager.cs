@@ -45,7 +45,6 @@ public class GameStateManager : Singleton<GameStateManager>
                 else if (stageStage.stateMachine.CurrentState is EffectStage)
                 {
                     ResultStage(turnResult, enemy, enemy.selectedCards.cards[0].Damage - player.selectedCards.cards[0].Damage);
-                    OnDealing();
                 }
             }
             else if (battleState.stateMachine.CurrentState is AttackingState)
@@ -58,7 +57,6 @@ public class GameStateManager : Singleton<GameStateManager>
                 else if (stageStage.stateMachine.CurrentState is EffectStage)
                 {
                     ResultStage(turnResult, player, player.selectedCards.cards[0].Damage - enemy.selectedCards.cards[0].Damage);
-                    OnDealing();
                 }
             }
         }

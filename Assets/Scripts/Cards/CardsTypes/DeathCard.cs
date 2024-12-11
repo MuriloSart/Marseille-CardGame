@@ -4,7 +4,7 @@ public class DeathCard : CardBase
 {
     public DeathCard()
     {
-        _ability = new DeathAbility();
+        Renew();
     }
 
     public override Sprite Render()
@@ -20,5 +20,10 @@ public class DeathCard : CardBase
     public override void DefenseAbility()
     {
         _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
+    }
+
+    public override void Renew()
+    {
+        _ability = new DeathAbility();
     }
 }

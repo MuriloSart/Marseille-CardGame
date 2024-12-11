@@ -60,6 +60,8 @@ public abstract class CardBase : MonoBehaviour
 
     public Action Ability;
 
+    public abstract void Renew();
+
     public abstract void AttackAbility();
 
     public abstract void DefenseAbility();

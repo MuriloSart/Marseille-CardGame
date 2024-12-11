@@ -4,7 +4,7 @@ public class LoveCard : CardBase
 {
     public LoveCard()
     {
-        _ability = new LoveAbility();
+        Renew();
     }
 
     public override Sprite Render()
@@ -22,4 +22,8 @@ public class LoveCard : CardBase
         _effect = _ability.ExecuteDefenseAbility(Owner, Owner.enemy, Damage);
     }
 
+    public override void Renew()
+    {
+        _ability = new LoveAbility();
+    }
 }

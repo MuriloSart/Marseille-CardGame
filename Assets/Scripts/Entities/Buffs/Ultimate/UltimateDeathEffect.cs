@@ -7,27 +7,32 @@ public class UltimateDeathEffect : EffectBase
 
     public override void ApplyAttackEffect()
     {
-        throw new System.NotImplementedException();
+        EffectOverTime = CanDie;
     }
 
     public override void ApplyDefenseEffect()
     {
-        throw new System.NotImplementedException();
+        entity.DamageResist += 10;
     }
 
     public override void RemoveAttackEffect()
     {
-        throw new System.NotImplementedException();
+        entity.death.canDie = true;
     }
 
     public override void RemoveDefenseEffect()
     {
-        throw new System.NotImplementedException();
+        entity.DamageResist -= 10;
     }
 
     public override void Render()
     {
         throw new System.NotImplementedException();
+    }
+
+    private void CanDie()
+    {
+        entity.death.canDie = false;
     }
 }
 

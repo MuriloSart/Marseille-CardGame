@@ -42,13 +42,13 @@ public class MediumHopeBuff : EffectBase
 
     public void BuffProtect()
     {
-        entity.damageResist += amountResist;
+        entity.DamageResist += amountResist;
     }
 
     public void DebuffAttack()
     {
         entity.selectedCards.cards[0].Damage -= amountDamage;
         if (EffectOverTime == BuffProtect)
-            entity.damageResist -= amountResist;
+            entity.DamageResist -= amountResist;
     }
 }

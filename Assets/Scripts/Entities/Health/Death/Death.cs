@@ -3,6 +3,8 @@ public class Death : MonoBehaviour,  IDeath
 {
     private int screen = 3;
 
+    public bool canDie = false;
+
     public int Screen
     {
         get { return screen; }
@@ -12,8 +14,10 @@ public class Death : MonoBehaviour,  IDeath
             else screen = value;
         }
     }
+
     public void OnDeath()
     {
-        GameManager.Instance.ResultScreen(screen);
+        if(canDie)
+            GameManager.Instance.ResultScreen(screen);
     }
 }

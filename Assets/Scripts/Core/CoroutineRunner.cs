@@ -13,7 +13,6 @@ public class CoroutineRunner : MonoBehaviour
             {
                 GameObject go = new GameObject("CoroutineRunner");
                 _instance = go.AddComponent<CoroutineRunner>();
-                DontDestroyOnLoad(go);
             }
             return _instance;
         }

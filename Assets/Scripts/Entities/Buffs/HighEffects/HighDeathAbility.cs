@@ -17,7 +17,7 @@ public class HighDeathAbility : EffectBase
 
     public override void ApplyDefenseEffect()
     {
-        entity.damageResist += _damageResist;
+        entity.DamageResist += _damageResist;
     }
 
     public override void RemoveAttackEffect()
@@ -27,7 +27,7 @@ public class HighDeathAbility : EffectBase
 
     public override void RemoveDefenseEffect()
     {
-        entity.damageResist -= _damageResist;
+        entity.DamageResist -= _damageResist;
     }
 
     public override void Render()

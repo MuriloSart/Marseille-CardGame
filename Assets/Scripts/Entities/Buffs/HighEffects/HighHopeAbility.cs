@@ -13,13 +13,13 @@ public class HighHopeAbility : EffectBase
     public override void ApplyAttackEffect()
     {
         EffectOverTime = BuffAttack;
-        entity.effectResist += amountEffectResist;
+        entity.EffectResist += amountEffectResist;
     }
 
     public override void ApplyDefenseEffect()
     {
         EffectOverTime = BuffAttack;
-        entity.effectResist += amountEffectResist;
+        entity.EffectResist += amountEffectResist;
     }
 
     public override void RemoveAttackEffect()
@@ -45,6 +45,6 @@ public class HighHopeAbility : EffectBase
     private void DebuffAttack()
     {
         entity.selectedCards.cards[0].Damage -= amountDamage;
-        entity.effectResist -= amountEffectResist;
+        entity.EffectResist -= amountEffectResist;
     }
 }

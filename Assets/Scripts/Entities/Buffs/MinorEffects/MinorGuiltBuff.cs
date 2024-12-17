@@ -15,7 +15,7 @@
 
     public override void ApplyDefenseEffect()
     {
-        entity.damageResist += damageResist;
+        entity.DamageResist += damageResist;
     }
 
     public override void RemoveAttackEffect()
@@ -26,7 +26,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.damageResist -= damageResist;
+        entity.DamageResist -= damageResist;
     }
 
     public override void Render()

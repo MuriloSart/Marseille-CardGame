@@ -29,9 +29,6 @@ public class Entity : MonoBehaviour
     public Health health;
     public Death death;
 
-    [Header("Effects")]
-    public int effectResist = 0;
-    public int damageResist = 0;
     public List<EffectBase> effects;
 
     [HideInInspector] public EntityStates state = EntityStates.DONTATTACK;
@@ -48,6 +45,32 @@ public class Entity : MonoBehaviour
                 _currentSelectPos = SelectedPos.transform.position;
             else if(value == 2)
                 _currentSelectPos = SelectedPos2.transform.position;
+        }
+    }
+
+    private int _effectResist = 0;
+    public int EffectResist
+    {
+        get => _effectResist;
+        set
+        {
+            if (value > 0)
+                _effectResist = value;
+            else
+                _effectResist = 0;
+        }
+    }
+
+    private int _damageResist = 0;
+    public int DamageResist
+    {
+        get { return _damageResist; }
+        set 
+        {
+            if (value > 0)
+                _damageResist = value;
+            else
+                _damageResist = 0;
         }
     }
 
@@ -70,7 +93,8 @@ public class Entity : MonoBehaviour
 
     private void Death()
     {
-        if(health.Life <= 0) death.OnDeath();
+        if (health.Life <= 0 && death.canDie) death.OnDeath();
+        else if (health.Life <= 0 && !death.canDie) health.CurrentLife = 1;
     }
 
     public virtual void OnClick(CardBase cardClicked)

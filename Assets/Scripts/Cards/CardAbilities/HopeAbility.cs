@@ -16,6 +16,7 @@ public class HopeAbility : IAbilityCard
 
     public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
+        if (cardValue < 0) cardValue = 1;
         switch (cardValue)
         {
             case 1:
@@ -45,7 +46,7 @@ public class HopeAbility : IAbilityCard
             case 9:
                 _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Attack);
                 break;
-            case 10:
+            default:
                 _effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Attack);
                 break;
 
@@ -56,6 +57,7 @@ public class HopeAbility : IAbilityCard
     }
     public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
+        if(cardValue < 0) cardValue = 1;
         switch (cardValue)
         {
             case 1:
@@ -85,7 +87,7 @@ public class HopeAbility : IAbilityCard
             case 9:
                 _effect = new HighHopeAbility(entity, powerUpHigher, powerUpResist3, EffectBase.TypeOfEffect.Defense);
                 break;
-            case 10:
+            default:
                 _effect = new UltimateHopeEffect(entity, powerUpMinor, heal, EffectBase.TypeOfEffect.Defense);
                 break;
         }

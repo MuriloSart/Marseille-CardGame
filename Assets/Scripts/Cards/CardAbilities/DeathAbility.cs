@@ -16,6 +16,7 @@ public class DeathAbility : IAbilityCard
 
     public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
+        if (cardValue < 0) cardValue = 1;
         switch (cardValue)
         {
             case 1:
@@ -57,7 +58,8 @@ public class DeathAbility : IAbilityCard
 
     public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
-            switch (cardValue)
+        if (cardValue < 0) cardValue = 1;
+        switch (cardValue)
             {
                 case 1:
                     _effect = new MinorDeathBuff(entity, EffectBase.TypeOfEffect.Defense, minorDamage, minorResist);

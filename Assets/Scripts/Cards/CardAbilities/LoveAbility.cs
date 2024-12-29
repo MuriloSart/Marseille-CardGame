@@ -8,9 +8,10 @@ internal class LoveAbility : IAbilityCard
     private int mediumHeal = 5;
     private int ultimateHeal = 10;
 
-    public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int amount)
+    public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
-        switch (amount)
+        if (cardValue < 0) cardValue = 1;
+        switch (cardValue)
         {
             case 1:
                 _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
@@ -48,9 +49,10 @@ internal class LoveAbility : IAbilityCard
         return _effect;
     }
 
-    public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int amount)
+    public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
-        switch (amount)
+        if (cardValue < 0) cardValue = 1;
+        switch (cardValue)
         {
             case 1:
                 _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);

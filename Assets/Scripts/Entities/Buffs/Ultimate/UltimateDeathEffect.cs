@@ -7,7 +7,7 @@ public class UltimateDeathEffect : EffectBase
 
     public override void ApplyAttackEffect()
     {
-        EffectOverTime = CanDie;
+        entity.death.canDie = false;
     }
 
     public override void ApplyDefenseEffect()
@@ -28,11 +28,6 @@ public class UltimateDeathEffect : EffectBase
     public override void Render()
     {
         throw new System.NotImplementedException();
-    }
-
-    private void CanDie()
-    {
-        entity.death.canDie = false;
     }
 }
 

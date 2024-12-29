@@ -3,7 +3,7 @@ public class Death : MonoBehaviour,  IDeath
 {
     private int screen = 3;
 
-    public bool canDie = false;
+    public bool canDie = true;
 
     public int Screen
     {

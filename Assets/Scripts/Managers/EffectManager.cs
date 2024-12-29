@@ -23,13 +23,14 @@ public class EffectManager : Singleton<EffectManager>
     {
         if (!guiltActived) return;
         RemoveEffect(entity.enemy, entity.enemy.selectedCards.cards[1].Effect);
+
+        if(debuffDamage >= 0) return;
         enemyData = entity.enemy.selectedCards.cards[1].Damage;
         entity.enemy.selectedCards.cards[1].Damage -= debuffDamage;
         entity.enemy.selectedCards.cards[1].Renew();
         TakeEffect(entity.enemy, entity.enemy.selectedCards.cards[1].Effect);
         guiltActived = false;
     }
-
 
     public void TakeEffect(Entity entity, EffectBase effect)
     {

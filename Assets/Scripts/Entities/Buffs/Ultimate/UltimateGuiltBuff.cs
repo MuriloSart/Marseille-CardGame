@@ -8,7 +8,7 @@ class UltimateGuiltBuff : EffectBase
 
     public override void ApplyAttackEffect()
     {
-        EffectManager.Instance.RemoveEffect(entity, entity.selectedCards.cards[1].Effect);
+        EffectManager.Instance.ActiveGuiltAbility(entity, 0);
     }
 
     public override void ApplyDefenseEffect()

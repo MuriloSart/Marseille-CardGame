@@ -14,7 +14,7 @@ public class HealthUi : MonoBehaviour
     {
         healUi = new HealHealthUi();
         damageUi = new DamageHealthUi();
-        healthText.text = $"{entityTarget.name} Health : {entityTarget.health.CurrentLife}";
+        healthText.text = $"{entityTarget.health.CurrentLife}";
     }
 
     public void HealUi(int heal)

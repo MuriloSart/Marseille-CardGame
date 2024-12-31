@@ -6,10 +6,10 @@ public class DamageHealthUi
 
     public async void TextAtualize(HealthUi healthText, int damage)
     {
-        healthText.healthText.text = $"{healthText.entityTarget.name} Health : {healthText.entityTarget.health.CurrentLife} - {damage}";
+        healthText.healthText.text = $"{healthText.entityTarget.health.CurrentLife} - {damage}";
 
         await Task.Delay(delay);
 
-        healthText.healthText.text = $"{healthText.entityTarget.name} Health : {healthText.entityTarget.health.CurrentLife}";
+        healthText.healthText.text = $"{healthText.entityTarget.health.CurrentLife}";
     }
 }

@@ -23,7 +23,7 @@ class UltimateGuiltBuff : EffectBase
 
     public override void RemoveDefenseEffect()
     {
-        entity.DamageResist -= damageResist;
+        return;
     }
 
     public override void Render()

@@ -12,6 +12,7 @@ public class DrawPile: Deck
         {
             var obj = Instantiate(cardTypes[i/10]);
             obj.transform.SetParent(this.transform);
+            obj.transform.localScale = new Vector3(1f, 1f, 1f);
             obj.transform.position = this.transform.position;
             obj.GetComponent<CardBase>().Damage = damage;
 

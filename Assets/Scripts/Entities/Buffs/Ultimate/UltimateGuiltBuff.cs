@@ -1,4 +1,4 @@
-class UltimateGuiltBuff : EffectBase
+public class UltimateGuiltBuff : EffectBase
 {
     private int damageResist;
     public UltimateGuiltBuff(Entity entity, int damageResist, TypeOfEffect type) : base(entity, type)
@@ -18,12 +18,12 @@ class UltimateGuiltBuff : EffectBase
 
     public override void RemoveAttackEffect()
     {
-        return;
+        UnityEngine.Debug.Log("UltimateGuilt removido");
     }
 
     public override void RemoveDefenseEffect()
     {
-        return;
+        entity.DamageResist -= damageResist;
     }
 
     public override void Render()

@@ -12,6 +12,7 @@ public class MinorDeathBuff : EffectBase
     public override void ApplyAttackEffect()
     {
         Dealer.Instance.Deal.ToEntity(entity, entity.drawPile);
+        entity.AcquireCards();
         entity.selectedCards.cards[0].damageType.Deal(entity, _damage);
     }
 

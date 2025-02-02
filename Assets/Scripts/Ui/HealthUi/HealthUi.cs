@@ -15,6 +15,7 @@ public class HealthUi : MonoBehaviour
         healUi = new HealHealthUi();
         damageUi = new DamageHealthUi();
         healthText.text = $"{entityTarget.health.CurrentLife}";
+        healthText. transform.SetAsLastSibling();
     }
 
     public void HealUi(int heal)

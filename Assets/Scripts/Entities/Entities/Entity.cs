@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,7 @@ public class Entity : MonoBehaviour
 
     [Tooltip("Deck On Hand")]
     public Deck cardsOnHand;
-    public GameObject layoutCards;
+    [SerializeField] private Transform grid;
 
     [Tooltip("SelectedCards")]
     public Deck selectedCards;
@@ -105,14 +107,28 @@ public class Entity : MonoBehaviour
         CardsManager.Instance.SelectingCard(this, cardClicked);
     }
 
-    public void AcquiringCards()
+    public void AcquireCards()
     {
-        int index = 1;
-        foreach (var card in cardsOnHand.cards)
+        LayoutRebuilder.ForceRebuildLayoutImmediate(grid.GetComponent<RectTransform>());
+        for (int i = 0; i < cardsOnHand.cards.Count; i++)
         {
-            card.Acquire(this);
-            StartCoroutine(CardsManager.Instance.SlideToHand(card, layoutCards.GetComponent<HorizontalLayoutGroup>(), index));
-            index += 2;
+
+            if (grid != null)
+            {
+                cardsOnHand.cards[i].Acquire(this);
+                ToHand(cardsOnHand.cards[i], i);
+            }
+            else
+            {
+                Debug.LogWarning( name + " não tem um layout não definito");
+            }
+
         }
+    }
+
+    private void ToHand(CardBase card, int i)
+    {
+        var child = grid.GetChild(i);
+        card.transform.DOMove(child.position, 1);
     }
 }

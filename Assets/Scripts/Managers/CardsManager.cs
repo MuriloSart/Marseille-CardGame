@@ -28,28 +28,6 @@ public class CardsManager : Singleton<CardsManager>
         entity.selectedCards.cards.Clear();
     }
 
-
-    public IEnumerator SlideToHand(CardBase card, HorizontalLayoutGroup layoutCards, int i)
-    {
-        card.gameObject.transform.DOMove(CalcularPosicaoFinal(layoutCards, i), animationDuration);
-        yield return new WaitForSeconds(animationDuration);
-        card.gameObject.transform.SetParent(layoutCards.transform);
-    }
-    private Vector2 CalcularPosicaoFinal(HorizontalLayoutGroup layoutGroup, int i)
-    {
-        Vector2 posicaoFinal = layoutGroup.transform.position;
-
-        float largura = layoutGroup.gameObject.GetComponent<RectTransform>().rect.width;
-
-        float StartPosition = posicaoFinal.x - (largura / 2);
-
-        StartPosition += layoutGroup.padding.right;
-
-        posicaoFinal.x = StartPosition + ((largura / (GlobalVariables.MaxCardNumber * 2)) * i);
-        return posicaoFinal;
-    }
-
-
     public void SelectingCard(Entity entity, CardBase card)
     {
         entity.selectedCards.cards.Add(card);

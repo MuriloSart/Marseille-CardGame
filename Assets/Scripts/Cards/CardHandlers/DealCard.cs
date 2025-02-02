@@ -8,11 +8,9 @@ namespace Cards.CardHandlers.DealCard
         {
             if (entity.cardsOnHand.cards.Count >= GlobalVariables.MaxCardNumber) return;
 
-            int index = Random.Range(0, drawPile.cards.Count);
+            int index = Random.Range(0, drawPile.cards.Count - 1);
 
-            drawPile.DiscardTo(entity.cardsOnHand, drawPile.cards[index]);
-
-            entity.AcquiringCards();
+            drawPile.DiscardTo(entity.cardsOnHand, drawPile.cards[index], false);
         }
     }
 }

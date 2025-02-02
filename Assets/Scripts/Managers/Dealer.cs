@@ -28,5 +28,6 @@ public class Dealer : Singleton<Dealer>
         {
             deal.ToEntity(entity, drawPile);
         }
+        entity.AcquireCards();
     }
 }

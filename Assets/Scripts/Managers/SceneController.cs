@@ -18,7 +18,6 @@ public class SceneController : Singleton<SceneController>
     public void LoadScreenAsync(string nameScene)
     {
         StartCoroutine(LoadLevelWithBar(nameScene));
-
     }
 
     IEnumerator LoadLevelWithBar(string nameScene)

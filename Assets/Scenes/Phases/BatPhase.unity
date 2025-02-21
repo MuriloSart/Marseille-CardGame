@@ -1417,7 +1417,7 @@ RectTransform:
   - {fileID: 1858783367}
   - {fileID: 1220225651}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1766,7 +1766,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881321127
 GameObject:
@@ -2022,6 +2022,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 446
       objectReference: {fileID: 0}
+    - target: {fileID: 4728014729304726474, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: cardTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728014729304726474, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: cardTypes.Array.data[0]
+      value: 
+      objectReference: {fileID: 4510720441240836508, guid: a4207eed9ed5d3d40a66d99b1d26f986, type: 3}
+    - target: {fileID: 4728014729304726474, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: cardTypes.Array.data[1]
+      value: 
+      objectReference: {fileID: 4510720441240836508, guid: a4207eed9ed5d3d40a66d99b1d26f986, type: 3}
+    - target: {fileID: 4728014729304726474, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: cardTypes.Array.data[2]
+      value: 
+      objectReference: {fileID: 4510720441240836508, guid: a4207eed9ed5d3d40a66d99b1d26f986, type: 3}
+    - target: {fileID: 4728014729304726474, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
+      propertyPath: cardTypes.Array.data[3]
+      value: 
+      objectReference: {fileID: 4510720441240836508, guid: a4207eed9ed5d3d40a66d99b1d26f986, type: 3}
     - target: {fileID: 5799807558532078895, guid: 7d3d8888768088a42acd57ded588b8b3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

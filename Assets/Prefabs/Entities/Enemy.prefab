@@ -554,7 +554,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4093557132557041377}
+  - component: {fileID: 3894760610358079802}
   - component: {fileID: 3490989678817919404}
   m_Layer: 0
   m_Name: EnemyUi
@@ -563,7 +563,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4093557132557041377
+--- !u!4 &3894760610358079802
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -899,7 +899,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -134, z: -15.1879835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4093557132557041377}
+  - {fileID: 3894760610358079802}
   - {fileID: 2793031553843122056}
   - {fileID: 6372661058609678493}
   - {fileID: 5322299537005212248}
@@ -989,7 +989,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 15.1879835}
   m_LocalScale: {x: 0.0050000004, y: 0.0050000004, z: 1}
   m_Children: []
-  m_Father: {fileID: 4093557132557041377}
+  m_Father: {fileID: 3894760610358079802}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

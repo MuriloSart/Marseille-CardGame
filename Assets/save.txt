@@ -1,3 +1,47 @@
-{
-    "lastLevel": 4
-}
+import pygame
+
+# Inicializa o pygame
+pygame.init()
+
+# Configurações da tela
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Exemplo Pygame")
+
+# Cores
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+
+# Configurações do jogador
+player_size = 50
+player_x = WIDTH // 2 - player_size // 2
+player_y = HEIGHT // 2 - player_size // 2
+player_speed = 5
+
+# Loop principal
+going = True
+while going:
+    pygame.time.delay(30)  # Controle de FPS
+    
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            going = False
+    
+    # Captura as teclas pressionadas
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT] and player_x > 0:
+        player_x -= player_speed
+    if keys[pygame.K_RIGHT] and player_x < WIDTH - player_size:
+        player_x += player_speed
+    if keys[pygame.K_UP] and player_y > 0:
+        player_y -= player_speed
+    if keys[pygame.K_DOWN] and player_y < HEIGHT - player_size:
+        player_y += player_speed
+    
+    # Renderização
+    screen.fill(WHITE)
+    pygame.draw.rect(screen, RED, (player_x, player_y, player_size, player_size))
+    pygame.display.update()
+
+# Finaliza o pygame
+pygame.quit()

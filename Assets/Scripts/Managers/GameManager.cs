@@ -1,9 +1,20 @@
-using UnityEngine.SceneManagement;
+using SOScript;
+using UnityEngine;
+using Save;
 
 public class GameManager : Singleton<GameManager>
 {
-    public void ResultScreen(int screen)
+    [SerializeField] private DataLevels dataLevels;
+
+    private void Start()
     {
-        SceneManager.LoadScene(screen);
+        dataLevels.currentLevel = new FileHandler().GetSetup().lastLevel;
+    }
+
+    [NaughtyAttributes.Button]
+    public void Win()
+    {
+        ++dataLevels.currentLevel;
+        SaveManager.Instance.Save(dataLevels.currentLevel);
     }
 }

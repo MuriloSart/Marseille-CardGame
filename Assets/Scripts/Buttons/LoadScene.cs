@@ -1,16 +1,19 @@
 using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
+using Save;
 
 public class LoadScene : MonoBehaviour
 {
     public string nomePrimeiraFase = "ReacockPhase";
 
-    private string jsonString;
+    private FilePathBuilder filePath;
+    private FileHandler fileHandler;
 
-    private void Awake()
+    private void Start()
     {
-        jsonString = Application.dataPath + "/save.txt";    
+        filePath = new FilePathBuilder();
+        fileHandler = new FileHandler();
     }
 
     public void Load(int i)
@@ -20,17 +23,11 @@ public class LoadScene : MonoBehaviour
 
     public void LoadCurrentLevel()
     {
-        if (File.Exists(jsonString))
-        {
-            string json = File.ReadAllText(jsonString);
-            SaveSetup setup = JsonUtility.FromJson<SaveSetup>(json);
+        if (!File.Exists(filePath.GetPath())) SaveManager.Instance.Save(GetSceneIndexByName(nomePrimeiraFase));
 
-            SceneManager.LoadScene(setup.lastLevel);
-        }
-        else
-        {
-            SaveManager.Instance.CreateFile(GetSceneIndexByName(nomePrimeiraFase));
-        }
+        SaveSetup setup = fileHandler.GetSetup();
+
+        SceneManager.LoadScene(setup.lastLevel);
     }
 
     private static int GetSceneIndexByName(string sceneName)
@@ -47,5 +44,4 @@ public class LoadScene : MonoBehaviour
         }
         return 0; 
     }
-
 }

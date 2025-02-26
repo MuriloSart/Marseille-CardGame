@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 7681257120518189581}
   - component: {fileID: 7681257120518189570}
   - component: {fileID: 7681257120518189580}
-  - component: {fileID: 7203054278831831915}
+  - component: {fileID: 8222118784598031090}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -942,11 +942,11 @@ MonoBehaviour:
   drawPile: {fileID: 4728014729304726474}
   healthUi: {fileID: 1721167645105704834}
   health: {fileID: 7681257120518189570}
-  death: {fileID: 7203054278831831915}
+  death: {fileID: 8222118784598031090}
   state: 0
   entityTurn: 0
   selected: 0
---- !u!114 &7203054278831831915
+--- !u!114 &8222118784598031090
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -955,7 +955,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7681257120518189583}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce480498a9434964ea0be128776e0d85, type: 3}
+  m_Script: {fileID: 11500000, guid: 61a2b244e7254b24e8e5a0bf217cd537, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canDie: 1

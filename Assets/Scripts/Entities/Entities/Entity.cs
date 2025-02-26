@@ -1,8 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
+using Entities.LifeCycle.Death;
 
 public class Entity : MonoBehaviour
 {

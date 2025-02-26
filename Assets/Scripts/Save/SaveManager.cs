@@ -1,26 +1,28 @@
 using UnityEngine;
-using System.IO;
 
-public class SaveManager : Singleton<SaveManager>
+namespace Save
 {
-    private string saveFilePath;
-    private void Start()
+    public class SaveManager : Singleton<SaveManager>
     {
-        saveFilePath = Application.dataPath + "/save.txt";
+        private FileHandler fileHandler;
+        private SaveSetup setup;
 
-    }   
-
-    public void CreateFile(int sceneIndex)
-    {
-        SaveSetup setup = new SaveSetup
+        private void Start()
         {
-            lastLevel = sceneIndex
-        };
+            fileHandler = new FileHandler();
+            setup = new SaveSetup();
+        }
 
-        string setupToJson = JsonUtility.ToJson(setup, true);
+        public void Save(int sceneIndex)
+        {
+            setup.lastLevel = sceneIndex;
 
-        File.WriteAllText(saveFilePath, setupToJson);
+            string setupToJson = JsonUtility.ToJson(setup, true);
 
-        Debug.Log("Salvando o índice da cena: " + sceneIndex);
+            fileHandler.Write(setupToJson);
+
+            Debug.Log("Salvando o índice da cena: " + sceneIndex);
+        }
     }
 }
+

@@ -436,6 +436,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9b78b067dd137469ddcebd42c14583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nomePrimeiraFase: ReacockPhase
+  filePath: {fileID: 0}
+  fileHandler: {fileID: 0}
 --- !u!114 &623391804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1113,6 +1116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9b78b067dd137469ddcebd42c14583, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nomePrimeiraFase: ReacockPhase
+  filePath: {fileID: 1401501975}
+  fileHandler: {fileID: 1401501973}
 --- !u!114 &1242004721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1217,6 +1223,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1401501972}
   - component: {fileID: 1401501971}
+  - component: {fileID: 1401501974}
+  - component: {fileID: 1401501973}
+  - component: {fileID: 1401501975}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -1236,6 +1245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d26d9521a1a346b41b89f52026f205a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fileHandler: {fileID: 1401501973}
 --- !u!4 &1401501972
 Transform:
   m_ObjectHideFlags: 0
@@ -1250,6 +1260,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1401501973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401501970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3be642522a00384a975caaa55719749, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathBuilder: {fileID: 1401501975}
+--- !u!114 &1401501974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401501970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2a4b2f862ae0a34087e0906b5dc8149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathBuilder: {fileID: 1401501975}
+--- !u!114 &1401501975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401501970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41485708903126e48b048c9e6c8273c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1487802345
 GameObject:
   m_ObjectHideFlags: 0

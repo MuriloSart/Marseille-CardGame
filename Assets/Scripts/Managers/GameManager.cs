@@ -5,13 +5,14 @@ using Save;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private DataLevels dataLevels;
+    private FileHandler file;
 
     private void Start()
     {
-        dataLevels.currentLevel = new FileHandler().GetSetup().lastLevel;
+        file = FindObjectOfType<FileHandler>();
+        dataLevels.currentLevel = file.GetSetup().lastLevel;
     }
 
-    [NaughtyAttributes.Button]
     public void Win()
     {
         ++dataLevels.currentLevel;

@@ -6,12 +6,7 @@ namespace Save
     public class FileBuilder : MonoBehaviour
     {
 
-        private FilePathBuilder pathBuilder;
-        
-        private void Start()
-        {
-            pathBuilder = new FilePathBuilder();
-        }
+        public FilePathBuilder pathBuilder;
 
         public void CreateFile(string setup)
         {

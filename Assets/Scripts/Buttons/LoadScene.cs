@@ -7,14 +7,8 @@ public class LoadScene : MonoBehaviour
 {
     public string nomePrimeiraFase = "ReacockPhase";
 
-    private FilePathBuilder filePath;
-    private FileHandler fileHandler;
-
-    private void Start()
-    {
-        filePath = new FilePathBuilder();
-        fileHandler = new FileHandler();
-    }
+    public FilePathBuilder filePath;
+    public FileHandler fileHandler;
 
     public void Load(int i)
     {

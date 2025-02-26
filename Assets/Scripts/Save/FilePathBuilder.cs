@@ -2,7 +2,7 @@
 
 namespace Save
 {
-    public class FilePathBuilder
+    public class FilePathBuilder : MonoBehaviour
     {
         public string GetPath() => Application.dataPath + "/save.txt";
     }

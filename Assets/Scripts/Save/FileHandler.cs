@@ -3,14 +3,13 @@ using UnityEngine;
 
 namespace Save
 {
-    public class FileHandler
+    public class FileHandler : MonoBehaviour
     {
-        private FilePathBuilder pathBuilder;
+        public FilePathBuilder pathBuilder;
         private SaveSetup setup;
 
         private void Awake()
         {
-            pathBuilder = new FilePathBuilder();
             setup = new SaveSetup();
         }
 

@@ -4,12 +4,12 @@ namespace Save
 {
     public class SaveManager : Singleton<SaveManager>
     {
-        private FileHandler fileHandler;
+        public FileHandler fileHandler;
         private SaveSetup setup;
 
         private void Start()
         {
-            fileHandler = new FileHandler();
+            DontDestroyOnLoad(this);
             setup = new SaveSetup();
         }
 

@@ -1,6 +1,8 @@
 using TMPro;
 using SOScript;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Save;
 
 public class DialogueButton : MonoBehaviour
 {
@@ -15,9 +17,7 @@ public class DialogueButton : MonoBehaviour
         get => currentDialogue;
         set
         {
-            if (value > data.dialogues.Count)
-                CurrentDialogue = currentDialogue;
-            else if (value < 0)
+            if (value < 0)
                 currentDialogue = 0;
             else
                 currentDialogue = value;
@@ -26,7 +26,10 @@ public class DialogueButton : MonoBehaviour
 
     public void NextText()
     {
-        CurrentDialogue++;
+        ++CurrentDialogue;
+
+        if (CurrentDialogue > data.dialogues.Count) SceneManager.LoadScene(SaveManager.Instance.fileHandler.GetSetup().lastLevel);
+
         SetText();
     }
 

@@ -317,7 +317,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -736,6 +736,18 @@ PrefabInstance:
     - target: {fileID: 2287588360945503265, guid: db5a8f2837ec5e14eaa55974237fc781, type: 3}
       propertyPath: m_Name
       value: ButtonsGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797969816352584893, guid: db5a8f2837ec5e14eaa55974237fc781, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797969816352584893, guid: db5a8f2837ec5e14eaa55974237fc781, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.43689
+      objectReference: {fileID: 0}
+    - target: {fileID: 5951292645341017042, guid: db5a8f2837ec5e14eaa55974237fc781, type: 3}
+      propertyPath: m_margin.z
+      value: 0.62698364
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db5a8f2837ec5e14eaa55974237fc781, type: 3}

@@ -10,6 +10,12 @@ public class LoadScene : MonoBehaviour
     public FilePathBuilder filePath;
     public FileHandler fileHandler;
 
+    private void Start()
+    {
+        if (filePath == null) filePath = FindObjectOfType<FilePathBuilder>();
+        if (fileHandler == null) fileHandler = FindObjectOfType<FileHandler>();
+    }
+
     public void Load(int i)
     {
         SceneManager.LoadScene(i);

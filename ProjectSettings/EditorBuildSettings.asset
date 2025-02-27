@@ -18,15 +18,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Menus/LoseScreen.unity
     guid: c8941546d18526a4cb6c09f8050b1ae5
   - enabled: 1
-    path: Assets/Scenes/Phases/ReacockPhase.unity
+    path: Assets/Scenes/Levels/ReacockPhase.unity
     guid: 41d4a70d8bc426e419382f6e89858b64
   - enabled: 1
-    path: Assets/Scenes/Phases/CrowPhase.unity
+    path: Assets/Scenes/Levels/CrowPhase.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Phases/MonkeyPhase.unity
+    path: Assets/Scenes/Levels/MonkeyPhase.unity
     guid: 41dbfa46383ba88449b4357848787fda
   - enabled: 1
-    path: Assets/Scenes/Phases/BatPhase.unity
+    path: Assets/Scenes/Levels/BatPhase.unity
     guid: b07c283c290cd414cafcf6c79e840dd3
   m_configObjects: {}

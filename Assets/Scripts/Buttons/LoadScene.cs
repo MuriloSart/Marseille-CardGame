@@ -16,9 +16,14 @@ public class LoadScene : MonoBehaviour
         if (fileHandler == null) fileHandler = FindObjectOfType<FileHandler>();
     }
 
-    public void Load(int i)
+    public void LoadByIndex(int i)
     {
         SceneManager.LoadScene(i);
+    }
+
+    public void LoadByName(string sceneName)
+    {
+        SceneManager.LoadScene(GetSceneIndexByName(sceneName));
     }
 
     public void LoadCurrentLevel()

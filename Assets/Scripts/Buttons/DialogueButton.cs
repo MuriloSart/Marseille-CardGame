@@ -12,6 +12,8 @@ public class DialogueButton : MonoBehaviour
 
     private int currentDialogue = 0;
 
+    private int _lastLevel;
+
     public int CurrentDialogue
     {
         get => currentDialogue;
@@ -28,7 +30,8 @@ public class DialogueButton : MonoBehaviour
     {
         ++CurrentDialogue;
 
-        if (CurrentDialogue > data.dialogues.Count) SceneManager.LoadScene(SaveManager.Instance.fileHandler.GetSetup().lastLevel);
+        if (CurrentDialogue >= data.dialogues.Count) 
+            SceneManager.LoadScene(_lastLevel);
 
         SetText();
     }
@@ -36,6 +39,7 @@ public class DialogueButton : MonoBehaviour
     private void Start()
     {
         SetText();
+        _lastLevel = SaveManager.Instance.fileHandler.GetSetup().lastLevel;
     }
 
     private void SetText()

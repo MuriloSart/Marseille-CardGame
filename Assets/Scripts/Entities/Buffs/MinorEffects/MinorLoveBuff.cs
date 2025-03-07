@@ -2,11 +2,13 @@
 {
     private readonly int _buffValue;
     private readonly Heal heal = new Heal();
+    private readonly Entity enemy;
 
-    public MinorLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity, type)
+    public MinorLoveBuff(Entity entity, Entity enemy, int buffValue, TypeOfEffect type) : base(entity, type)
     {
         this.entity = entity;
         this._buffValue = buffValue;
+        this.enemy = enemy;
     }
 
     public override void ApplyAttackEffect()
@@ -16,7 +18,7 @@
 
     public override void ApplyDefenseEffect()
     {
-        entity.selectedCards.cards[0].Damage -= _buffValue;
+        enemy.selectedCards.cards[0].Damage -= _buffValue;
     }
 
     public override void RemoveAttackEffect()
@@ -26,7 +28,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.selectedCards.cards[0].Damage += _buffValue;
+        enemy.selectedCards.cards[0].Damage += _buffValue;
     }
 
     public override void Render()

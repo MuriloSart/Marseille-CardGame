@@ -14,22 +14,22 @@ internal class LoveAbility : IAbilityCard
         switch (cardValue)
         {
             case 1:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 2:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 3:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 4:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 5:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 6:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Attack);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Attack);
                 break;
             case 7:
                 _effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Attack);
@@ -55,22 +55,22 @@ internal class LoveAbility : IAbilityCard
         switch (cardValue)
         {
             case 1:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 2:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 3:
-                _effect = new MinorLoveBuff(entity, minorHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MinorLoveBuff(entity, enemy, minorHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 4:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 5:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 6:
-                _effect = new MediumLoveBuff(entity, mediumHeal, EffectBase.TypeOfEffect.Defense);
+                _effect = new MediumLoveBuff(entity, enemy, mediumHeal, EffectBase.TypeOfEffect.Defense);
                 break;
             case 7:
                 _effect = new HighLoveBuff(entity, EffectBase.TypeOfEffect.Defense);

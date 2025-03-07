@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        file = FindObjectOfType<FileHandler>();
+        file = GetComponent<FileHandler>();
         dataLevels.currentLevel = file.GetSetup().lastLevel;
     }
 

@@ -12,8 +12,8 @@ public class LoadScene : MonoBehaviour
 
     private void Start()
     {
-        if (filePath == null) filePath = FindObjectOfType<FilePathBuilder>();
-        if (fileHandler == null) fileHandler = FindObjectOfType<FileHandler>();
+        if (filePath == null) filePath = GetComponent<FilePathBuilder>();
+        if (fileHandler == null) fileHandler = GetComponent<FileHandler>();
     }
 
     public void LoadByIndex(int i)

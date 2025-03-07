@@ -22,9 +22,9 @@ public class EffectManager : Singleton<EffectManager>
     public void GuiltDebuff()
     {
         if (!guiltActived) return;
+        if(debuffDamage <= 0) return;
         RemoveEffect(entity.enemy, entity.enemy.selectedCards.cards[1].Effect);
 
-        if(debuffDamage >= 0) return;
         enemyData = entity.enemy.selectedCards.cards[1].Damage;
         entity.enemy.selectedCards.cards[1].Damage -= debuffDamage;
         entity.enemy.selectedCards.cards[1].Renew();

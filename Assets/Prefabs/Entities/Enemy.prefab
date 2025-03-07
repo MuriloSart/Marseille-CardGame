@@ -116,7 +116,6 @@ GameObject:
   - component: {fileID: 4793825624394469541}
   - component: {fileID: 9135843683955892020}
   - component: {fileID: 4281506110952238959}
-  - component: {fileID: 2939759549477106670}
   m_Layer: 5
   m_Name: DamageResistUi
   m_TagString: Untagged
@@ -171,9 +170,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '10
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -242,21 +239,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2939759549477106670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957539532481859728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57344fa1baadcf1429a978f3dc3aa2df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityTarget: {fileID: 7681257120518189580}
-  healthText: {fileID: 4281506110952238959}
-  delayAnimation: 1
 --- !u!1 &3015768816001878445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1034,7 +1016,6 @@ GameObject:
   - component: {fileID: 8906615907472863808}
   - component: {fileID: 4386826036284919921}
   - component: {fileID: 1024946024477651983}
-  - component: {fileID: 2539173342111943101}
   m_Layer: 5
   m_Name: EffectResistUi
   m_TagString: Untagged
@@ -1089,9 +1070,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '10
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1160,21 +1139,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2539173342111943101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7654629447279510303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57344fa1baadcf1429a978f3dc3aa2df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  entityTarget: {fileID: 7681257120518189580}
-  healthText: {fileID: 1024946024477651983}
-  delayAnimation: 1
 --- !u!1 &7681257120518189583
 GameObject:
   m_ObjectHideFlags: 0
@@ -1360,9 +1324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '10
-
-'
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

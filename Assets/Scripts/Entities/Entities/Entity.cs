@@ -93,8 +93,8 @@ public class Entity : MonoBehaviour
     protected virtual void Init()
     {
         effects = new List<EffectBase>();
-        armorUi = FindObjectOfType<DamageResistUI>();
-        effectResistUi = FindObjectOfType<EffectResistUI>();
+        armorUi = GetComponent<DamageResistUI>();
+        effectResistUi = GetComponent<EffectResistUI>();
     }
 
     private void Update()

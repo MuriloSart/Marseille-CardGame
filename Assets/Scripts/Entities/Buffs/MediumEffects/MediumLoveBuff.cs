@@ -2,12 +2,14 @@
 {
     private int _buffValue;
     private int _damageValue;
+    private Entity enemy;
     private Heal heal = new Heal();
 
-    public MediumLoveBuff(Entity entity, int buffValue, TypeOfEffect type) : base(entity, type)
+    public MediumLoveBuff(Entity entity, Entity enemy, int buffValue, TypeOfEffect type) : base(entity, type)
     {
         this.entity = entity;
         this._buffValue = buffValue;
+        this.enemy = enemy;
     }
 
     public override void ApplyAttackEffect()
@@ -17,8 +19,8 @@
 
     public override void ApplyDefenseEffect()
     {
-        _damageValue = entity.selectedCards.cards[0].Damage / 2;
-        entity.selectedCards.cards[0].Damage -= _damageValue;
+        _damageValue = enemy.selectedCards.cards[0].Damage / 2;
+        enemy.selectedCards.cards[0].Damage -= _damageValue;
     }
 
     public override void RemoveAttackEffect()
@@ -28,7 +30,7 @@
 
     public override void RemoveDefenseEffect()
     {
-        entity.selectedCards.cards[0].Damage += _damageValue;
+        enemy.selectedCards.cards[0].Damage += _damageValue;
     }
 
     public override void Render()

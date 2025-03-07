@@ -9,7 +9,7 @@ public class EffectResistUI : MonoBehaviour
 
     private void Start()
     {
-        entity = FindObjectOfType<Entity>();
+        entity = GetComponent<Entity>();
         effectResistUi.text = entity.EffectResist.ToString();
     }
 

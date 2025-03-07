@@ -8,7 +8,7 @@ using System.Collections;
 public abstract class CardBase : MonoBehaviour
 {
     [Header("Status Card")]
-    public TextMeshProUGUI uiTextValue;
+    public TextMeshProUGUI ValueText;
     public Damage damageType;
     public CardAnimator cardAnimator;
 
@@ -68,7 +68,7 @@ public abstract class CardBase : MonoBehaviour
 
     private void Start()
     {
-        uiTextValue.text = Damage.ToString();
+        ValueText.text = Damage.ToString();
         this.GetComponent<Image>().sprite = Render();
         Ability = DefenseAbility;
     }
@@ -100,9 +100,9 @@ public abstract class CardBase : MonoBehaviour
     private IEnumerator AtualizeText(int dmg)
     {
         if (this.dmg < dmg)
-            uiTextValue.text = $"{this.dmg} +  {dmg- this.dmg}";
+            ValueText.text = $"{this.dmg} +  {dmg- this.dmg}";
         else if(this.dmg > dmg)
-            uiTextValue.text = $"{this.dmg} -  {this.dmg - dmg}";
+            ValueText.text = $"{this.dmg} -  {this.dmg - dmg}";
 
         if (dmg < 1)
             this.dmg = 1;
@@ -110,6 +110,6 @@ public abstract class CardBase : MonoBehaviour
             this.dmg = dmg;
 
         yield return new WaitForSeconds(1);
-        uiTextValue.text = dmg.ToString();
+        ValueText.text = dmg.ToString();
     }
 }

@@ -1602,21 +1602,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseOrOpen
       objectReference: {fileID: 0}
-    - target: {fileID: 7341006340880035669, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341006340880035669, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341006340880035669, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 7341006340880035669, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -494.56998
+    - target: {fileID: 7341006340880035668, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
+      propertyPath: m_Name
+      value: B_CLOSE
       objectReference: {fileID: 0}
     - target: {fileID: 8245312752067757761, guid: 540a28c5352572a4c8c9fa5e5a8b5cee, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2156,6 +2144,12 @@ PrefabInstance:
       propertyPath: menu
       value: 
       objectReference: {fileID: 1375647100}
+    - target: {fileID: 3317070341982822648, guid: 1e62fa645e03d6c41ba5f230c5987b87, type: 3}
+      propertyPath: m_text
+      value: 'PAUSE
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7129929056192591404, guid: 1e62fa645e03d6c41ba5f230c5987b87, type: 3}
       propertyPath: m_Name
       value: MenuInGameButton

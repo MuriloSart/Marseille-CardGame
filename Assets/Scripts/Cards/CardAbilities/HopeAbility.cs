@@ -16,7 +16,6 @@ public class HopeAbility : IAbilityCard
 
     public EffectBase ExecuteAttackAbility(Entity entity, Entity enemy, int cardValue)
     {
-        if (cardValue < 0) cardValue = 1;
         switch (cardValue)
         {
             case 1:
@@ -57,7 +56,6 @@ public class HopeAbility : IAbilityCard
     }
     public EffectBase ExecuteDefenseAbility(Entity entity, Entity enemy, int cardValue)
     {
-        if(cardValue < 0) cardValue = 1;
         switch (cardValue)
         {
             case 1:

@@ -9,7 +9,7 @@ public class DamageResistUI : MonoBehaviour
 
     private void Start()
     {
-        entity = FindObjectOfType<Entity>();
+        entity = GetComponent<Entity>();
         damageResistUi.text = entity.DamageResist.ToString();
     }
 

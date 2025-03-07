@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bcb4fea0bcc10e48b4e2eb2534a62d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiTextValue: {fileID: 4510720441099597756}
+  ValueText: {fileID: 4510720441099597756}
   damageType: {fileID: 8765349748496480556}
   cardAnimator: {fileID: 8144921863915775641}
 --- !u!114 &8144921863915775641

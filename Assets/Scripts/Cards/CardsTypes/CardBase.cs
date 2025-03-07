@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Cards.Animations;
+using System.Collections;
 
 public abstract class CardBase : MonoBehaviour
 {
@@ -19,12 +20,7 @@ public abstract class CardBase : MonoBehaviour
     {
         set
         {
-            if (value < 1)
-                dmg = 1;
-            else 
-                dmg = value;
-
-            uiTextValue.text = dmg.ToString();
+            StartCoroutine(AtualizeText(value));
         }
         get { return dmg; }
     }
@@ -99,5 +95,21 @@ public abstract class CardBase : MonoBehaviour
     public void SlideTo(Deck destiny)
     {
         cardAnimator.SlideTo(this, destiny);
+    }
+
+    private IEnumerator AtualizeText(int dmg)
+    {
+        if (this.dmg < dmg)
+            uiTextValue.text = $"{this.dmg} +  {dmg- this.dmg}";
+        else if(this.dmg > dmg)
+            uiTextValue.text = $"{this.dmg} -  {this.dmg - dmg}";
+
+        if (dmg < 1)
+            this.dmg = 1;
+        else
+            this.dmg = dmg;
+
+        yield return new WaitForSeconds(1);
+        uiTextValue.text = dmg.ToString();
     }
 }

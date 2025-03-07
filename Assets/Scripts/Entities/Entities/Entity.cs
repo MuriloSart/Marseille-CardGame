@@ -37,6 +37,9 @@ public class Entity : MonoBehaviour
     [HideInInspector] public bool entityTurn = false;
     [HideInInspector] public bool selected = false;
 
+    private DamageResistUI armorUi;
+    private EffectResistUI effectResistUi;
+
     private Vector2 _currentSelectPos;
     public Vector2 CurrentSelectedPos { get => _currentSelectPos; }
     public int SelectedPosOption
@@ -60,6 +63,8 @@ public class Entity : MonoBehaviour
                 _effectResist = value;
             else
                 _effectResist = 0;
+
+            effectResistUi.AtualizeText();
         }
     }
 
@@ -73,6 +78,8 @@ public class Entity : MonoBehaviour
                 _damageResist = value;
             else
                 _damageResist = 0;
+
+            armorUi.AtualizeText();
         }
     }
 
@@ -86,6 +93,8 @@ public class Entity : MonoBehaviour
     protected virtual void Init()
     {
         effects = new List<EffectBase>();
+        armorUi = FindObjectOfType<DamageResistUI>();
+        effectResistUi = FindObjectOfType<EffectResistUI>();
     }
 
     private void Update()
